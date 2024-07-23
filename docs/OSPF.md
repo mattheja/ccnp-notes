@@ -53,7 +53,7 @@ There are two types of areas within the area hierarchy of OSPF:
 - **LSA Type 4 - Summary ASBR LSA** -- ABR's generate summary advertisements that describe routes to ASBR's. The ASBR floods type 1's, which are converted to Type 4 by ABR's into backbone.
     - These are not flooded into totally stubby or totally NSSA areas.
 - **LSA Type 5 - External LSA** -- ASBR generates AS external link advertisements. They describe routes to destinations external to the OSPF AS and are flooded only into backbone and regular areas (none of the stubs).
--- **LSA Type 7 - NSSA LSA** -- used by NSSA areas for external routes. These are converted by ABR's into Type 5 when flooding into backbone.
+- **LSA Type 7 - NSSA LSA** -- used by NSSA areas for external routes. These are converted by ABR's into Type 5 when flooding into backbone.
 
 ## OSPFv2 Path Selection
 
@@ -365,3 +365,49 @@ router(config-ospf-ar)# int gi0/0/1/5
 ```
 
 - For IOS XR, both inter-area route summarization uses the `range` config, and `summary-prefix` for external route summarization on ASBR (upon redistribution into OSPF from external AS)
+
+## Troubleshooting OSPF
+
+- Understanding the requirements and limitations of OSPF is critical to troubleshooting
+- OSPF neighborships/adjacency requires these to align:
+    - <ins>area id</ins>: the areas configured on interfaces
+    - <ins>hello and dead intervals</ins>: must/should match. If not, then possibly if no hellos within the dead interval, then neighbor is declared dead
+    - <ins>subnet mask</ins>: must match; although not requirement for p2p links
+    - <ins>authentication key</ins>: must match, if not there is no adjacency
+    - <ins>network type</ins>: p2p or other, must match so DR/BDR election can take place
+    - <ins>stub flag</ins>: routers must use the same flag
+    - <ins>MTU</ins>: LSA's can or will be dropped if there is a mismatch 
+
+### Troubleshooting Incomplete OSPF Adjacency
+- Final OSPF state is Full after routing tables are synced.
+- [Cisco.com OSPF Neighbor States](https://www.cisco.com/c/en/us/support/docs/ip/open-shortest-path-first-ospf/13685-13.html#toc-hId--671632336)
+- On a multiaccess network, a router will stay in 2-way state with non-DR/BDR neighbors
+
+**Common Issues in each state**:
+
+- DOWN state or there is no state
+    - OSPF process has not received any hellos packets from neighbor
+    - Things to look at:
+        1. Check cabling, check ACL's or firewalls to verify forwarding and tx/rx between neighbors
+        2. Verify OSPF is enabled -- `show ip ospf int`
+        3. Verify that OSPF is not passive on interface
+        4. Check that the router ID is different on both sides
+        5. Validate the required parameters
+- INIT State
+    - Router has received a hello packet from neighbor, but it does not yet see its own router ID in the hello packet from neighbor
+    - Things to look at:
+        1. Verify ACL's or firewalls to verify forwarding and tx/rx between neighbors
+        2. Check there are no layer 2 problems between neighbors
+        3. Verify authentication matches on both sides if using
+- EXSTART, Exchange
+    - The Database Description (DBD) and LSA packet exchange were not successful after DR, BDR election
+    - Check MTU or if NAT is being used to translate OSPF packets
+    - Check for possible interoperability issues if neighbor is another vendor 
+    - Verify the router ID's are different
+
+### OSPF Route Exchange Troubleshooting between Areas
+- If there is a discontiguous area 0 or another area is seperated from area 0, then there will be route exchange issues since all areas rely on area 0 to exchange routing information
+- If there is inconsistent routing, validate that:
+    - OSPF interfaces are in the correct and intended area
+    - Check ABR's - `show ospf border-routers`
+    - Validate there is no route-map or route-policy filtering inbound routes
