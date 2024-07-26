@@ -1,0 +1,1048 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Routing%20Policy/">
+      
+      
+        <link rel="next" href="../Segment%20Routing/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>SR Traffic Engineering - Notes for CCNP SPRI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sr-traffic-engineering" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Notes for CCNP SPRI" class="md-header__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes for CCNP SPRI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SR Traffic Engineering
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_3">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_4">
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../BGP/" class="md-tabs__link">
+        
+  
+    
+  
+  Scaling BGP
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ISIS/" class="md-tabs__link">
+        
+  
+    
+  
+  IS-IS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MPLS%20LDP/" class="md-tabs__link">
+        
+  
+    
+  
+  Implementing and Verifying MPLS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MPLS%20TE/" class="md-tabs__link">
+        
+  
+    
+  
+  MPLS TE
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Multicast/" class="md-tabs__link">
+        
+  
+    
+  
+  Multicast
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../OSPF/" class="md-tabs__link">
+        
+  
+    
+  
+  OSPF
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Route%20Redistribution/" class="md-tabs__link">
+        
+  
+    
+  
+  Route Redistribution
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Routing%20Policy/" class="md-tabs__link">
+        
+  
+    
+  
+  Routing Policy and Manipulation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  SR Traffic Engineering
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Segment%20Routing/" class="md-tabs__link">
+        
+  
+    
+  
+  Segment Routing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Notes for CCNP SPRI" class="md-nav__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Notes for CCNP SPRI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BGP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scaling BGP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ISIS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IS-IS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MPLS%20LDP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implementing and Verifying MPLS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MPLS%20TE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MPLS TE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multicast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multicast
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OSPF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSPF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Route%20Redistribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Route Redistribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Routing%20Policy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Routing Policy and Manipulation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    SR Traffic Engineering
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    SR Traffic Engineering
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sr-te-concepts-components-and-comparisons-to-rsvp-te" class="md-nav__link">
+    <span class="md-ellipsis">
+      SR TE Concepts, Components, and Comparisons to RSVP TE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SR TE Concepts, Components, and Comparisons to RSVP TE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#differences-from-rsvp-te" class="md-nav__link">
+    <span class="md-ellipsis">
+      Differences from RSVP TE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sr-policy-concepts-constraints-metrics-and-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      SR Policy Concepts, Constraints, Metrics, and Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SR Policy Concepts, Constraints, Metrics, and Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribution-of-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distribution of policies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sr-te-traffic-steering" class="md-nav__link">
+    <span class="md-ellipsis">
+      SR-TE Traffic Steering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SR-TE Traffic Steering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bgp-sr-te-steering" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGP SR-TE Steering
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sr-pce-based-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      SR PCE-Based Paths
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SR PCE-Based Paths">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bgp-ls" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGP-LS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-pcep" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring PCEP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Segment%20Routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Segment Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="sr-traffic-engineering">SR Traffic Engineering</h1>
+<h2 id="sr-te-concepts-components-and-comparisons-to-rsvp-te">SR TE Concepts, Components, and Comparisons to RSVP TE</h2>
+<p>SR-TE uses policy to steer traffic. An SR-TE policy path is expressed as a list of segments that specifies the path, called a segment ID (SID) list.</p>
+<p>Each segment is an e2e path from src to dst and instructs the routers in the network to follow the specified path instead of the shortest path calculated by the IGP. If or when a packet is steered into an SR-TE policy, the SID list is pushed onto the packet by headend. The rest of network executes the instructions in the SID list.</p>
+<p>There are two types of SR-TE policies: explicit and dynamic.</p>
+<h3 id="differences-from-rsvp-te">Differences from RSVP TE</h3>
+<p>TE state in RSVP is maintained by all nodes in the path by exchanging messages. In <strong>SR-TE</strong>, the state is only kept at the headend.</p>
+<p>SR-TE is designed with SDN in mind. A signaling protocol is unnecessary, so this scales better.</p>
+<p>The SR-TE model and SID list allow for IGP ECMP.</p>
+<h2 id="sr-policy-concepts-constraints-metrics-and-attributes">SR Policy Concepts, Constraints, Metrics, and Attributes</h2>
+<p>SR-TE offers a rich set of options to govern traffic engineering with metrics and constraints. Aka... knobs.</p>
+<p>The main components of SR-TE:</p>
+<p><strong>Path</strong> determination: </p>
+<ul>
+<li>Who calculates the path? <code>Local</code> or <code>Central</code> -- done by headend node or PCE?</li>
+<li>Based on what? <code>Metrics</code> (cost, latency, bw, etc) or <code>Constraints</code> (color, affinity, node, etc)</li>
+</ul>
+<p><strong>Steering</strong> determination:</p>
+<ul>
+<li>Who determines the policy? <code>Local</code> or <code>Central</code></li>
+<li>How is the policy created? static, autoroute, BGP SR-TE dynamic, etc</li>
+</ul>
+<p>SR-TE uses <strong>policy</strong> to steer traffic through the network.</p>
+<ul>
+<li>Avoids the use of tunnel in context, since most policies do not require tunnel-te interfaces</li>
+<li>Tunnel interfaces deprecated</li>
+<li>SR-TE policy path is expressed as a SID-list </li>
+<li>A packet is steered into SR-TE policy, then a SID list is pushed onto the packet by headend, while the rest of the network executes the instructions in the SID list (source routing)</li>
+</ul>
+<p><strong>Binding segment</strong> is fundamental building block. It is a local segment identifying a SR-TE policy. Each SR-TE policy is 1:1 with a binding SID.</p>
+<ul>
+<li>Binding SID is used to steer traffic into a SR-TE policy<ul>
+<li>The instruction associated with a binding SID is "POP and steer into this SR-TE policy"</li>
+</ul>
+</li>
+<li>The Binding SID is a local label, statically or dynamically allocated for each SR-TE policy...<ul>
+<li>they can be manually configured, per policy in some cases</li>
+<li>they can be allocated for RSVP-TE tunnels </li>
+<li>they are allocated when SR-TE policy is instantiated </li>
+<li>if you bring down SR-TE policy, binding SID remains</li>
+</ul>
+</li>
+</ul>
+<p>SR-TE offers comprehensive support for all useful optimizations and constraints:</p>
+<ul>
+<li>Latency</li>
+<li>Bandwidth</li>
+<li>Disjointedness</li>
+<li>Resource avoidance</li>
+<li>Weighted balancing</li>
+</ul>
+<p>Then it can use </p>
+<ul>
+<li>IGP metric</li>
+<li>TE metrics: <code>administrative distance</code></li>
+<li>Delay as link-delay metric automatically measured by a node for attached links and distributed into IGP</li>
+</ul>
+<p><strong>Margins</strong>: can be configured to relax the "absolute" Min-Metric objective to favor more ECMP behavior.</p>
+<ul>
+<li>Headend builds SID list such that packets flowing through it do not use a path whose cumulated optimized metric is larger than the shortest path for the optimized metric + margin.</li>
+<li>Margin can be expressed as an absolute value or as a relative value (percentage) (margin relative &lt;%&gt;).</li>
+</ul>
+<p><strong>Constraints</strong> used by SR-TE:
+- TE affinity
+- IP addresses
+- SRLG (??)
+- Max accumulated metric (IGP, traffic engineering, and delay)
+- Max number of SIDs in the solution SID list.
+- Disjoint from another SR policy in the same association group</p>
+<h3 id="distribution-of-policies">Distribution of policies</h3>
+<p>SR-TE can be deployed locally or centrally. "Centralized" does not necessarily mean a complete state-of-the-art SDN controller. It may be simply a conventional stateful path computation element (PCE) running on a physical or virtualized router.</p>
+<h2 id="sr-te-traffic-steering">SR-TE Traffic Steering</h2>
+<p>The path computation element protocol (PCEP) describes a set of procedures by which a path computation client (PCC) can report and delegate control of head-end label switched paths (LSPs) sourced from the PCC to a PCE peer.</p>
+<p>The stateful model also enables a PCC to ask a PCE to perform computations to perform network-wide orchestration.</p>
+<p>The binding SID (BSID) is the primary TE mechanism</p>
+<ul>
+<li>Locally programmed via BGP SR-TE dynamic:<ul>
+<li>destination or flow based</li>
+</ul>
+</li>
+<li>Remotely programmed<ul>
+<li>"nesting" or "stiched" SR-TE policies</li>
+</ul>
+</li>
+<li>Classic mechanisms with static routes, autoroute, PBTS (?), others can be used but not preferred (also likely half broken)</li>
+</ul>
+<p>The BSID allows for</p>
+<ul>
+<li>Scalability</li>
+<li>Multidomain support</li>
+<li>Service-aware</li>
+<li>Data plane performance</li>
+<li>Loop-free network path</li>
+<li>Binding SID acting as the encapsulation key</li>
+<li>Automation and simplification using On-Demand Next Hop (ODN)</li>
+</ul>
+<p>Policy instantiation is much easier compared to RSVP. Created an on-demand policy with a specific color, and it can dynamically generate a path to specified endpoint, such as L3VPN.</p>
+<h3 id="bgp-sr-te-steering">BGP SR-TE Steering</h3>
+<p>Summary and examples...</p>
+<p>Trigger automatic SR-TE policies for traffic to BGP destination
+- Policies to meet SLAs, latency-optmized or other etc</p>
+<p>Set at egress PE by adding a color-extended community to the router:
+- color extended communitiy propagated to ingress PE
+- traffic steering on ingress PE occurs automatically, based on the color, no routing policies in BGP required</p>
+<p>Because the SID list associated with the policy is programmed into the hardware, there are no software-based recursive lookups causing a delay in the forwarding of traffic.</p>
+<p><code>show bgp</code> table can show <code>Colored Prefixes</code> in the next-hop column.</p>
+<p><code>show bgp x.x.x.x</code> will show <code>SR Policy Color</code> <code>BSID</code> associated as well.</p>
+<h2 id="sr-pce-based-paths">SR PCE-Based Paths</h2>
+<p>SR-TE was built around a SDN-like or SDN controller computing TE paths and communicating policies to headend routers.</p>
+<p>The PCE does:</p>
+<ul>
+<li><strong>Compute path</strong> and optionally...</li>
+<li><strong>Steer traffic</strong> into policy</li>
+</ul>
+<p>The PCC's can be stateful or stateless connecting with the PCE.</p>
+<p><strong>PCEP</strong> is the protocol/communication channel between the PCE and PCC.</p>
+<p>If a PCE is operating as stateful, it has an additional database called <strong>LSP DB</strong>, while in both stateful and stateless modes, it has the <strong>TED</strong> or traffic engineering database.</p>
+<p>The headend router can connect with the PCE to request a SR-TE policy for a LSP based on metrics and constrains provided by the PCC. If the PCC requires further changes to the policy, it will re-request the PCE to compute a new path, but each transaction is a single transaction. This is the <code>stateless</code> model. </p>
+<p><code>Stateful</code> PCE maintains an active topology of the network via BGP-LS, where the PCC reports to the PCE any topology changes. </p>
+<p>The path computation element protocol (PCEP) describes a set of procedures by which a path computation client (PCC) can report and delegate control of head-end label switched paths (LSPs) sourced from the PCC to a PCE peer.</p>
+<p><br></p>
+<p><em>(these definitions are from PCEP RFC 5440)</em></p>
+<p><strong>PCReq</strong>: a PCEP message sent by a PCC to a PCE to request a path computation.</p>
+<p><strong>PCRep</strong>: a PCEP message sent by a PCE to a PCC in reply to a path computation request.  A PCRep message can contain either a set of computed paths if the request can be satisfied, or a negative reply if not.  The negative reply may indicate the reason why no path could be found.</p>
+<p>In the stateful PCE setup process:</p>
+<ol>
+<li>The PCC sends PCRequest</li>
+<li>PCE calculates path</li>
+<li>PCE sends PCReply</li>
+<li>PCC sets SR-TE policy</li>
+<li>PCC sends PCReport</li>
+<li>PCE updates LSP DB</li>
+</ol>
+<h3 id="bgp-ls">BGP-LS</h3>
+<p>Allows the stateful PCE to learn about the topology and SIDs in each domain. This gives the PCE a complete view of the network. </p>
+<p>The stateful PCE uses the topology and SID information to calculate and update paths in the network by using native SR-TE algorithms.</p>
+<p>In order for BGP-LS to learn about the topology and SID information from the IGP, the IGP itself, IS-IS or Open Shortest Path First (OSPF), must be configured to distribute the information to BGP-LS. </p>
+<p>If the PCE participates directly in the IGP domain, then the distribution of the IGP topology and SID information to BGP-LS can be configured directly on the PCE node. The PCE can operate similiarly to a route reflector, it can exist outside the data plane.</p>
+<h3 id="configuring-pcep">Configuring PCEP</h3>
+<p>Instead of a SDN controller or similiar, a router running IOS-XR can function as a PCE. The configuration is easy, enable <code>pce</code> in global config, then refer to an IP address that should be assigned to a Loopback interface.</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">pce</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  <span class="n">address</span> <span class="n">ipv4</span> <span class="mf">1.1.1.10</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="err">!</span>
+</code></pre></div>
+<p><br></p>
+<p>On the <strong>PCE</strong> side of things, the config is under the <code>segment-routing</code> <code>traffic-eng</code> section. You need to specify the remote address of the PCE, and you can optionally configure a source address.</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">segment</span><span class="o">-</span><span class="n">routing</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">pcc</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>      <span class="n">source</span><span class="o">-</span><span class="n">address</span> <span class="n">ipv4</span> <span class="mf">1.1.1.11</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">pce</span> <span class="n">address</span> <span class="n">ipv4</span> <span class="mf">1.1.1.10</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="err">!</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  <span class="err">!</span>
+</code></pre></div>
+<p>You can configure a precedence value if you configure multiple PCE's. Lower-precedence values are preferred.
+<br></p>
+<p>Verifying PCEP Sessions at the PCC... </p>
+<p><code>show segment-routing traffic-eng pcc ipv4 peer [brief]</code></p>
+<p>Then on PCE...</p>
+<p><code>show pce ipv4 peer</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.path", "navigation.indexes", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>

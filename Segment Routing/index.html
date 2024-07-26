@@ -1,0 +1,1490 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../SR%20TE/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Segment Routing - Notes for CCNP SPRI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#segment-routing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Notes for CCNP SPRI" class="md-header__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes for CCNP SPRI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Segment Routing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_3">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_4">
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../BGP/" class="md-tabs__link">
+        
+  
+    
+  
+  Scaling BGP
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ISIS/" class="md-tabs__link">
+        
+  
+    
+  
+  IS-IS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MPLS%20LDP/" class="md-tabs__link">
+        
+  
+    
+  
+  Implementing and Verifying MPLS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MPLS%20TE/" class="md-tabs__link">
+        
+  
+    
+  
+  MPLS TE
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Multicast/" class="md-tabs__link">
+        
+  
+    
+  
+  Multicast
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../OSPF/" class="md-tabs__link">
+        
+  
+    
+  
+  OSPF
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Route%20Redistribution/" class="md-tabs__link">
+        
+  
+    
+  
+  Route Redistribution
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Routing%20Policy/" class="md-tabs__link">
+        
+  
+    
+  
+  Routing Policy and Manipulation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../SR%20TE/" class="md-tabs__link">
+        
+  
+    
+  
+  SR Traffic Engineering
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Segment Routing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Notes for CCNP SPRI" class="md-nav__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Notes for CCNP SPRI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BGP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scaling BGP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ISIS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IS-IS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MPLS%20LDP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implementing and Verifying MPLS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MPLS%20TE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MPLS TE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multicast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multicast
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OSPF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSPF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Route%20Redistribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Route Redistribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Routing%20Policy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Routing Policy and Manipulation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SR%20TE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SR Traffic Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Segment Routing
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Segment Routing
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#segment-routing-and-igps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Segment routing and IGPs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Segment routing and IGPs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#is-is-modifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      IS-IS modifications
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ospf-modifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      OSPF modifications
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segment-routing-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Segment Routing Labels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Segment Routing Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#is-is-and-the-srgb" class="md-nav__link">
+    <span class="md-ellipsis">
+      IS-IS and the SRGB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ospf-and-srgb-in-lsas" class="md-nav__link">
+    <span class="md-ellipsis">
+      OSPF and SRGB in LSAs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sr-is-is-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      SR IS-IS Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sr-ospf-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      SR OSPF Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sr-bgp-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      SR BGP Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sr-and-ldp-interworking-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      SR and LDP Interworking Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SR and LDP Interworking Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#igp-sr-ldp-programming-fib" class="md-nav__link">
+    <span class="md-ellipsis">
+      IGP, SR, LDP Programming FIB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sr-mapping-server-function-and-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      SR Mapping Server Function and Config
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SR Mapping Server Function and Config">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-mapping-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring Mapping Server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ti-lfa-for-sr" class="md-nav__link">
+    <span class="md-ellipsis">
+      TI-LFA for SR
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TI-LFA for SR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-ti-lfa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring TI-LFA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sr-ti-lfa-for-ldp" class="md-nav__link">
+    <span class="md-ellipsis">
+      SR TI-LFA for LDP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ti-lfa-and-sr-ldp-interworking" class="md-nav__link">
+    <span class="md-ellipsis">
+      TI-LFA and SR LDP Interworking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sr-in-v6-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      SR in v6 Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sr-header-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      SR Header Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SR Header Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#insertion-vs-encapsulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insertion vs. Encapsulation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="segment-routing">Segment Routing</h1>
+<h2 id="segment-routing-and-igps">Segment routing and IGPs</h2>
+<p>Segment Routing (SR) is a flexible, scalable way of doing source routing. The source chooses a path and encodes it in the packet header as an ordered list of segments. Segments are identifier for any type of instruction. Each segment is identified by the segment ID (SID) consisting of a flat unsigned 32-bit integer. Segment instruction can be:</p>
+<ul>
+<li>
+<p>Go to node N using the shortest path</p>
+</li>
+<li>
+<p>Go to node N over the shortest path to node M and then follow links Layer 1, Layer 2, and Layer 3</p>
+</li>
+<li>
+<p>Apply service S</p>
+</li>
+</ul>
+<p>Segment routing is a more simple approach, probably. Instead of using LDP to pass MPLS labels and segments, we can use extensions to IS-IS and OSPF. </p>
+<h3 id="is-is-modifications">IS-IS modifications</h3>
+<p>TLV extensions to support prefix segment identifiers (SID's), adjacency SID's, and prefix-to-SID mapping advertisement. </p>
+<p>IS-IS has the following segment routing functionality:</p>
+<ul>
+<li>IPv4, IPv6 control plane</li>
+<li>Level 1, Level 2, and multilevel routing</li>
+<li>Prefix SIDs for host prefixes on loopback interfaces</li>
+<li>Adjacency SIDs for adjacencies<ul>
+<li>Nonprotected and protected SIDs</li>
+</ul>
+</li>
+<li>Prefix-to-SID mapping advertisement (mapping server)</li>
+<li>MPLS penultimate hop popping (PHP) and explicit-null signaling</li>
+</ul>
+<h3 id="ospf-modifications">OSPF modifications</h3>
+<p>OSPF extensions have been added in order to provide the necessary support for segment routing, including prefix segment identifiers, adjacency segment identifiers, and prefix-to-SID mapping advertisements.</p>
+<p>OSPF segment routing functionality extensions:</p>
+<ul>
+<li>OSPFv2 control plane</li>
+<li>OSPF extensions</li>
+<li>Multi-area</li>
+<li>IPv4 prefix segment ID (prefix SID) for host prefixes on loopback interfaces</li>
+<li>Adjancency segment (adj-SID) for adjancencies, nonprotected and protected adj-SIDs</li>
+<li>MPLS PHP and explicit-null signaling</li>
+</ul>
+<p>OSPF adds to the Router Information Opaque LSA type 4-- SR-algo TLV (8) and SID/Label range TLV (9).</p>
+<p>Also, it defines new OSPFv2 Extended Prefix Opaque LSA type 7 and Extended Link Opaque LSA type 8.</p>
+<h2 id="segment-routing-labels">Segment Routing Labels</h2>
+<p>Segment Routing Global Block (SRGB) is the range of labels reserved for SR Global Segments in the Label Information Database (LIB) or Label Switching Database (LSD). These values are assigned as SIDs to SR-enabled nodes. On SR-capable routers, SRGB is enabled by default so that label values are auto-reserved when the router boots, whether or not it is used/enabeld.</p>
+<p>By default, this is 16000-24999. </p>
+<p>Segment Routing Local Block (SRLB) is a range of label values preserved for the manual allocation of adjacency segment identifities (adj-SIDs). These are locally significant, only valid on the local node 15000-15999.</p>
+<p>A prefix-SID is advertised as a domain-wide unique index, which then refers to a unique label within the SRGB.</p>
+<ul>
+<li>Index is zero based, i.e. first index = 0
+– Label = Prefix-SID index + SRGB base
+– E.g. Prefix 1.1.1.65/32 with prefix-SID index 65 gets label 16065</li>
+</ul>
+<h3 id="is-is-and-the-srgb">IS-IS and the SRGB</h3>
+<ul>
+<li>The SRGB is advertised via IS-IS Router Capabilities TLV<ul>
+<li>Contains the router-ID, flags (Scope (<code>S</code>) indicates flood TLV across routing domain, Down (<code>D</code>) if TLV is leaked from L2 to L1), then optional sub-TLV's</li>
+</ul>
+</li>
+<li>SR Capabilities sub-TLV is included in the Router Capabilities TLV</li>
+<li>SR Capabilities sub-TLV contains flags and one or more SRGB descriptors<ul>
+<li>Then... SRGB descriptor contains the range, and the SID/label, indicating a start of SRGB</li>
+<li>SR-Capabilities sub-TLV <em>flags</em> could be <code>I</code> for outoing IPv4 encapsulation or <code>V</code> for outgoing IPv6 encap.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Screenshot" src="../img/sr-isis-srgb.png" /></p>
+<h3 id="ospf-and-srgb-in-lsas">OSPF and SRGB in LSAs</h3>
+<p>The OSPF Router Information Opaque LSA carries information about the SRGB, including the range, size, and start of the SRGB:</p>
+<ul>
+<li>the SRGB descriptors is included in the Router Info Opaque LSA type 4 LSA<ul>
+<li>the SR algorithm TLV (8), which will be <code>algo 0: Shortest Path First (SFP)</code> based on link metric</li>
+<li>the SID/label range TLV (9)</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Screenshot" src="../img/sr-ospf-srgb.png" /></p>
+<h2 id="sr-is-is-configuration">SR IS-IS Configuration</h2>
+<p>SR with IS-IS is enabled per address-family, and it will be enabled on all nonpassive IS-IS interfaces. </p>
+<p>Adjacency SIDs are allocated and distributed for all adjacencies for both nonprotected adjacency SIDs and protected adjacency SIDs, using Segment Routing Traffic Engineering (SR-TE).</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="err">!</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">router</span> <span class="n">isis</span> <span class="mi">1</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span> <span class="n">unicast</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">metric</span><span class="o">-</span><span class="n">style</span> <span class="n">wide</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">segment</span><span class="o">-</span><span class="n">routing</span> <span class="n">mpls</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  <span class="err">!</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv6</span> <span class="n">unicast</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">metric</span><span class="o">-</span><span class="n">style</span> <span class="n">wide</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">segment</span><span class="o">-</span><span class="n">routing</span> <span class="n">mpls</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  <span class="err">!</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  <span class="n">interface</span> <span class="n">Loopback0</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">passive</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span> <span class="n">unicast</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>      <span class="n">prefix</span><span class="o">-</span><span class="n">sid</span> <span class="n">absolute</span> <span class="mi">16001</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="err">!</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv6</span> <span class="n">unicast</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>      <span class="n">prefix</span><span class="o">-</span><span class="n">sid</span> <span class="n">absolute</span> <span class="mi">20001</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>  <span class="err">!</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>  <span class="n">interface</span> <span class="n">TenGigE0</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="mi">0</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">point</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">point</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span> <span class="n">unicast</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="err">!</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv6</span> <span class="n">unicast</span>
+</code></pre></div>
+<ul>
+<li>A prefix segment identifier (SID) is associated with an IP prefix. </li>
+<li>The prefix SID is manually configured from the segment routing global block (SRGB) range of labels. </li>
+<li>A prefix SID is configured under the loopback interface with the loopback address of the node as the prefix. </li>
+<li>
+<p>The prefix segment steers the traffic along the shortest path to its destination. </p>
+</li>
+<li>
+<p>An adjacency SID (Adj-SID) is associated with an adjacency to a neighboring node. </p>
+</li>
+<li>The adjacency SID steers the traffic to a specific adjacency. </li>
+<li>Adjacency SIDs have local significance and are only valid on the node that allocates them. </li>
+</ul>
+<p>To <strong>verify IS-IS capabilities</strong>, you can use a few commands...</p>
+<p><code>show isis database verbose</code> to examine the IS-IS link-state database to look at SR descriptors for propagated info.</p>
+<ul>
+<li>Further in this command, you can look at the prefix-SID advertisements which are via the IPv(4|6) reachability TLV</li>
+</ul>
+<p><img alt="Screenshot" src="../img/sr-isis-lsdb.png" /></p>
+<p><code>show isis database verbose</code> will show LAN-adjacency label advertisements, then you can look at the local label value (the LAN-ADJ-SID), such as 24001, which is allocated dynamically by default from the SRLB.</p>
+<ul>
+<li>If you were to look at <code>show mpls forwarding</code>, the local label would correspond to the LAN-AJD-SID.</li>
+</ul>
+<h2 id="sr-ospf-configuration">SR OSPF Configuration</h2>
+<p>If OSPF is enabled for SR, it will be enabled on all interfaces also enabled for OSPF. Then Adjacency-SIDs will be allocated and distributed for SR-enabled adjacencies.</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="err">!</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">router</span> <span class="n">ospf</span> <span class="mi">1</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  <span class="n">segment</span><span class="o">-</span><span class="n">routing</span> <span class="n">mpls</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  <span class="n">segment</span><span class="o">-</span><span class="n">routing</span> <span class="n">forwarding</span> <span class="n">mpls</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  <span class="n">router</span><span class="o">-</span><span class="nb">id</span> <span class="mf">1.1.1.1</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  <span class="n">area</span> <span class="mi">0</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">interface</span> <span class="n">Loopback0</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>      <span class="n">passive</span> <span class="n">enable</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>      <span class="n">prefix</span><span class="o">-</span><span class="n">sid</span> <span class="n">absolute</span> <span class="mi">16001</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="err">!</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">interface</span> <span class="n">GigE0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>      <span class="n">network</span> <span class="n">point</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">point</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="n">interface</span> <span class="n">GigE0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="err">!</span>
+</code></pre></div>
+<ul>
+<li>OSPF supports a hierarchical model: Instance&gt;Area&gt;Interface<ul>
+<li>If enabled at a higher level, inherited down</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="err">!</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">router</span> <span class="n">ospf</span> <span class="mi">1</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  <span class="n">area</span> <span class="mi">0</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">segment</span><span class="o">-</span><span class="n">routing</span> <span class="n">mpls</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">segment</span><span class="o">-</span><span class="n">routing</span> <span class="n">forwarding</span> <span class="n">mpls</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">interface</span> <span class="n">GigE0</span><span class="o">/</span><span class="mi">0</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>      <span class="n">segment</span><span class="o">-</span><span class="n">routing</span> <span class="n">forwarding</span> <span class="n">disable</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="err">!</span>
+</code></pre></div>
+<p>To <strong>verify OSPF SR capabilities</strong>, <code>show ospf database</code> is used and <code>self-originate originate</code> option is helpful</p>
+<p><img alt="Screenshot" src="../img/sr-ospf-lsdb.png" /></p>
+<p>Then you'd want to narrow down on specific Type 4 LSA, like <code>show ospf database opaque-area 4.0.0.0 self-originate</code>, which will show the SR TLV's with capabilities information, like SRGB range, algo.</p>
+<p>We can look more closely at Type 7 LSA, like <code>show ospf database opaque-area 7.0.0.1 self-originate</code>, to examine prefix-sid advertisements or for Type 8 LSA, like <code>show ospf database opaque-area 8.0.0.4 self-originate</code> to see Adj-sid and TLV's. Including the <code>Label</code></p>
+<ul>
+<li>OSPF allocates an adjacency SID for each adjacency in the 2WAY state or higher.</li>
+<li>On a broadcast or NMBA network, a node advertises an <code>Adj-SID</code> by using the <code>Adj-SID sub-TLV</code> for its adjacency to the <strong>DR</strong> and advertises <code>Adj-SIDs</code> by using the <code>LAN Adj-SID</code> for other neighbors such as <strong>BDR</strong> and <strong>DR-OTHER</strong> on the network.</li>
+</ul>
+<p><code>show ip ospf neigh [4.4.4.4] detail</code> can show the Adj SID label too.</p>
+<h2 id="sr-bgp-configuration">SR BGP Configuration</h2>
+<p>If you want to use Border Gateway Protocol (BGP) with segment routing, you need to understand the changes to BGP and how to configure BGP for segment routing.</p>
+<p>The BGP prefix label index is an optional transitive BGP path attribute.</p>
+<p>The following example shows how to configure the SRGB, create a BGP route policy using a $SID parameter and set label-index attribute, and then associate the prefix-SID index to the node.</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># segment-routing global-block 16000 23999</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># route-policy SID($SID)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">rpl</span><span class="p">)</span><span class="c1"># set label-index $SID</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">rpl</span><span class="p">)</span><span class="c1"># end policy</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router bgp 1</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">bgp</span><span class="p">)</span><span class="c1"># bgp router-id 10.1.1.1</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">bgp</span><span class="p">)</span><span class="c1"># address-family ipv4 unicast</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">bgp</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># network 10.1.1.3/32 route-policy SID(3)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">bgp</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># allocate-label all</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">bgp</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># commit</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">bgp</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># end</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="o">-</span><span class="n">NEIGHBOR</span><span class="c1"># show bgp 10.1.1.3/32</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="n">BGP</span> <span class="n">routing</span> <span class="n">table</span> <span class="n">entry</span> <span class="k">for</span> <span class="mf">10.1.1.3</span><span class="o">/</span><span class="mi">32</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="n">Versions</span><span class="p">:</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>  <span class="n">Process</span>           <span class="n">bRIB</span><span class="o">/</span><span class="n">RIB</span>  <span class="n">SendTblVer</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>  <span class="n">Speaker</span>                 <span class="mi">74</span>          <span class="mi">74</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="n">Local</span> <span class="n">Label</span><span class="p">:</span> <span class="mi">16003</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="n">Last</span> <span class="n">Modified</span><span class="p">:</span> <span class="n">Sep</span> <span class="mi">29</span> <span class="mi">19</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mf">18.155</span> <span class="k">for</span> <span class="mi">00</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">22</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="n">Paths</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="n">available</span><span class="p">,</span> <span class="n">best</span> <span class="c1">#1)</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>  <span class="n">Advertised</span> <span class="n">to</span> <span class="n">update</span><span class="o">-</span><span class="n">groups</span> <span class="p">(</span><span class="k">with</span> <span class="n">more</span> <span class="n">than</span> <span class="n">one</span> <span class="n">peer</span><span class="p">):</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>    <span class="mf">0.2</span> 
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>  <span class="n">Path</span> <span class="c1">#1: Received by speaker 0</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>  <span class="n">Advertised</span> <span class="n">to</span> <span class="n">update</span><span class="o">-</span><span class="n">groups</span> <span class="p">(</span><span class="k">with</span> <span class="n">more</span> <span class="n">than</span> <span class="n">one</span> <span class="n">peer</span><span class="p">):</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>    <span class="mf">0.2</span> 
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>  <span class="mi">3</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>    <span class="mf">99.3.21.3</span> <span class="kn">from</span> <span class="mf">99.3.21.3</span> <span class="p">(</span><span class="mf">10.1.1.3</span><span class="p">)</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>      <span class="n">Received</span> <span class="n">Label</span> <span class="mi">3</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>      <span class="n">Origin</span> <span class="n">IGP</span><span class="p">,</span> <span class="n">metric</span> <span class="mi">0</span><span class="p">,</span> <span class="n">localpref</span> <span class="mi">100</span><span class="p">,</span> <span class="n">valid</span><span class="p">,</span> <span class="n">external</span><span class="p">,</span> <span class="n">best</span><span class="p">,</span> <span class="n">group</span><span class="o">-</span><span class="n">best</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>      <span class="n">Received</span> <span class="n">Path</span> <span class="n">ID</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Local</span> <span class="n">Path</span> <span class="n">ID</span> <span class="mi">1</span><span class="p">,</span> <span class="n">version</span> <span class="mi">74</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>      <span class="n">Origin</span><span class="o">-</span><span class="n">AS</span> <span class="n">validity</span><span class="p">:</span> <span class="ow">not</span><span class="o">-</span><span class="n">found</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>      <span class="n">Label</span> <span class="n">Index</span><span class="p">:</span> <span class="mi">3</span>
+</code></pre></div>
+<p>In this <code>show bgp</code> output above, we see the <code>Label Index</code> and <code>Received Label</code> are the same, indicating ImplNull label, indicating PHP.</p>
+<p><code>show cef</code> will show locally assigned labels as well as labels swapped onto packet. In the <code>labels imposed</code> (swapped onto), there will be label to next-hop and BGP prefix-SID label. </p>
+<p><code>show mpls forwarding</code> to look at the data plane</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>RP/0/RSP0/CPU0:router_C# show mpls forwarding labels 24002 24003
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Local  Outgoing    Prefix             Outgoing     Next Hop        Bytes       
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Label  Label       or ID              Interface                    Switched    
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>------ ----------- ------------------ ------------ --------------- ------------
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>24002  Pop         No ID              Te0/3/0/0    192.168.1.2     0 
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>24003  Pop         No ID              Te0/1/0/0    192.168.1.3     0  
+</code></pre></div>
+<h2 id="sr-and-ldp-interworking-concepts">SR and LDP Interworking Concepts</h2>
+<p>A.k.a, the migration.</p>
+<p>The MPLS architecture permits the concurrent use of LDP, Resource Reservation Protocol-Traffic Engineering (RSVP-TE), and segment routing. The label manager (Label Switching Database (LSD)) on the node ensures that the labels used by various label protocols dose not collide and that local labels are uniquely allocated and assigned.</p>
+<p>For the global segments, it is the operator's responsibility to ensure that each global segment is unique within the segment routing domain.</p>
+<p>MPLS - MPLS or MPLS - IP works fine, labels are unique within their own scope. </p>
+<p>However, there can be issues for multiple IP-to-MPLS entries (SR and LDP), which cannot coexist equally.</p>
+<p><code>segment-routing mpls sr-prefer</code> or (default) <code>segment-routing mpls</code> (<em>LDP</em>)</p>
+<p><img alt="Screenshot" src="../img/sr-ldp-interworking.png" /></p>
+<h3 id="igp-sr-ldp-programming-fib">IGP, SR, LDP Programming FIB</h3>
+<p>The IGP has its own database (containing SR descriptors), which is installed into the RIB. </p>
+<p>So for example, we have prefix lookup on 10.100.200.3/24, which is <code>Loc_label 16005</code> and <code>Out_label 16005</code> in the IGP. This is pushed to the RIB.</p>
+<p>The RIB forwards this to LDP/LSD, which provides LDP labels <code>Loc_label 24005</code> and <code>Out_label 24006</code> and sends to the FIB.</p>
+<p>The RIB also forwards the IGB prefix path and IGP-provided SR labels to the FIB.</p>
+<p>By default, the FIB will prefer LDP-based label imposition, so the LDP labels are installed in cef.</p>
+<h3 id="migration-methods">Migration methods</h3>
+<p>A <strong>simultaneous deployment model</strong> can be used as a step in the simple migration from LDP to segment routing.</p>
+<ol>
+<li>Upgrade all nodes to support SR, then leave default LDP label imposition preference</li>
+<li>PE routers re-configured to prefer SR label imposition <code>segment-routing mpls sr-prefer</code></li>
+<li>LDP is removed from nodes in the network</li>
+</ol>
+<p>?? Probably others -- explore more since test says "Migration procedures (SR prefer and mapping server)"</p>
+<h2 id="sr-mapping-server-function-and-config">SR Mapping Server Function and Config</h2>
+<p>The mapping server advertises prefix-to-prefix-SID mappings on behalf of non-SR capable nodes. This action is necessary to enable interworking between SR and non-SR (LDP only) nodes.</p>
+<p>A router must be able to act as a mapping server, a mapping client, or both. </p>
+<p>At steady state, all routers, at least in the same area or level, must have identical active mapping policies.</p>
+<p><strong>Mapping Server</strong> functionality:</p>
+<ul>
+<li>Advertise prefix-to-SID mappings in IGP to non-SR capable nodes</li>
+<li>Prefix-to-SID mappings are configured on the mapper server</li>
+<li>Enable SR-capable nodes to interwork w/ LDP nodes</li>
+</ul>
+<p>Similiar to a <strong>Route Reflector</strong>:</p>
+<ul>
+<li>Control plane mechanism</li>
+<li>Does not have to be in the data plane</li>
+<li>Must be resilient and redundancy should be provided</li>
+</ul>
+<p>The <strong>Mapping Client</strong> functions:</p>
+<ul>
+<li>Receive and parse prefix-to-SID mappings from server(s)</li>
+<li>Use remotely learned and locally configured mappings for a valid and consistent active SID mapping policy.</li>
+<li>Mappings not selected for active policy go to backup policy.</li>
+<li>By default, mapping client functionality is enabled. </li>
+</ul>
+<p>Prefix SIDs received from a mapping server have an implicit PHP-off behavior: The penultimate hop does not pop the prefix SID label.</p>
+<p>Packets arrive at the destination with prefix SID label on top...</p>
+<ul>
+<li>Packet with local prefix SID as top label would require two label lookups at the receiving node to forward packet: top-label lookup, pop top-label, next-label, or address lookup performance impact.</li>
+<li>In Cisco IOS XR Software, no MPLS forwarding entry is installed for local prefix SIDs. Packets with local prefix-SID as top label are dropped. </li>
+</ul>
+<h3 id="configuring-mapping-server">Configuring Mapping Server</h3>
+<p><div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># segment-routing</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">sr</span><span class="p">)</span><span class="c1"># mapping-server</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">sr</span><span class="o">-</span><span class="n">ms</span><span class="p">)</span><span class="c1"># prefix-sid-map</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">sr</span><span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="nb">map</span><span class="p">)</span><span class="c1"># address-family ipv4|ipv6</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># ip-address/ prefix-length first-SID-value range range </span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RSP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">sr</span><span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="nb">map</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># 10.1.1.1/32 10 range 200 </span>
+</code></pre></div>
+Prefix 10.1.1.1/32 is assigned prefix-SID 10, prefix 10.1.1.2/32 is assigned prefix-SID 11,…, prefix 10.1.1.199/32 is assigned prefix-SID 200 </p>
+<p>On the <strong>mapping server</strong>, to verify locally configured-- 
+<code>show segment-routing mapping-server prefix-sid-map [ipv4 | ipv6] [detail]</code></p>
+<p>You must additionally do some sort of <strong>routing protocol</strong> IGP configuration too...</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="err">!</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">router</span> <span class="n">isis</span> <span class="mi">1</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  <span class="n">address</span> <span class="n">family</span> <span class="n">ipv4</span><span class="o">|</span><span class="n">ipv6</span> <span class="n">unicast</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="n">segment</span><span class="o">-</span><span class="n">routing</span> <span class="n">prefix</span><span class="o">-</span><span class="n">sid</span><span class="o">-</span><span class="nb">map</span> <span class="n">advertise</span><span class="o">-</span><span class="n">local</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="err">!</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">router</span> <span class="n">ospf</span> <span class="mi">1</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>  <span class="n">segment</span><span class="o">-</span><span class="n">routing</span> <span class="n">prefix</span><span class="o">-</span><span class="n">sid</span><span class="o">-</span><span class="nb">map</span> <span class="n">advertise</span><span class="o">-</span><span class="n">local</span>
+</code></pre></div>
+<p>If the mapping server is a Level 1 or Level 2 router in IS-IS or an Area Border Router (ABR) in OSPF, the mappings will be advertised in all levels or areas of the IGP instance.</p>
+<p>On mapping clients, the default behavior is <code>segment-routing prefix-sid-map receive</code>, you can configure both or only <code>advertise-local</code>. A common sense design is like Route Reflectors, each node should be a mapping client to receive the prefix-to-SID mappings that it would not otherwise receive through the link-state advertisement from the non-SR nodes.</p>
+<h2 id="ti-lfa-for-sr">TI-LFA for SR</h2>
+<p>Topology Independent Loop-Free Alternate (TI-LFA)</p>
+<p>This is a fast reroute feature, that precomputes a backup path via the IGP. TI-LFA composes the list of segments necessary to steer the traffic a the backup path along the post-convergence path.</p>
+<p>The post-convergence path is the path that will be used after IGP has converged following a failure.</p>
+<p>This was not possible pre-SR, since SR enforces the post-convergence path as a list of segments. </p>
+<p>Uses existing and proven LFA technology and terminology (mostly my own words here, RFC7490 too)</p>
+<ul>
+<li>protected link L is more or less than current shortest path or "best link vulnerable to failure"</li>
+<li>P space is set of nodes reachable (using pre-convergence paths) from node S without using protected link L<ul>
+<li>there will be a "point on the network" that will be "beyond the horizon" aka never utilized due to the Shortest Path Tree between S and D because the protected link will always be Shortest Path to get "over the horizon". </li>
+</ul>
+</li>
+<li>Q space is a set of nodes that can reach (using pre-convergence paths) destination D without using protected link L<ul>
+<li>the "other side of the horizon"</li>
+</ul>
+</li>
+<li>P node: any node that is only in P space.</li>
+<li>Q node: any node that is only in Q space.</li>
+<li>PQ node: a node that is a member of both the extended P-space and the Q-space.</li>
+</ul>
+<p>Generalizes the name of nodes on the backup path:</p>
+<p>– P-node: node reached via a Prefix-SID
+– Q-node: node reached via an Adj-SID</p>
+<h3 id="configuring-ti-lfa">Configuring TI-LFA</h3>
+<p>IS-IS configuration is per interface, and both commands are required for TI</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">router</span> <span class="n">isis</span> <span class="mi">1</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  <span class="n">interface</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">2</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="n">address</span> <span class="n">family</span> <span class="n">ipv4</span><span class="o">|</span><span class="n">ipv6</span> <span class="n">unicast</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>      <span class="n">fast</span><span class="o">-</span><span class="n">reroute</span> <span class="n">per</span><span class="o">-</span><span class="n">prefix</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>      <span class="n">fast</span><span class="o">-</span><span class="n">reroute</span> <span class="n">per</span><span class="o">-</span><span class="n">prefix</span> <span class="n">ti</span><span class="o">-</span><span class="n">lfa</span>
+</code></pre></div>
+<p>OSPF configuration can utilize OSPF inheritance (instance&gt;area&gt;interface).</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">router</span> <span class="n">ospf</span> <span class="mi">1</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  <span class="n">fast</span><span class="o">-</span><span class="n">reroute</span> <span class="n">per</span><span class="o">-</span><span class="n">prefix</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>  <span class="n">fast</span><span class="o">-</span><span class="n">reroute</span> <span class="n">per</span><span class="o">-</span><span class="n">prefix</span> <span class="n">ti</span><span class="o">-</span><span class="n">lfa</span>
+</code></pre></div>
+<p>In a <code>zero-segment</code> backup path, the Source node sends packet to alternative node without any additional segment. Since once alternative node receives the packet (and flow), it can forward to the destination with already tagged prefix-SID label. </p>
+<figure>
+  <img alt="Image title" src="../img/sr-ti-lfa-zerosegment.png" width="450" />
+  <figcaption></figcaption>
+</figure>
+<p>In a <code>single-segment</code> backup path, the Source node sends the packet to alternative node with an additional segment to enable the next node to push the segment to the next next node can forward to destination with existing prefix-SID label.</p>
+<p>When looking at <code>show isis ipv4 fast-reroute x.x.x.x/32 detail</code>, you'll see the label stack showing original destination prefix-SID label + single segment label.</p>
+<p>For OSPF with <code>show ospf 1 routes x.x.x.x/32 backup-path</code>, you see the "two-hop" P-node (R4 in example screenshot) and associated label.</p>
+<figure>
+  <img alt="Image title" src="../img/sr-ti-lfa-singlesegment.png" width="450" />
+  <figcaption></figcaption>
+</figure>
+<p>In <code>double-segment</code> backup path, the Source node sends the packet to alternative node with 2 additional segments to enable final P node to forward packets into Q space with existing prefix-SID labels.</p>
+<p>When looking at <code>show ospf 1 routes x.x.x.x/32 backup-path</code>, it will show both P and Q node router-ID's with their associated labels, aka double-segment. </p>
+<figure>
+  <img alt="Image title" src="../img/sr-ti-lfa-doublesegment.png" width="450" />
+  <figcaption></figcaption>
+</figure>
+<h2 id="sr-ti-lfa-for-ldp">SR TI-LFA for LDP</h2>
+<p>SR and TI-LFA can be incrementally deployed, and in the areas where they are deployed, they provide guaranteed protection also for LDP traffic. </p>
+<p>TI-LFA protection uses the SR/LDP interworking functionality.</p>
+<ul>
+<li>FIB uses label merging functionality for backup path</li>
+<li>Using LDP labels instead of SR labels where possible</li>
+</ul>
+<p>The mapping server advertises prefix-to-SID mappings for prefixes without prefix SID that must be protected (<em>as show in screenshot below at the top</em>).</p>
+<figure>
+  <img alt="Image title" src="../img/sr-ti-lfa-ldp-zerosegment.png" width="450" />
+  <figcaption></figcaption>
+</figure>
+<p>When looking at <code>show mpls ldp bindings $destination_Z</code>, you'll see 2 destination labels. Then you can easily look at <code>show cef $dest_Z</code> to identify which is backup and protected.</p>
+<p>This example is from a LDP-only source to a LDP-only destination.</p>
+<p>Here is a good screenshot example from Cisco's segment-routing presentation:</p>
+<figure>
+  <img alt="Image title" src="../img/sr-ti-lfa-ldp-singlesegment.png" width="750" />
+  <figcaption></figcaption>
+</figure>
+<p>For double-segment TI-LFA with LDP, the adj-SID will be used to steer packet into Q space. </p>
+<p>Protecting LDP traffic with TI-LFA – Restrictions</p>
+<ul>
+<li>Point of Local Repair (PLR) must be SR-capable</li>
+<li>Protected destination must have an associated prefix-SID
+    – Advertised by itself if SR-capable
+    – Advertised by mapping server if not SR-capable</li>
+<li>Single-segment protection: PQ node must be SR-capable<ul>
+<li>If not, use rLFA, which requires targeted LDP session</li>
+</ul>
+</li>
+<li>Double-segment protection: P and Q nodes must both be SR-capable</li>
+</ul>
+<h2 id="ti-lfa-and-sr-ldp-interworking">TI-LFA and SR LDP Interworking</h2>
+<p>TI-LFA leverages SR/LDP interworking functionality if not all nodes on the backup path are SR enabled. </p>
+<p>The main characteristics of this is:</p>
+<ul>
+<li>LDP traffic is protected by TI-LFA</li>
+<li>When protecting LDP with TI-LFA, the backup path for LDP MPLS-to-MPLS uses LDP labels if they are available:<ul>
+<li>Not configurable via SR/LDP preference, like <code>sr-prefer</code></li>
+<li>LDP label can be available to reach P, PQ node</li>
+<li>LDP label can be available to reach destination D from PQ</li>
+</ul>
+</li>
+<li>When protecting SR w/TI-LFA, the backup path for SR MPLS-to-MPLS uses SR labels if the next hops is SR-capable.<ul>
+<li>P, Q, and PQ must be SR-capable and must advertise a prefix SID</li>
+<li>Destination must have a prefix SID</li>
+</ul>
+</li>
+<li>Labels in backup for IP-to-MPLS depend on <strong>configured</strong> LDP/SR preference (<code>sr-prefer</code>)</li>
+</ul>
+<figure>
+  <img alt="Image title" src="../img/sr-ti-lfa-interworking.png" width="450" />
+  <figcaption></figcaption>
+</figure>
+<p>So in our screenshot above, when on the PLR (node 1), we can examine the labels and backup paths with our previously used show commands like</p>
+<p><code>show isis fast-reroute 1.1.1.6/32</code> - we'd see IS-IS has no outgoing label for router 5. There is no segment instructions, but we will see the 16006 label for the prefix-SID 1.1.1.6/32</p>
+<ul>
+<li>IS-IS cannot provide an outgoing label for Node4 since the downstream neighbor Node5 <strong>is not SR enabled</strong></li>
+<li>SR/LDP interworking will replace this missing label with the corresponding LDP label... which we can observe in <code>show mpls ldp bindings 1.1.1.6/32</code> the remote bindings for Node4. </li>
+<li>Then in <code>show cef 1.1.1.6/32</code>, we can see the label stack with <code>labels imposed [LDP interworked label] [SR prefix-SID label]</code></li>
+</ul>
+<p>The process for which TI-LFA and SR LDP interworking happens is... complex</p>
+<ul>
+<li>IF a PLR has LDP enabled and TI-LFA has a calc'd PQ node for backup, PLR sends targeted LDP hellos to that PQ.</li>
+<li>If PQ accepts the tLDP hellos, an LDP session is established between PLR and PQ</li>
+<li>If a PLR receives an LDP label for <code>$dest_prefix</code> from the PQ, it uses that label in backup path for <em>LDP traffic</em></li>
+<li>SR/LDP inteworking mechanism works for all labels on the TI-LFA backup path:<ul>
+<li>if LDP sends an unlabeled entry to LSD and then IGP sends a valid label for the same entry to RIB, the valid IGB (SR) label is used in FIB</li>
+<li>if IGP sends an unlabeled entry to RIB and LDP sends a valid label for same entry to LSD, the valid LDP label is used in the FIB</li>
+</ul>
+</li>
+</ul>
+<h2 id="sr-in-v6-overview">SR in v6 Overview</h2>
+<p>SR in IPv6 environments can also use the IPv6 data plane for source routing in addition to the MPLS data plane. SRv6 can be a gradual migration with full backwards compatability. It can be IPv6 control + (MPLS or IPv6 data plane).</p>
+<p>SR-IPv6 allows IPv6 data plane networks to benefit from all features deployed over the years in MPLS networks:</p>
+<ul>
+<li>Traffic engineering</li>
+<li>VPNs</li>
+<li>Fast Reroute</li>
+</ul>
+<p>SR-IPv6 also enables a number of new features:</p>
+<ul>
+<li>Conduit</li>
+<li>Service chaining</li>
+<li>BGP traffic engineering</li>
+<li>BGP peer engineering</li>
+<li>Application engineered routing</li>
+</ul>
+<p>For SRv6, only the nodes that have to process the packet header must have SR-IPv6 data plane support. All other nodes are just plain IPv6 nodes. SRv6 uses RFC 2460 (redefined more or less in RFC8986 too) uses a new type of header called Segment Routing Heading (SRH).</p>
+<p>In the SRH and the IPv6 packet, there are several critical fields to know:</p>
+<p><strong>Next header</strong>: an 8-bit field that indicates what the type of header immediately following the SRH. </p>
+<p><strong>Hdr Ext Len</strong>: 8-bit unsigned integer. Defines the length of the SRH header in 8-octet units, not including the first 8 octets.</p>
+<p><strong>Type</strong>: 4</p>
+<p><strong>Segments Left</strong>: index, in the Segment List, of the current active segment in the SRH. Decremented at each segment endpoint. It is a list of 128-bit IPv6 addresses representing each segment of the path. The Segment List is encoded in the reverse order of the path: the last segment is in the first position of the list and the first segment is in the last position.</p>
+<p><strong>First Segment</strong>: offset in the SRH, not including the first 8 octets and expressed in 16-octet units, pointing to the last element of the Segment List, that is if that contains the first segment of the path.</p>
+<p><strong>Flags</strong>: 16 bits of flags. These flags are defined:</p>
+<ul>
+<li>bit-0: cleanup</li>
+<li>bit-1: rerouted packet</li>
+</ul>
+<h2 id="sr-header-procedures">SR Header Procedures</h2>
+<p>SRH behavior and processing depends on the type and capability of node:</p>
+<ul>
+<li>Source node</li>
+<li>Transit node:<ul>
+<li>Intrasegment transit node</li>
+<li>Non-SR intrasegment transit node</li>
+<li>Segment endpoint node</li>
+</ul>
+</li>
+</ul>
+<p><strong>Source Node</strong> characteristics... a SRH is created with a <code>Segment List</code> encoded in reverse order of the path. <code>Segments Left</code> is set to <code>n</code>-1 where <code>n</code> = number of segments in segment link. Then <code>First Segment</code> field is n-1.</p>
+<ul>
+<li>The Destination Address (DA) of the packet is set as the first segment of the path (DA = Segment_List[Segments_Left])</li>
+<li>Then the packet is sent out to the first segment, aka, the DA. </li>
+</ul>
+<p><strong>Non-SR transit nodes</strong> will use plain IPv6 forwarding, solely on IPv6 DA. Transparent and interoperable with legacy non-SR-capable nodes.</p>
+<p><img alt="Screenshot" src="../img/srv6-SRH-processing.png" /></p>
+<h3 id="insertion-vs-encapsulation">Insertion vs. Encapsulation</h3>
+<p>Header insertion at the source. </p>
+<ul>
+<li>Source originates the packet with SRH</li>
+<li>SRH is kept and used along the path, finally delivered to DA</li>
+<li>OR, optionally, the SRH may be removed prior to deliver </li>
+</ul>
+<p>Compare to header insertion at ingress:</p>
+<ul>
+<li>Source originates the packet without any SRH.</li>
+<li>SRH is inserted at ingress.</li>
+<li>SRH is removed prior to deliver the packet to the destination.</li>
+</ul>
+<p>And also compare to encapsulation at ingress:</p>
+<ul>
+<li>Source originates packet without any SRH</li>
+<li>Ingress encaps incoming packet into new outer IPv6 header + SRH</li>
+<li>Upon leaving SR domain, decap'd without outer SR header + SRH</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.path", "navigation.indexes", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>

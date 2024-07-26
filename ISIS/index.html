@@ -1,0 +1,1640 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../BGP/">
+      
+      
+        <link rel="next" href="../MPLS%20LDP/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>IS-IS - Notes for CCNP SPRI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#is-is" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Notes for CCNP SPRI" class="md-header__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes for CCNP SPRI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              IS-IS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_3">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_4">
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../BGP/" class="md-tabs__link">
+        
+  
+    
+  
+  Scaling BGP
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  IS-IS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MPLS%20LDP/" class="md-tabs__link">
+        
+  
+    
+  
+  Implementing and Verifying MPLS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MPLS%20TE/" class="md-tabs__link">
+        
+  
+    
+  
+  MPLS TE
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Multicast/" class="md-tabs__link">
+        
+  
+    
+  
+  Multicast
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../OSPF/" class="md-tabs__link">
+        
+  
+    
+  
+  OSPF
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Route%20Redistribution/" class="md-tabs__link">
+        
+  
+    
+  
+  Route Redistribution
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Routing%20Policy/" class="md-tabs__link">
+        
+  
+    
+  
+  Routing Policy and Manipulation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../SR%20TE/" class="md-tabs__link">
+        
+  
+    
+  
+  SR Traffic Engineering
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Segment%20Routing/" class="md-tabs__link">
+        
+  
+    
+  
+  Segment Routing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Notes for CCNP SPRI" class="md-nav__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Notes for CCNP SPRI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BGP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scaling BGP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    IS-IS
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    IS-IS
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#interlevel-routing-and-is-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interlevel Routing and IS-IS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multilevel-is-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multilevel IS-IS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multilevel IS-IS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-multilevel-is-is-on-ios-xr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring Multilevel IS-IS on IOS-XR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-multilevel-is-is-on-ios-xe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring Multilevel IS-IS on IOS-XE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-is-route-leaking" class="md-nav__link">
+    <span class="md-ellipsis">
+      IS-IS Route Leaking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prefix-suppression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prefix Suppression
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-is-interlevel-routing-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      IS-IS Interlevel Routing Guidelines
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-is-path-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      IS-IS Path Selection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IS-IS Path Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-is-is-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring IS-IS Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-is-path-selection-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      IS-IS Path Selection Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-is-summarization" class="md-nav__link">
+    <span class="md-ellipsis">
+      IS-IS Summarization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-is-fast-convergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      IS-IS Fast Convergence
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IS-IS Fast Convergence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cisco-nsf-nsr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cisco NSF, NSR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-factors-affecting-convergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other factors affecting convergence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-is-events-influencing-convergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      IS-IS events influencing convergence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsp-processing-and-propagation" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSP Processing and Propagation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#carrier-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      Carrier Delay
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-is-is-for-fast-convergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring IS-IS for Fast Convergence
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#isis-convergence-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      ISIS Convergence Guidelines
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-is-for-ipv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      IS-IS for IPv6
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IS-IS for IPv6">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-is-is-for-ipv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring IS-IS for IPv6
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#route-summarization-for-ipv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route Summarization for IPv6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-is-v-ospf-comparisons" class="md-nav__link">
+    <span class="md-ellipsis">
+      IS-IS v OSPF Comparisons
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IS-IS v OSPF Comparisons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparing-ospf-and-is-is-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparing OSPF and IS-IS terminology
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MPLS%20LDP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implementing and Verifying MPLS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MPLS%20TE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MPLS TE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multicast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multicast
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OSPF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSPF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Route%20Redistribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Route Redistribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Routing%20Policy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Routing Policy and Manipulation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SR%20TE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SR Traffic Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Segment%20Routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Segment Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="is-is">IS-IS</h1>
+<h2 id="interlevel-routing-and-is-is">Interlevel Routing and IS-IS</h2>
+<ul>
+<li>Overall, IS-IS is a similiar link-state routing protocol with similiar issues and limitations</li>
+<li>When you have a single-level IS, the primary limit is the number of nodes</li>
+<li>Multilevel allows for less nodes for a smaller LSDB to scale</li>
+</ul>
+<h2 id="multilevel-is-is">Multilevel IS-IS</h2>
+<p><strong>Three types of routers</strong>:</p>
+<ol>
+<li>
+<p><ins>Level 1 (L1)</ins>: only learns about paths within the area they connect to (intra-area only) - edge/branch</p>
+</li>
+<li>
+<p><ins>Level 2 (L2)</ins>: learns about paths between area (inter-area) -- provider core</p>
+</li>
+<li>
+<p><ins>Level 1-2 (L1-2)</ins>: learn about paths both within and between areas. Similiar to OSPF ABR's.</p>
+</li>
+</ol>
+<p>Most notably, area boundaries fall on links. A router belongs in ONE level only.</p>
+<p>Adjancies are negotiated based on whether they are in the same area or a different area -&gt; L1, L2, or L1-2 neighborship</p>
+<p>By default, IS-IS areas are considered "totally stubby" by default, but you can leak L2 routes into L1</p>
+<h3 id="configuring-multilevel-is-is-on-ios-xr">Configuring Multilevel IS-IS on IOS-XR</h3>
+<ul>
+<li>Interfaces must be enabled for IS-IS, and the IS-type is Level1-2 by default. </li>
+<li>L2 used in core where there are only L2 link states exchanged
+<div class="highlight"><span class="filename">IOS XR - P1 - net 49.0000 = area id (0)</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># net 49.0000.0001.0001.1001.00</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># is-type level-2-only</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># interface gi0/0/5/2</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># ip router isis</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># isis circuit-type level-2-only</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XR - PE router - net 49.0002 = area id (2)</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># net 49.0002.0001.0001.1001.00</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># is-type level-1-2</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># interface gi0/0/0/1</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># address-family ipv4 unicast</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># isis circuit-type level-2-only</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># interface gi0/0/0/2</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># address-family ipv4 unicast</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># isis circuit-type level-1-2</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># interface gi0/0/0/3</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># address-family ipv4 unicast</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># isis circuit-type level-1</span>
+</code></pre></div></li>
+<li>On the different interfaces, there will be different adjancies negotiated. <ul>
+<li>L2-only used in the core where only L2 LSP's are exchanged.</li>
+<li>L1-2 used with other L1-2 routers where both L1 and L2 LSP's are exchanged</li>
+<li>L1-only used with other L1-only routers to exchange only L1 LSP's</li>
+</ul>
+</li>
+</ul>
+<h3 id="configuring-multilevel-is-is-on-ios-xe">Configuring Multilevel IS-IS on IOS-XE</h3>
+<ul>
+<li>Generally it is the same as IOS-XR. Interfaces must be specifically enabled for IS-IS with the type selected</li>
+</ul>
+<p><div class="highlight"><span class="filename">IOS XE - P1 - net 49.0000 = area id (0)</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># net 49.0000.0001.0001.1001.00</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># is-type level-2-only</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># exit</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># interface Gi0/1/5</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># ip router isis</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># isis circuit-type level-2-only</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XE - PE - net 49.0002 = area id (2)</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># net 49.0002.0001.0001.1001.00</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># is-type level-1-2</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># exit</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># interface Gi0/0/1</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># ip router isis</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># isis circuit-type level-2-only</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># exit</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># interface Gi0/0/2</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># ip router isis</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># isis circuit-type level-1-2</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># exit</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># interface Gi0/0/3</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># ip router isis</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># isis circuit-type level-1</span>
+</code></pre></div></p>
+<h2 id="is-is-route-leaking">IS-IS Route Leaking</h2>
+<ul>
+<li>By default, routes are leaked from L1 to L2, but IS-IS will block L2 -&gt; L1</li>
+<li>You usually want to ensure that BGP next-hop addresses are reachable, so leaking these routes for reachability is important. </li>
+</ul>
+<p><div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># redistribute isis ip level-2 into level-1 route-map RM-ISIS</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># address-family ipv4 unicast</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># propagate level 2 into level 1 route-policy RP-ISIS</span>
+</code></pre></div></p>
+<h2 id="prefix-suppression">Prefix Suppression</h2>
+<ul>
+<li>Option to further limit the size of the LSDB. For example, to only advertise edge networks and BGP next-hop addresses. </li>
+<li>This can reduce the convergence time</li>
+<li>Commonly you would exclude transport links</li>
+<li>
+<p>If you configure interfaces to be passive in IS-IS, then only those interfaces with be propagated into IS-IS</p>
+</li>
+<li>
+<p>There are two ways to configure prefix suppression:</p>
+<ol>
+<li>On a per-interface basis</li>
+<li>On a per-router basis</li>
+</ol>
+</li>
+</ul>
+<p><div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># advertise passive-only</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">OR</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># interface Gi0/2/1</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># no isis advertise-prefix</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># address-family ipv4 unicast</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># advertise passive-only</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">OR</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># interface Gi0/0/1/2</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># suppressed</span>
+</code></pre></div></p>
+<ul>
+<li>Suppression = stops advertisement of PDU's over these links and also configures the IS-IS interface not to advertise its IP network to neighbors </li>
+</ul>
+<h2 id="is-is-interlevel-routing-guidelines">IS-IS Interlevel Routing Guidelines</h2>
+<ul>
+<li>Place a L1-2 border router between the core and POP uplink routers</li>
+<li>Use route leaking to ensure PE loopbacks are reachable and do not summarize</li>
+<li>Use prefix suppression to minimize LSDB size</li>
+</ul>
+<h2 id="is-is-path-selection">IS-IS Path Selection</h2>
+<ul>
+<li>
+<p>Similiar to OSPF, in a way.</p>
+</li>
+<li>
+<p><strong>Level</strong></p>
+<ul>
+<li>L1 route has highest preference</li>
+<li>L2 route as alternative</li>
+</ul>
+</li>
+<li><strong>Paths of same level</strong><ul>
+<li>Internal route has highest preference</li>
+<li>External route is alternative</li>
+</ul>
+</li>
+<li><strong>For routes of the same level and origin</strong>:<ul>
+<li>Lowest metric</li>
+<li>All interfaces default to a metric of 10</li>
+</ul>
+</li>
+</ul>
+<h3 id="configuring-is-is-metrics">Configuring IS-IS Metrics</h3>
+<ul>
+<li>The IS-IS metric is similiar to OSPF, but there is no automatic mechanism for this to happen based on link bw. </li>
+<li>The default original metric is 1-63, while there is a wide configurable range between 1-16777214 after enabling <code>metric-style wide</code></li>
+</ul>
+<p><div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># metric-style wide</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># metric 15625000</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># exit</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># interface Gi0/5/1</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># isis metric 1000</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># address-family ipv4 unicast</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># metric-style wide</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># metric 15625000</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># exit</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># interface Gi0/0/1/2</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="n">L1_L2</span><span class="o">-</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># metric 1000</span>
+</code></pre></div></p>
+<h3 id="is-is-path-selection-guidelines">IS-IS Path Selection Guidelines</h3>
+<ul>
+<li>Use wide metric everywhere</li>
+<li>Change the default metric to a high value on slow interfaces from attracting traffic<ul>
+<li>Default is 10, lowest = best</li>
+</ul>
+</li>
+<li>Design a metric plan since there is no automatic metric calc in IS-IS</li>
+<li>Consider borrowing OSPF formula for link speeds and metrics</li>
+</ul>
+<h2 id="is-is-summarization">IS-IS Summarization</h2>
+<ul>
+<li>Solves large routing tables and frequent link-state flooding throughout the AS</li>
+<li>Reducing the size of database improves scalability</li>
+<li>By default, when a route flaps or disappears in one area, routers in other areas and levels get involved in SPF calculation</li>
+<li>Like OSPF, you can summarize routes but this is done on the Level boundaries in IS-IS, and they can be used with external redistributed routes</li>
+</ul>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># redistribute ospf 1 level-1-2</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># summary-address 10.1.0.0 255.255.0.0 level-1</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># summary-address 10.2.0.0 255.255.0.0 level-2</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># summary-address 10.3.0.0 255.255.0.0 level-1-2</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># address-family ipv4 unicast</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># redistribute ospf 1 level-1</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># redistribute ospf 1 level-2</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># summary-prefix 10.1.0.0/16 level-1 </span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># summary-prefix 10.2.0.0/16 level-2</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># summary-prefix 10.3.0.0/16 level-1-2</span>
+</code></pre></div>
+<ul>
+<li>This is a weird example, but it shows <code>summary-prefix</code> is used for IOS-XR and <code>summary-address</code> is used for IOS-XE with the different summary options:<ul>
+<li><strong>level-1</strong>: only routes distributed into Level 1 are summarized</li>
+<li><strong>level-1-2</strong>: summary routes applied when redistributed into Level 1 and 2 IS-IS, and when Level 2 "leaks" or advertises Level 1 routes as reachable</li>
+<li><strong>level-2</strong>: routes learned by Level 1 routing are summarized into Level 2 backbone; redistributed external routes will also be summarized into Level 2 too.</li>
+</ul>
+</li>
+<li>Redueces the size of LSP's and thus the LSDB</li>
+<li>More stable because a summary advertisement depends on many specific routes, and as long as one of these specific routes is available, the summary route won't flap.</li>
+<li>Drawback is possibly less information to calculate the most optimal route in large topologies</li>
+</ul>
+<h2 id="is-is-fast-convergence">IS-IS Fast Convergence</h2>
+<ul>
+<li>By default, it can take IS-IS more than 30 seconds to converge upon link or device failure</li>
+<li>There are some techniques to improve this:<ol>
+<li>Tune IS-IS timers </li>
+<li>Cisco NSF</li>
+<li>Cisco NSR</li>
+<li>BFD</li>
+</ol>
+</li>
+</ul>
+<h3 id="cisco-nsf-nsr">Cisco NSF, NSR</h3>
+<ul>
+<li>More or less the same as NSF for OSPF</li>
+<li>Feature for IOS-XR to allow the forwarding of data packets to continue while protocol information is restored following a failover event between RP's on a NSF-capable router</li>
+<li>The standby RP during failover must relearn neighbor relationships and reacquire contents of LSDB's</li>
+<li>NSF-capable and NSF-aware neighbors do not flap during a RP failover using NSF</li>
+<li>NSR allows for RP failover, process restarts, and in-service upgrades to be invisible to peers.</li>
+<li>Using NSR alleviates the requirements for NSF and IETF graceful restart procotol extensions</li>
+</ul>
+<p><em>from a LLM about graceful restart protocol extensions:</em></p>
+<p>The IETF has defined graceful restart protocol extensions for IS-IS in RFC 5306. These extensions aim to minimize traffic loss and network disruption during a planned or unplanned IS-IS router restart. Here's how the IS-IS graceful restart mechanism works:</p>
+<ol>
+<li>
+<p>Graceful Restart Capability Advertisement:</p>
+<ul>
+<li>Routers advertise their support for graceful restart using the Graceful Restart TLV (Type-Length-Value) in their IS-IS Hello PDUs.</li>
+<li>The TLV includes information such as the restart duration (how long the restarting router will take to complete the restart) and the restart reason (planned or unplanned).</li>
+</ul>
+</li>
+<li>
+<p>Planned Restart:</p>
+<ul>
+<li>When a router undergoes a planned restart (e.g., for software upgrade), it sends IS-IS Hello PDUs with the Graceful Restart TLV to its neighbors, indicating its intention to restart.</li>
+<li>The restarting router's neighbors (helper routers) will continue to advertise the restarting router's routes as if it were still active, using the restart duration advertised in the Graceful Restart TLV.</li>
+</ul>
+</li>
+<li>
+<p>Unplanned Restart:</p>
+<ul>
+<li>If a router experiences an unplanned restart (e.g., due to a crash), it will not have the opportunity to send the Graceful Restart TLV in advance.</li>
+<li>Upon restart, the router will send IS-IS Hello PDUs with the Graceful Restart TLV, indicating that it has just restarted and is in the process of recovering its state.</li>
+</ul>
+</li>
+<li>
+<p>Helper Router Behavior:</p>
+<ul>
+<li>Neighbors of the restarting router (helper routers) will continue to advertise the restarting router's routes for the duration specified in the Graceful Restart TLV.</li>
+<li>Helper routers will mark the restarting router's routes as "stale" but will continue to forward traffic to those routes.</li>
+<li>If the restarting router does not re-establish adjacency within the specified restart duration, the helper routers will remove the stale routes.</li>
+</ul>
+</li>
+<li>
+<p>Restarting Router Recovery:</p>
+<ul>
+<li>During the restart, the restarting router will rebuild its routing table and LSDB (Link State Database) based on the information received from its neighbors.</li>
+<li>Once the restarting router has rebuilt its state, it will send updated LSPs (Link State PDUs) to its neighbors, indicating that it has completed the restart process.</li>
+</ul>
+</li>
+<li>
+<p>Synchronization and Convergence:</p>
+<ul>
+<li>Upon receiving the updated LSPs from the restarting router, the helper routers will synchronize their LSDBs with the restarting router.</li>
+<li>The network will converge, and normal IS-IS routing will resume.</li>
+</ul>
+</li>
+</ol>
+<p>The IS-IS graceful restart mechanism helps minimize traffic disruption during router restarts by allowing the restarting router's neighbors to continue forwarding traffic to the restarting router's routes while it rebuilds its state. This provides a smoother transition and faster convergence compared to a complete network reconvergence.</p>
+<h3 id="other-factors-affecting-convergence">Other factors affecting convergence</h3>
+<ul>
+<li>Not all underlying physical topologies support fast link failure notifications</li>
+<li>carrier delays could introduce additional delay</li>
+<li>slower timers could yield a more stable environment at the expense of faster convergence</li>
+</ul>
+<h3 id="is-is-events-influencing-convergence">IS-IS events influencing convergence</h3>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Action</th>
+<th>Timers</th>
+<th>Default Timer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local LSP change</td>
+<td>Originate LSP and flood</td>
+<td>LSP generation timer</td>
+<td>5 seconds</td>
+</tr>
+<tr>
+<td>LSP db and tree change</td>
+<td>Run iSPF/SFP calculation</td>
+<td>SFP interval</td>
+<td>10 seconds</td>
+</tr>
+<tr>
+<td>LSP db but no tree change</td>
+<td>Run PRC calculation</td>
+<td>PRC interval</td>
+<td>5 seconds</td>
+</tr>
+<tr>
+<td>Scheduled</td>
+<td>Periodic LSP flooding</td>
+<td>LSP refresh interval</td>
+<td>900 seconds (15mins)</td>
+</tr>
+<tr>
+<td>LSP expires</td>
+<td>LSP refreshing</td>
+<td>Max LSP lifetime</td>
+<td>1200 seconds</td>
+</tr>
+<tr>
+<td>Pace LSPs (30 LSP/s)</td>
+<td>LSP flooding</td>
+<td>LSP interval</td>
+<td>33ms</td>
+</tr>
+<tr>
+<td>LSP interval</td>
+<td>Run iSPF/SPF and flood LSP</td>
+<td>CPU-related delays trigger SPF early</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="lsp-processing-and-propagation">LSP Processing and Propagation</h3>
+<p>ISO 10589 states LSP flooding is limited to 30 LSP's per second
+There are design suggestions to improve LSP processing:</p>
+<ol>
+<li>Reduce the gap to speed up end-to-end flooding</li>
+<li>Reduce unnecessary control plane traffic to converse CPU for LSP's</li>
+<li>Reduce the frequency of periodic LSP flooding to reduce link utilization</li>
+<li>Ignore LSP's with bad checksum instead of purging</li>
+</ol>
+<p>Throttling slows convergence, but it prevents "meltdown" that would cause further problems. The goal is to react fast to the first events but, under constant churn, slow down to avoid collapse.</p>
+<ul>
+<li>During convergence, IS-IS throttles the following events:<ul>
+<li>SPF computation<ul>
+<li>IS-IS throttles SPF calculation to prevent excessive CPU</li>
+<li>When there is a LSP upgrade to trigger SPF calc, IS-IS starts a SFP timer</li>
+<li>If additional LSP updates are rx'd during this timer, IS-IS will wait until timer completes before running SPF, incorporating all the changes</li>
+</ul>
+</li>
+<li>LSP generation<ul>
+<li>when there is an event that triggers generating a new LSP, this starts the generation timer and hold-down timers</li>
+<li>if additional triggering events IS-IS occur during the hold-time timer, IS-IS will wait for the generation timer to expire before generating a new LSP, incorporating all the changes        </li>
+</ul>
+</li>
+<li>Partial route calculation (PRC) computation<ul>
+<li>Similiar as above <blockquote>
+<p>PRC is the software’s process of calculating routes without performing an shortest path first (SPF) calculation.
+This is possible when the topology of the routing system itself has not changed, but a change is detected in
+the information announced by a particular IS or when it is necessary to attempt to reinstall such routes in the
+Routing Information Base (RIB).</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="carrier-delay">Carrier Delay</h2>
+<ul>
+<li>If a link goes down and up before the carrier delay expires, then the down state event is filtered</li>
+<li>Higher delay = more stability; while setting to 0 delay = everything is detected</li>
+<li>Most environments want low or default carrier delays, but if there tends to be a high frequency of small outages, then it might be prudent to not cause disruptions and trigger re-convergence</li>
+<li>If there are rare but long outages, short delay or 0 delay better</li>
+</ul>
+<h2 id="configuring-is-is-for-fast-convergence">Configuring IS-IS for Fast Convergence</h2>
+<p>IOS-XE only example:</p>
+<p>Look at <a href="https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/iproute_isis/command/irs-cr-book.pdf">Cisco IOS IP Routing: ISIS Command Reference</a> for additional info on each of these...</p>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># bfd all-interfaces</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># fast-flood 15  # send 15 LSP&#39;s before running SPF, default = 5</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># isis lsp-interval 10  # reduces LSP interval, default 33ms</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># max-lsp-lifetime 65535  # LSP lifetime up from default 1200s</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># lsp-refresh-interval 65000  # up from default 900s</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># ignore-lsp-errors</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># spf-interval 5 1 20  # default is 10s 5.5s 5500ms    \</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># prc-interval 5 1 20  # default is 10s 5.5s 5500ms     |- these 3 are backoff timers</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># lsp-gen-interval 5 1 20  # default is 5s 50ms 5000ms /</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># ispf level-1-2 60  # incremental SPF calc timer</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># no hello padding</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># interface gi1/0/1</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># bfd interval 50 min_rx 50 multiplier 5  # fast link detected via BFD</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># isis network point-to-point  # disable DIS election</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># carrier-delay down msec 0  # immediate down notification</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># carrier-delay up 2  # delayed link-up notification</span>
+</code></pre></div>
+<p>Regarding <code>ispf</code>:</p>
+<blockquote>
+<p>When changes to a Type 1 or Type 2 link-state advertisement (LSA) occur in an area, the entire SPT is
+recomputed. In many cases, the entire SPT need not be recomputed because most of the tree remains unchanged.
+Incremental SPF allows the system to recompute only the affected part of the tree. Recomputing only a portion
+of the tree rather than the entire tree results in faster OSPF convergence and saves CPU resources. </p>
+</blockquote>
+<h2 id="isis-convergence-guidelines">ISIS Convergence Guidelines</h2>
+<ul>
+<li>Set goals and also account for other protocol options like MPLS TE like Fast Reroute </li>
+<li>Suggestions:<ul>
+<li>Use BFD over faster hellos</li>
+<li>Consider carrier delay to minimize process times</li>
+<li>Use p2p mode on core links to avoid DIS election</li>
+<li>Tune timers to improve process/flooding LSPs</li>
+</ul>
+</li>
+</ul>
+<h2 id="is-is-for-ipv6">IS-IS for IPv6</h2>
+<ul>
+<li>
+<p>Multiprotocol by default, supports both IPv4 and IPv6 wiwth multitopology support to allow IS-IS to maintain a set of independent topologies within a single area or domainq</p>
+<ul>
+<li>Not all routers inside the IS-IS domain need to all be dual-stack. The topologies are separate, SPF is calculated for each independently.</li>
+<li>For multitopology support, all routers in the domain should be multitopology enabled</li>
+</ul>
+</li>
+<li>
+<p>On IOS-XE/XR, one must use <code>metric-style wide</code> to configure new-style TLV's for IPv6 info in LSP's when using multitopology </p>
+</li>
+<li>when you migrate from pure-IPv4 to dual-stack, there is the <code>adjacency-check disable</code> (IOSXE) or <code>no adjacency-check</code> configuration to disable consistency checks on hello packets to allow a router running IS-IS for both IPv4 and IPv6 to form an adjacency with a router running IS-IS for IPv4 or IPv6 only.</li>
+</ul>
+<h3 id="configuring-is-is-for-ipv6">Configuring IS-IS for IPv6</h3>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># metrics-style wide</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># address-family ipv6 unicast</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># exit</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># int Gi1/0/1</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># ipv6 enable</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># ipv6 router isis</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># address-family ipv6 unicast</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># single-topology         # IOS-XR is multi-topology by default</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># exit</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># int Te1/0/3 </span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># address-family ipv6 unicast</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># exit</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># int Te1/0/4</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># address-family ipv6 unicast</span>
+</code></pre></div>
+<h3 id="route-summarization-for-ipv6">Route Summarization for IPv6</h3>
+<ul>
+<li>Both IOSXE/XR use <code>summary-prefix</code> for summarization of IPv6 prefixes, everything else for route summarization is the same as in IPv4 described earlier</li>
+</ul>
+<h2 id="is-is-v-ospf-comparisons">IS-IS v OSPF Comparisons</h2>
+<ul>
+<li>
+<p>Both are link-state protocols with similiar characteristics (different terminology sometimes), but there are large design differences:</p>
+<ul>
+<li>OSPF, different interfaces can be in different areas, while in IS-IS, the router itself is assigned into an area. </li>
+<li>IS-IS is not constrained to using a backbone area, so there can be more flexibility to modify topology</li>
+</ul>
+</li>
+<li>
+<p>IS-IS has a heirarchy of Level-1, Level-2, and L1-L2 routers, and the area borders are on links (as the routers themselves are only in one area)</p>
+</li>
+<li>
+<p>OSPF can produce many small LSA's, while IS-IS updates can be grouped and sent as one LSP</p>
+<ul>
+<li>This can add up to be a large "pro" for why IS-IS can be more scalable in single-area designs over OSPF</li>
+</ul>
+</li>
+<li>
+<p>OSPF runs on top of IP, while IS-IS uses Connectionless Network Service (CLNS) that is a L2 protocol. </p>
+</li>
+<li>
+<p>IS-IS is also more efficient than OSPF in the use of CPU resources in how it processes routing updates due to less LSPs</p>
+</li>
+<li>
+<p>OSPF schema to add new features with LSA's is challenging due to compatability issues, while IS-IS is easy to extend through the TLV extension</p>
+</li>
+</ul>
+<h3 id="comparing-ospf-and-is-is-terminology">Comparing OSPF and IS-IS terminology</h3>
+<table>
+<thead>
+<tr>
+<th>Terminology</th>
+<th>OSPF</th>
+<th>IS-IS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node</td>
+<td>Router</td>
+<td>IS</td>
+</tr>
+<tr>
+<td>Link</td>
+<td>Link</td>
+<td>Circuit</td>
+</tr>
+<tr>
+<td>Multiaccess node</td>
+<td>DR</td>
+<td>DIS</td>
+</tr>
+<tr>
+<td>Redundant Multiaccess node</td>
+<td>BDR</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>Routing update</td>
+<td>link-state advertisement (LSA)</td>
+<td>link-state PDU (LSP)</td>
+</tr>
+<tr>
+<td>Keepalive</td>
+<td>Hello packet</td>
+<td>IS-IS Hello (IIH PDU)</td>
+</tr>
+<tr>
+<td>Area</td>
+<td>Area</td>
+<td>Subdomain or area</td>
+</tr>
+<tr>
+<td>Inter-area nodes</td>
+<td>ABR</td>
+<td>Level 1 Level 2 IS</td>
+</tr>
+<tr>
+<td>Node identifier</td>
+<td>Router ID</td>
+<td>System ID</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Characteristic</th>
+<th>OSPF</th>
+<th>IS-IS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transport protocol</td>
+<td>IP</td>
+<td>CLNS</td>
+</tr>
+<tr>
+<td>Node identifier</td>
+<td>IPv4 (router ID)</td>
+<td>NSAP (system ID)</td>
+</tr>
+<tr>
+<td>Area boundary</td>
+<td>Node: ABR in multiple areas / Link in one area</td>
+<td>Link: Level 1 Level 2 router in one area / link in multiple areas</td>
+</tr>
+<tr>
+<td>Link in two areas/levels</td>
+<td>Virtual Link</td>
+<td>Level 1 Level 2 link</td>
+</tr>
+<tr>
+<td>Multiprotocol</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>High availability</td>
+<td>DR and BDR</td>
+<td>Only one DIS</td>
+</tr>
+<tr>
+<td>Automatic cost</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.path", "navigation.indexes", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>

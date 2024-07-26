@@ -1,0 +1,1154 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../OSPF/">
+      
+      
+        <link rel="next" href="../Routing%20Policy/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Route Redistribution - Notes for CCNP SPRI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#route-redistribution" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Notes for CCNP SPRI" class="md-header__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes for CCNP SPRI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Route Redistribution
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_3">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_4">
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../BGP/" class="md-tabs__link">
+        
+  
+    
+  
+  Scaling BGP
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ISIS/" class="md-tabs__link">
+        
+  
+    
+  
+  IS-IS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MPLS%20LDP/" class="md-tabs__link">
+        
+  
+    
+  
+  Implementing and Verifying MPLS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MPLS%20TE/" class="md-tabs__link">
+        
+  
+    
+  
+  MPLS TE
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Multicast/" class="md-tabs__link">
+        
+  
+    
+  
+  Multicast
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../OSPF/" class="md-tabs__link">
+        
+  
+    
+  
+  OSPF
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Route Redistribution
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Routing%20Policy/" class="md-tabs__link">
+        
+  
+    
+  
+  Routing Policy and Manipulation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../SR%20TE/" class="md-tabs__link">
+        
+  
+    
+  
+  SR Traffic Engineering
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Segment%20Routing/" class="md-tabs__link">
+        
+  
+    
+  
+  Segment Routing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Notes for CCNP SPRI" class="md-nav__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Notes for CCNP SPRI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BGP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scaling BGP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ISIS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IS-IS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MPLS%20LDP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implementing and Verifying MPLS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MPLS%20TE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MPLS TE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multicast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multicast
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OSPF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSPF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Route Redistribution
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Route Redistribution
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-need-for-redistribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Need for Redistribution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-redistribution-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route Redistribution Characteristics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-redistribution-seed-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route Redistribution Seed Metrics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redistribution-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redistribution strategies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redistribution strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-point-route-redistribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      One-Point Route Redistribution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multipoint-route-redistribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multipoint Route Redistribution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solutions-to-route-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solutions to route distributions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-route-redistribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring Route Redistribution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Route Redistribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ospf-redistribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      OSPF Redistribution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redistribution-into-is-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redistribution into IS-IS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redistribution-into-bgp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redistribution into BGP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#administrative-distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Administrative Distance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing-loop-prevention-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Routing Loop Prevention Strategies
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Routing%20Policy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Routing Policy and Manipulation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SR%20TE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SR Traffic Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Segment%20Routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Segment Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="route-redistribution">Route Redistribution</h1>
+<p>Routing redistribution can be used when there is more than one routing protocol used in an AS, and to achieve end-to-end reachability, you can use redistribution to exchange full routing info.</p>
+<p>Often, the transition between routing protocols as the environment grows is not fast. 2 or more routing protocols may exist for a long time. </p>
+<p>Different protocols have different requirements and limitations when redistributing, so it is important to be aware of these and configure them carefully.</p>
+<p>The main design considerations:</p>
+<ul>
+<li>One or two way redistribution?</li>
+<li>One or multiple redistribution points?</li>
+<li>Impact of external routes on a routing protocol</li>
+</ul>
+<h2 id="the-need-for-redistribution">The Need for Redistribution</h2>
+<p>Over time, a network becomes more complex as different network groups adjust it based on factors such as political borders, geographical borders, and m&amp;a.</p>
+<p>Routing challenges stemming from differences in the environment:</p>
+<ul>
+<li>different devices/vendors</li>
+<li>branches, hubs, core networks, PoP design</li>
+<li>Different regions/countries</li>
+<li>Multiple separate companies</li>
+<li>M&amp;A causing different entities to smash together</li>
+</ul>
+<p>Multiple routing protocols can exist in some example scenarios:</p>
+<ul>
+<li>When migrating from older IGP to new IGP, multiple redistribution boundaries may exist until new IGP completely displaces the old one. Similiarly, this applies for mergers between companies.</li>
+<li>Depending on company, some departments may not upgrade their routers to support new protocols etc</li>
+<li>Mixed vendor environments. EIGRP on Cisco, OSPF on others.</li>
+<li>Modern SP environments may also have colocation, cloud networks where a different set of devices and technology exists</li>
+</ul>
+<h2 id="route-redistribution-characteristics">Route Redistribution Characteristics</h2>
+<p>Tthe process of using a routing protocol to advertise routes that are learned by the usual means of learning routes, such as by another routing protocol, static routes, or directly connected routes.</p>
+<ul>
+<li>Possible redistribution sources:<ul>
+<li>Other routing protocols, static routes, connected routes</li>
+</ul>
+</li>
+<li>Internal loop prevention mechanisms<ul>
+<li>Only routes that are actually in the routing table will be redistributed</li>
+</ul>
+</li>
+</ul>
+<h2 id="route-redistribution-seed-metrics">Route Redistribution Seed Metrics</h2>
+<ul>
+<li>The seed metric or redistributed metric is the starting cost for routes that are redistributed from other protocols. </li>
+<li>Each protocol behaves differently, some vary depending on protocols</li>
+</ul>
+<p>RIP and EIGRP will not redistribute unless you configure a metric (seed it). It will be 0 by default, which is infinity hops, which is unreachable.</p>
+<p>For IS-IS, the metric of 0 will be the lowest cost, while in OSPF, it will be 20 (E2).</p>
+<p>For BGP, it will copy the originating routing protocols metric as the MED attribute value (metric), which is then propagated throughout.</p>
+<h2 id="redistribution-strategies">Redistribution strategies</h2>
+<p>Redistribution can bring with it many challenges, and you should approach it carefully to not cause additional issues when trying to solve business needs. Routing across your org should be stable and efficient.</p>
+<p>Some of these challenges:</p>
+<ul>
+<li>Suboptimal routing</li>
+<li>Inconsistent convergence timers</li>
+<li>Routing update loops: loop prevent methods do not span protocols (such as iBGP split horizon)</li>
+<li>Route flapping: redistributed routes can preempt each other</li>
+<li>Intermittent routing loops: then when there is route flaps, possibility for loops</li>
+</ul>
+<h3 id="one-point-route-redistribution">One-Point Route Redistribution</h3>
+<ul>
+<li>Route redistribution is only done at one point in the network, and it can either be one-way or two-way<ul>
+<li>If there is one-way, then there should be a default or static route for the other routing protocl to ensure two-way comms</li>
+</ul>
+</li>
+<li>The advantage of one-point is that there is no risk of routing loops</li>
+</ul>
+<h3 id="multipoint-route-redistribution">Multipoint Route Redistribution</h3>
+<ul>
+<li>Same as earlier, except in multiple places and options for both one-way and two-way</li>
+<li>If the receiving routing protocol supports different administrative distances for internal and external routes, it can work better<ul>
+<li>Another common method is to tag routes reditributed from one routing protocol to another, then use route-maps or RPL to prevent re-redistribution of routes at the other redistribution points</li>
+</ul>
+</li>
+</ul>
+<h3 id="solutions-to-route-distributions">Solutions to route distributions</h3>
+<ul>
+<li>Manipulate routing metrics or administrative distance</li>
+<li>Filter redistributed routes to ensure only what you want is being redistributed</li>
+<li>Use tags to simplify identification of redistributed routes</li>
+<li>Summarize redistributed routes when possible</li>
+<li>
+<p>Consider using a default route to stick with one-way redistribution</p>
+</li>
+<li>
+<p>Be wary of administrative distance when doing redistribution</p>
+<ul>
+<li>For example, if you have a connected route, and you redistribute this on R1 into EIGRP. This will be an EIGRP-external route with 170 AD, but if this is redistributed into OSPF, it will be 110 AD. Possibly this could result in suboptimal routing depending on where the routing decisions are made on the network.</li>
+</ul>
+</li>
+</ul>
+<h2 id="configuring-route-redistribution">Configuring Route Redistribution</h2>
+<ul>
+<li><code>redistribute</code> command is entered under the importing routing protocol</li>
+<li>
+<p>You mainly will be concerned with:</p>
+<ul>
+<li>Source routing protocol (and maybe process)</li>
+<li>Protocol-specific filters</li>
+<li>Setting of a default metric</li>
+<li>Tagging redistributed routes</li>
+<li>Filtering and modifying routes via <code>route-maps</code> and <code>route-policy</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="ospf-redistribution">OSPF Redistribution</h3>
+<ul>
+<li>Use the <code>subnet</code>s` option to ensure all routes are redistributed</li>
+<li>Use the <code>metric-type 1</code> option to ensure LSA type 5 External type 1 is used so that the cost will be updated and considered throughout the OSPF domain, otherwise link costs will never be appended when propogating the route across the network</li>
+</ul>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router ospf 1</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># redistribute eigrp 1 subnets metric-type 1 metric 100000 tag 100</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router ospf 1</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">ospf</span><span class="p">)</span><span class="c1"># redistribute eigrp 1 subnets metric-type 1 metric 100000 tag 101</span>
+</code></pre></div>
+<h3 id="redistribution-into-is-is">Redistribution into IS-IS</h3>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># redistribute connected metric 1000 route-map ISIS-Redistribute-Conn</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router isis 1</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="p">)</span><span class="c1"># address-family ipv4 unicast</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">isis</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># redistribute connected metric 1000 route-policy ISIS-Redistribute-Conn</span>
+</code></pre></div>
+<h3 id="redistribution-into-bgp">Redistribution into BGP</h3>
+<ul>
+<li>Basically... the exact same</li>
+</ul>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router bgp 65001</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># redistribute ospf 1 match internal route-map BGP-Redistribute-OSPF</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router bgp 65002</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">bgp</span><span class="p">)</span><span class="c1"># address-family ipv4 unicast</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">bgp</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># redistribute ospf 1 match internal route-policy BGP-Redistribute-OSPF</span>
+</code></pre></div>
+<h2 id="administrative-distance">Administrative Distance</h2>
+<table>
+<thead>
+<tr>
+<th>Routing Protocol</th>
+<th>Default AD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connected Route</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Static Route</td>
+<td>1</td>
+</tr>
+<tr>
+<td>EIGRP summary route</td>
+<td>5</td>
+</tr>
+<tr>
+<td>EBGP</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Internal EIGRP</td>
+<td>90</td>
+</tr>
+<tr>
+<td>OSPF</td>
+<td>110</td>
+</tr>
+<tr>
+<td>IS-IS</td>
+<td>115</td>
+</tr>
+<tr>
+<td>RIP</td>
+<td>120</td>
+</tr>
+<tr>
+<td>External EIGRP</td>
+<td>170</td>
+</tr>
+<tr>
+<td>iBGP</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Modifying OSPF AD</strong></p>
+<ul>
+<li>Default is 110, and you can modify this with global OSPF command <code>distance</code>, or with <code>distance ospf external xx inter-area yy intra-area zz</code> to modify the external, inter-area, and intra-area routes more specifically. </li>
+<li>The command is the same on IOS-XE and IOS-XR</li>
+<li>More selective AD can help with multi-point multi-way redistribution</li>
+</ul>
+<p><strong>Modifying IS-IS AD</strong></p>
+<ul>
+<li>Default is 115, and this is mod'd with <code>distance</code> in global <code>router isis</code> mode on IOS-XE and for IOS-XR, under the <code>address-family ipv4 unicast</code> config mode.</li>
+</ul>
+<p><strong>Modifying BGP AD</strong></p>
+<ul>
+<li>Default is 20 for EBGP routes, 200 for iBGP routes</li>
+<li>
+<p>Use the command <code>distance bgp $external $internal $local_routes</code>, like <code>distance bgp 20 80 80</code> under global router bgp mode in both IOS-XE/XR </p>
+</li>
+<li>
+<p>Great care should be taken to not advertise BGP next-hops through BGP, which would cause BGP neighborships to flap!</p>
+</li>
+</ul>
+<h2 id="routing-loop-prevention-strategies">Routing Loop Prevention Strategies</h2>
+<p>If you do not take any precautions when doing two-way multi-point redistribution, then there will be a routing loop.</p>
+<ol>
+<li>Tag redistributed routes</li>
+<li>Then filter out tagged routes upon redistribution</li>
+</ol>
+<p>Let's look at an example with BGP and OSPF two-way multi-point redistribution.</p>
+<p>On the two routers, we have BGP and OSPF. We'll create a route-map to deny routes with matching BGP community 10, then set tag 10 on routes redistributed into OSPF from BGP.</p>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># ip community-list 10 permit 65001:10</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># route-map FilterAndTagBGP deny 10</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="o">-</span><span class="nb">map</span><span class="p">)</span><span class="c1"># match community 10</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="o">-</span><span class="nb">map</span><span class="p">)</span><span class="c1"># exit</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># route-map FilterAndTagBGP permit 100</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="o">-</span><span class="nb">map</span><span class="p">)</span><span class="c1"># set tag 10</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="o">-</span><span class="nb">map</span><span class="p">)</span><span class="c1"># exit</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router ospf 1</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">router</span><span class="p">)</span><span class="c1"># redistribute bgp 65001 subnets metric-type 1 route-map FilterAndTagBGP</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span> <span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">rpl</span><span class="p">)</span><span class="c1"># route-policy FilterAndTagOSPF</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span> <span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">rpl</span><span class="p">)</span><span class="c1"># if tag eq 10 then</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span> <span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">rpl</span><span class="p">)</span><span class="c1">#   drop</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span> <span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">rpl</span><span class="p">)</span><span class="c1"># else</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span> <span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">rpl</span><span class="p">)</span><span class="c1">#   set community (65001:10)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span> <span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">rpl</span><span class="p">)</span><span class="c1">#   pass</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span> <span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">rpl</span><span class="p">)</span><span class="c1"># endif</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span> <span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">rpl</span><span class="p">)</span><span class="c1"># end-policy</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span> <span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router bgp 65001</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span> <span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">bgp</span><span class="p">)</span><span class="c1"># address-family ipv4 unicast</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="n">RP</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">router</span> <span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">bgp</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># redistribute ospf 1 route-policy FilterAndTagOSPF</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.path", "navigation.indexes", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>

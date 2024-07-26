@@ -1,0 +1,1598 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../MPLS%20LDP/">
+      
+      
+        <link rel="next" href="../Multicast/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>MPLS TE - Notes for CCNP SPRI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mpls-te" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Notes for CCNP SPRI" class="md-header__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes for CCNP SPRI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MPLS TE
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_3">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_4">
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../BGP/" class="md-tabs__link">
+        
+  
+    
+  
+  Scaling BGP
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ISIS/" class="md-tabs__link">
+        
+  
+    
+  
+  IS-IS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MPLS%20LDP/" class="md-tabs__link">
+        
+  
+    
+  
+  Implementing and Verifying MPLS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  MPLS TE
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Multicast/" class="md-tabs__link">
+        
+  
+    
+  
+  Multicast
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../OSPF/" class="md-tabs__link">
+        
+  
+    
+  
+  OSPF
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Route%20Redistribution/" class="md-tabs__link">
+        
+  
+    
+  
+  Route Redistribution
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Routing%20Policy/" class="md-tabs__link">
+        
+  
+    
+  
+  Routing Policy and Manipulation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../SR%20TE/" class="md-tabs__link">
+        
+  
+    
+  
+  SR Traffic Engineering
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Segment%20Routing/" class="md-tabs__link">
+        
+  
+    
+  
+  Segment Routing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Notes for CCNP SPRI" class="md-nav__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Notes for CCNP SPRI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BGP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scaling BGP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ISIS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IS-IS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MPLS%20LDP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implementing and Verifying MPLS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    MPLS TE
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    MPLS TE
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#te-labels-and-forwarding-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      TE Labels and Forwarding Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TE Labels and Forwarding Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-reservation-protocol-rsvp-in-path-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Reservation Protocol (RSVP) in Path Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-setup-admission-control-wrsvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path Setup, Admission Control w/RSVP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forwarding-traffic-to-a-tunnel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Forwarding Traffic to a Tunnel
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpls-te-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS TE Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MPLS TE Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#link-resource-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Link-resource attributes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#te-tunnel-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      TE Tunnel Attributes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementing-te-policies-with-affinity-bits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementing TE policies with Affinity Bits
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpls-te-path-setup-computation-and-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS TE Path Setup, Computation, and Optimization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MPLS TE Path Setup, Computation, and Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constraint-based-path-computation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraint-based path computation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-selection-wconstraint-based-computation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path Selection w/Constraint-Based computation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hop-by-hop-path-setup-with-rsvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hop-by-Hop Path Setup with RSVP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#te-tunnel-and-link-admission-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      TE tunnel and link admission control
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-rerouting-and-reoptimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path Rerouting and Reoptimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assigning-traffic-to-te-tunnels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assigning traffic to TE tunnels
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-mpls-te" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure MPLS TE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure MPLS TE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabling-mpls-te" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enabling MPLS TE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rsvp-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      RSVP Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ospf-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      OSPF Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-is-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      IS-IS Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mpls-te-tunnel-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS TE Tunnel Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpls-te-verification-and-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS TE Verification and Troubleshooting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpls-te-redundancy-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS TE Redundancy Mechanisms
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MPLS TE Redundancy Mechanisms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fast-reroute-frr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fast reroute (FRR)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mpls-te-autotunnel-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS TE Autotunnel Backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mpls-te-autotunnel-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS TE Autotunnel Mesh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mpls-te-end-to-end-path-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS TE End-to-End Path Protection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bfd-for-mpls-te-lsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      BFD for MPLS TE LSP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multicast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multicast
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OSPF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSPF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Route%20Redistribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Route Redistribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Routing%20Policy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Routing Policy and Manipulation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SR%20TE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SR Traffic Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Segment%20Routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Segment Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="mpls-te">MPLS TE</h1>
+<h2 id="te-labels-and-forwarding-concepts">TE Labels and Forwarding Concepts</h2>
+<p>MPLS TE uses a different set of protocols, not LDP, to enable source-based selection of the entire LSP used for TE. </p>
+<p>A link-state IGP must be used to determine the shortest path, then the output is used with RSVP to establish the LSP.</p>
+<p>A process of establishing a Cisco MPLS TE tunnel and forwarding traffic into it has a few steps:</p>
+<ul>
+<li><strong>Information distribution</strong>: resource attributes are configured locally, then they are distributed to the headend routers of traffic tunnels. The resource attributes are flooded throughout the network using extensions (TLV's) on existing IGPs OSPF and IS-IS. <ul>
+<li>The flood of resource info occurs when: (1) link-state changes, (2) resource of a link changes (due to admin intervention), (3) amount of bw crosses a preconfigured threshold</li>
+</ul>
+</li>
+<li><strong>Path selection</strong>: uses Constrained Shortest Path First (CSPF) to get an explicit route consistenting of a sequence of label switching routers. CSPF ignores links explicitly excluded by resource class affinities of tunnel traffic or links with insufficient bw.</li>
+<li><strong>Tunnel admission control</strong>: manages the situation when a router along a computed path has insufficient bandwidth to honor the resource that is requested in the RSVP PATH message</li>
+<li><strong>Forwarding the traffic into tunnel</strong>: traffic be forwarded a few different ways-- static routes, policy routing from global routing table, autoroute</li>
+<li><strong>Path maintenance</strong>: There are two operations here-- path reoptimization and restoration</li>
+</ul>
+<h3 id="resource-reservation-protocol-rsvp-in-path-setup">Resource Reservation Protocol (RSVP) in Path Setup</h3>
+<p>A signalling protocol is used to confirm the path, to check and apply bw reservations, and to exchange MPLS labels to build LSP's.</p>
+<p>RSVP sets up the TE LSP with:</p>
+<ol>
+<li>PATH message (from head to tail) carrying LABEL_REQUEST</li>
+<li>RESV message (from tail to head) carrying the LABEL</li>
+</ol>
+<p>The result is a path with IP addresses of next-hop IP addresses along the path. </p>
+<p>However, this path is only known to the headend router. The intermediate routers do not make their own CSPF calculations; they merely abide by the path that is provided to them by the headend router. </p>
+<h3 id="path-setup-admission-control-wrsvp">Path Setup, Admission Control w/RSVP</h3>
+<p>The RSVP PATH message contains the explicit route calculated by CSPF on headend route. Each intermediate router performs admission control after receiving the PATH message. </p>
+<p>Tailend router receives PATH msg, then sends RESV msg back towards headend router. Each intermediate router along the path reserves bw and allocates labels for tunnel traffic. </p>
+<p>RSVP messages also provide support for LSP teardown and error signaling.</p>
+<p><code>RSVP Error</code> for the unavailability of the requested resources. An intermediate router may send <code>PATHERR</code> during admission control if it cannot accomodate resources requested in PATH msg from headend to tailend router. An intermediate router may also send <code>RESVERR</code> in response to lack of resources to tailend router in response to a RESV msg.</p>
+<p><code>RSVP Tear</code> has two types-- PATH tear and RESERVATION tear messages. </p>
+<ul>
+<li>The process of clearing a PATH or RESERVATION state on a router using tear messages enables the reuse of resources on the router for other requests. The PATH tear messages are usually generated in inter-area LSP creation where the inter-area LSP is not configured to be fast reroutable, and if a link failure occurs within an area, the LSR to which the failed link is directly attached will generate an RSVP PATH error and an RESV tear message to the headend. The headend will then generate an RSVP PATH tear message. </li>
+</ul>
+<p>On intermediate routers, trunk admission control is used to ensure each device has sufficient bw to support resources requested in PATH msg. There are priority levels 0-7. If there is enough bw, the reservation is accepted, otherwise the path setup fails. Then when the RSVP RESV msg comes back, the router reserves the bw for the LSP.</p>
+<p>As part of admission control, the router does local accounting to track resources and may trigger IS-IS or OSPF updates when available resources cross a configured threshold.</p>
+<h3 id="forwarding-traffic-to-a-tunnel">Forwarding Traffic to a Tunnel</h3>
+<p>The LSP or traffic tunnel will not appear in the IP routing table, since it is not known to routing processes. </p>
+<p>IP traffic can be mapped onto a traffic tunnel in four ways:</p>
+<ul>
+<li>Use static routes that point to the tunnel interfaces.</li>
+<li>Using policy-based routing (PBR), set the next hop for the destination to the tunnel interface.</li>
+<li>Use the autoroute feature, an SPF enhancement that includes the tunnel interface. The result of the autoroute feature is that the tunnel is seen at the headend (and only there) as a connected interface. The metric of the tunnel is set to the normal IGP metric from the tunnel headend to the tunnel endpoint (over the least-cost path, regardless of whether the tunnel is actually using the least-cost path). With the autoroute feature, the traffic-engineered tunnel appears in the IP routing table, but this appearance is restricted to the tunnel headend only.<ul>
+<li>Enables all prefixes topologically "behind" the tailend router to be reachable via the autoroute tunnel on headend.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Autoroute with Forwarding Adjacency</strong></p>
+<ul>
+<li>Allows the tunnel to be announced via OSPF or IS-IS as a p2p link to other routers. The tunnel <em>MUST</em> be setup bidirectionally, since it is possible with MPLS RSVP for the LSP to take different unidirectional paths.</li>
+<li>TE tunnel interfaces are advertised like any other link into the IGP. </li>
+</ul>
+<h2 id="mpls-te-attributes">MPLS TE Attributes</h2>
+<p>Traditional link-state IGP considers nodes and links to calculate shortest path. BUT, the CSPF algorithm considers additional information such as available resources or constraints. Then, the IGP is responsible for distributing available resource and constraint info. </p>
+<p>Links have their own attributes, then tunnels will have their own set of attributes. Tunnel attributes seemingly must fit within the attributes defined per link end-to-end.</p>
+<p><strong>Link-resource attributes</strong>:</p>
+<ol>
+<li>Maximum bw</li>
+<li>Maximum reservable bw</li>
+<li>Link-resource class</li>
+<li>Constraint-based specific link metric</li>
+</ol>
+<p><strong>Tunnel attributes</strong>:</p>
+<ol>
+<li>traffic parameter</li>
+<li>general path selection and management</li>
+<li>tunnel resource </li>
+<li>adaptability</li>
+<li>priority</li>
+<li>pre-emption</li>
+<li>resilience</li>
+</ol>
+<h3 id="link-resource-attributes">Link-resource attributes</h3>
+<p>There are 3 <strong>Bandwidth</strong> link-resource attributes:</p>
+<ul>
+<li><code>Maximum bandwidth</code></li>
+<li><code>Maximum reservable bandwidth</code></li>
+<li><code>Unreserved bandwidth</code></li>
+</ul>
+<p>There could be non-MPLS traffic on the links, so leaving room could be useful. The attribute is a measure of allocation, not the actual utilization.</p>
+<p>Also, there are priority levels for traffic tunnels, this availability information needs to be configured for each priority level on the link. The bw at the upper priority level is typically higher than at lower levels (0-7 levels). Because of oversubscription, the total amount of bandwidth can exceed the actual bandwidth of the link.</p>
+<p>The <code>Link-resource class</code> attribute is a 32 byte value that is the traffic tunnel resource class affinity attribute, and allows inclusion or exclusion of the link into the path of the tunnel.</p>
+<p><code>Administrative weight</code> is a constraint-based metric that is not related to IGP cost/metric. This will default to IGP link cost if not defined. </p>
+<h3 id="te-tunnel-attributes">TE Tunnel Attributes</h3>
+<p><code>traffic parameter</code> (bandwidth) attributes specifies the amount of bw required by the TE tunnel. There could be other traffic characteristics, such as peak rates, avg rates, permissible burst rate, etc. </p>
+<ul>
+<li>These characteristics are useful for resource allocation. A path is not considered for a Cisco MPLS TE tunnel if it does not have the bandwidth that is required.</li>
+</ul>
+<p><code>path selection and management</code> attributes (path selection policy) specifies the way in which the headend routers should select explicit paths for traffic tunnels.</p>
+<p><code>tunnel resource class affinity</code> attribute allows for an operator to apply path-selection policies by administratively including or excluding links.</p>
+<ul>
+<li>Each link may include <code>link-resource class</code> attribute, then a tunnel <code>resource class affinity</code> could explicitly include or exclude links when doing path-selection. Basically, this sounds like manual traffic steering to ensure TE doesn't go off the rails and pick a really bad path or something similiar.</li>
+</ul>
+<p><code>Adaptivity</code> attribute indicates whether the TE tunnel is subject to re-optimization or re-routed through different paths by the underlying IGP based on changing resource availability.</p>
+<p><code>Priority</code> attribute defines the order in which path selection during establishment and under faulty scenarios. This is very important to define if there is preemption during RSVP process to establish TE tunnels.</p>
+<p><code>Preemption</code> attribute determines whether another traffic tunnel can pre-empt a specific TE tunnel. </p>
+<p>There are two types of priorities to define for TE tunnels:</p>
+<ol>
+<li>Setup priority (<code>priority</code>) defines relative important of tunnels and determines the order in which path selection is done for traffic tunnels at connection establishment and during rerouting because of faulty conditions.</li>
+<li>Holding priority (<code>preemption</code>) defines "pre-emptive" rights of competing tunnels and specifies priority of a router to hold a tunnel resource. Useful when trying to differentiate between services and following faults under re-route or contention events. </li>
+</ol>
+<p><code>resilience</code> attribute defines the behavior of a TE tunnel in faulty conditions or if the tunnel becomes noncompliant with tunnel attributes (like, required bw).</p>
+<p>Some examples of what the <code>resilience</code> attribute may do</p>
+<ul>
+<li>Do not reroute the TE tunnel<ul>
+<li>For example, a survivability scheme may already be in place, provisioned through an alternate mechanism, which guarantees service continuity under failure scenarios without the need to reroute tunnels.</li>
+</ul>
+</li>
+<li>Reroute through a feasible path with enough resources. If none exists, then do not reroute.</li>
+<li>Reroute through any available path regardless of resource constraints.</li>
+</ul>
+<h3 id="implementing-te-policies-with-affinity-bits">Implementing TE policies with Affinity Bits</h3>
+<p>Each tunnel can have a 32-bit resource class <code>affinity</code> string, which has a mask to exlcude the respective link resource class bits from being checked. </p>
+<p>Resource class affinity attributes associated with a TE tunnel can be used to specify the class of resources (see Section 6 of rfc2702) which are to be explicitly included or excluded from the path of the TE tunnel. These are policy attributes which can be used to impose additional constraints on the path traversed by a given TE tunnel.</p>
+<p>The link is characterized by following:
+- The link resource class (default value is 0).
+- The resource class is propagated using a link-state IGP</p>
+<p>The tunnel is characterized by the following:
+- Tunnel resource class affinity (default value is 0)
+- Tunnel resource class affinity mask
+    - Mask meaning: 0 = do not care, 1 = care (link's resource class bit must match the tunnel bit)
+    - Default value of the tunnel mask is 0x0000FFFF</p>
+<p>So for example, tunnel affinity = <code>Bits: 0000 Mask: 0011</code>. If there is a link resource class with <code>0010</code>, then the tunnel cannot traverse that link in the path. </p>
+<p>Resource class affinity attributes are very useful and powerful constructs because they can be used to implement a variety of policies. For example, they can be used to contain certain traffic trunks within specific topological regions of the network.</p>
+<h2 id="mpls-te-path-setup-computation-and-optimization">MPLS TE Path Setup, Computation, and Optimization</h2>
+<p>Once a headend router has the necessary info (topology, link costs, resources and constraints), then it can use this to calculate best paths for configured TE tunnels.</p>
+<p>IGP's must distribute all link characterists to other routers in the MPLS TE domain.</p>
+<ul>
+<li>Resource flooding is triggered whenever there is significant change that could affect other routers when they perform CSPF.</li>
+<li>Resource flooding triggers are:<ul>
+<li>link state change</li>
+<li>config changes: cost, resource class, bw</li>
+<li>amount of available bw crosses a preconfigured thershold</li>
+<li>periodic (timer-based)... a node checks attributes, if changes, it floods updates</li>
+<li>LSP setup failure when processing RSVP RESV</li>
+</ul>
+</li>
+</ul>
+<p>OSPF uses opaque LSAs and IS-IS uses new TLV's</p>
+<p>Another important factor in LSP computation is the available bandwidth on the link over which the traffic tunnel will pass. This bandwidth is configured per priority level (8 levels, 0 being the highest, 7 the lowest) and communicated in respective IGP link-state updates, again per priority.</p>
+<p>When a certain amount of the bandwidth is reserved at a certain priority level, this amount is subtracted from the available bandwidth at that level and at all levels below. The bandwidth at upper levels remains unchanged.</p>
+<p>For stability, significant rapid changes in available link resources should not trigger the updates immediately. There are timers for this.</p>
+<p>The drawback could be that a headend router seeing a link as available for a LSP and includes the link in path computation, even if the link is down or does not have enough resources. When the RSVP PATH message is sent, the node with the cannot establish the link and immediately floods an update.</p>
+<h3 id="constraint-based-path-computation">Constraint-based path computation</h3>
+<p>So, now the headend router will have a full view of the topology and network resources which is flooded throughout the network via the IGP.</p>
+<p>An explicit route expressed as a sequence of interface IP addresses (for numbered links) or TE router ID's (for unnumbered links) in the path from headend tunnel endpoints.</p>
+<p>Two methods for establishing tunnel traffic: (1) static, (2) dynamic path setup</p>
+<p>RSVP is used for LSP signalling to tailend router to establish the final path.</p>
+<p>LSP computation is limited by several factors (constraint-based):</p>
+<ol>
+<li>Endpoints are in the same IS-IS or OSPF area due to link-state topology limitations</li>
+<li>The links that are explicitly excluded via the link resource class bit string, or that cannot provide the required bandwidth, are pruned from the computation.</li>
+</ol>
+<h3 id="path-selection-wconstraint-based-computation">Path Selection w/Constraint-Based computation</h3>
+<p>Prior to path selection, link evaluation will automatically exclude links that are excluded via resource class affinities. </p>
+<p>Establishment of a tunnel does not trigger any LSA announcements or a new SPF calculation (unless the forwarding adjacency feature is enabled).</p>
+<p>The word tunnel is a little misleading, in that it is more like a visualization of a concept. </p>
+<p>With the autoroute feature, the TE tunnel on the headend router has the following characteristics:</p>
+<ul>
+<li>Appears in the routing table</li>
+<li>Has an associated IP metric (cost equal to the best IGP metric to the tunnel endpoint)</li>
+<li>Is also used to forward the traffic for destinations behind the tailend tunnel endpoint</li>
+</ul>
+<p>Path-selection for Constrained-based Routing(CBR):</p>
+<ol>
+<li>It's own metric first, which is <code>administrative weight</code></li>
+<li>If tie, then select the path with highest minimum bandwidth</li>
+<li>If tie, select path with the smallest hop count</li>
+<li>If above fails, then pick a random path.</li>
+</ol>
+<p><strong>RSVP in the Path Setup</strong></p>
+<p>After an explicit route is selected via CBR, the explicit route is used with RSVP to assign labels and reserve bw on each link. Additionally, RSVP transports traffic parameters and maintains the control and policy over the path. The maintenance is done by periodic refresh messages that are sent along the path to maintain the state.</p>
+<p>RSVP then signals routers in the path from headend to tailend to reserve resources to establish the <strong>LSP path</strong> and allocate labels. If good, a unidirectional TE tunnel is established, as only seen on headend router.</p>
+<h3 id="hop-by-hop-path-setup-with-rsvp">Hop-by-Hop Path Setup with RSVP</h3>
+<p>[R1]Eth1 - Eth2[R2]Eth1 - Eth2[R3]</p>
+<p>R1 headend sends RSVP PATH to R3 tailend.</p>
+<p>There are RSVP objects in the PATH message:</p>
+<ul>
+<li>Session(tailend, headend) like <code>(R3-lo0, R1-Lo0)</code></li>
+<li>Explicit route object (ERO), which is a explicit list of next hops chosen by CBR. <ul>
+<li>Like <code>(R2-Eth2, R3-Eth2)</code></li>
+</ul>
+</li>
+<li>PHOP (Previous Hop), like (<code>R1-Eth1</code>)</li>
+<li>Other fields...</li>
+</ul>
+<p>As the next-hop router (R2) receives the RSVP PATH message, the router checks the ERO and looks into the L bit regarding the next-hop information. If this bit is set and the next hop is not on a directly connected network, the node performs a CBR calculation (path calculation, or PCALC) using its TE database and specifies this loose next hop as the destination.</p>
+<p>In this way, the ERO is augmented by the new results and forms a hop-by-hop path up to the next loose node specification.</p>
+<p><strong>Intermediate routers along the path</strong> (indicated in the ERO) perform the traffic tunnel admission control by inspecting the contents of the session attribute object. If the node cannot meet the requirements, it generates a PATH_ERR message. If the requirements are met, the node is saved in the Record Route Object of the RSVP PATH message.</p>
+<p>At the tailend router, upon receiving the PATH message, the <code>label_request</code> triggers path label allocation. The label is placed in the corresponding label object of the RSVP RESV message that is generated. The RSVP message is sent back to the headend following the reverse path that is recorded in the RRO, and is stored at each hop in its path state block.</p>
+<p>Each hop allocates a label, which is stored and replaced in the <code>Label</code> field of the RSVP RESV message. Also, as the RESV packet traverses the reverse path, the <code>NHOP</code> field is moved into the <code>Record Route</code> (RRO) field of the RESV packet. Upon arrival back at the headend, the RRO in the RESV packet should match the Explicit Route in the RSVP Path message initially sent.</p>
+<h3 id="te-tunnel-and-link-admission-control">TE tunnel and link admission control</h3>
+<p>When the RSVP PATH message is sent from headend router to tailend router, each hop on the way determines if the available resources specified in the <code>Session</code> attribute object are available. </p>
+<p>If there is not enough bandwidth, the link-level (per-hop) call admission control (LCAC) module informs RSVP about the lack of resources, and RSVP generates an <code>RSVP PATH_ERR</code> message with the code Requested bandwidth unavailable. Additionally, the flooding of the node resource information (by the respective link-state IGP) can be triggered.</p>
+<p>If there is enough bw, then the bw is reserved and put into the waiting pool for the RESV message to come back around. If the resource threshold is reached, then the IGP triggers the flooding of resource info. </p>
+<p>During admission control, priorities are checked. If there is a prempt action to be taken, then lower priority sessions are booted with reservation triggers a <code>RESV_ERR</code> or a <code>PATH_ERR</code> message or both with the code Policy control failure.</p>
+<h3 id="path-rerouting-and-reoptimization">Path Rerouting and Reoptimization</h3>
+<p><code>reoptimization</code> is done on a periodic basis if used. At certain intervals, a check for most optimal paths for LSPs tunnels is done, then if the current path is not the most optimal, then tunnel rerouting is initiated. 
+    - Default is 1 hour for <code>reoptimization</code></p>
+<p>After the new LSP is successfully established, the traffic is rerouted to the new path and the reserved resources of the previous path are released. The release is done by the tail-end router, which initiates an <code>RSVP PATH_TEAR</code> message.</p>
+<p>When a link failure occurs, a new path calc is done, then a new LSP is created. This can be detected one of two ways:</p>
+<ol>
+<li>IGP sends new link-state packet with about path changes</li>
+<li>RSVP alarms the failure via <code>RSVP PATH_TEAR</code> to the headend</li>
+</ol>
+<p>But overall, both indicate that the LSP is no longer available, and likely reasons could be:</p>
+<ul>
+<li>link or router in path is down</li>
+<li>LSP is preempted by another LSP</li>
+</ul>
+<p>RSVP session is torn down, and there is a new path calculation. If a new path is found, a new LSP is signaled via RSVP, and the headend router updates adjacency table is updated to this new tunnel, then CEF table updated for all routes using this tunnel adjacency. </p>
+<p><strong><em>NOTE</em></strong>, during a reroute event where the old LSP is not available, traffic intended for the tunnel will be using the old LSP, which will blackhole the traffic.</p>
+<p>The process of freeing resources in the established LSP paths is called MPLS-TE preemption. In order to reduce traffic interruption, <code>soft pre-emption</code> feature is introduced to the RSVP-TE protocol to minimize traffic disrupted on preempted LSP.</p>
+<p>The <code>soft preemption</code> feature tries to pre-empt established LSP in a graceful manner to avoid or minimize traffic loss. In some cases, the link can be oversubscribed for a longer period of time.</p>
+<h3 id="assigning-traffic-to-te-tunnels">Assigning traffic to TE tunnels</h3>
+<p>Aka, routing traffic into tunnels</p>
+<p>From an IP perspective, the LSP is just a tunnel. </p>
+<p>You can use static routes pointing to the tunnel interface. Like not scalable or nice for troubleshooting.</p>
+<p>The autoroute feature enables all the prefixes that are topologically behind the Cisco MPLS TE tunnel endpoint (tail end) to be reachable via the tunnel itself (unlike with static routing, where only statically configured destinations are reachable via the tunnel). </p>
+<p>The cost of the tunnel is equal to the best IGP metric to the tunnel endpoint, regardless of the LSP. The tunnel metric is tunable using either relative or absolute metrics.</p>
+<p>Because <code>autoroute</code> will use IGP metrics, you should ensure the native IP routing to prefixes you want to reach via the tunnel does not appear as "better". You can use <code>relative metric</code> set to <code>-2</code> to ensure the tunnel autoroute is always 2 less metric than native shortest-path. </p>
+<p><strong>Forwarding Adjacency</strong></p>
+<p>The <code>forwarding adjacency</code> allows an operator to handle TE tunnel like another link on the IGP, based on SPF. </p>
+<p>By using forwarding adjacency, you can achieve the following goals:
+- Better load balancing when you are creating POP-to-POP tunnels (ECMP)
+- Use of tunnels from any upstream node, independent of the inner topology of the network</p>
+<p>There are some restrictions:</p>
+<ul>
+<li>Increases the size of LSDB in the IGP.</li>
+<li>The link is advertised in the IGP network as a type, length, value (TLV) 22 object without any TE sub-TLV.</li>
+<li>TE tunnels must have bidirectional LSP </li>
+</ul>
+<p>However, MPLS TE with forwarding adjacency can advertise links between POP's to be equal-cost irrespective of the underlying IGP cost. This ensure POP-to-POP traffic is better load balanced.</p>
+<p><strong>MPLS TE IPv6 Autoroute</strong> advertises IPv6 routes over MPLS/TE IPv4 tunnels. The tunnel must be IPv6-enabled so it can carry IPv6 traffic. In order to advertise the tunnel, IPv6 forwarding adjacency or IPv6 autoroute announce must be configured on the tunnel.</p>
+<p>Usage and restrictions of this...
+- IPv6 autoroute feature is used for IPv4 MPLS TE tunnels using IPv6 routing
+- The IPv6 traffic will not consider the UELB (Unequal Load Balancing) configuration. However, equal load balancing works for IPv6.
+- IPv6 traffic will not consider policy-based tunnel selection, although it can be used for IPv4 traffic
+- IPv6 autoroute announce and IPv6 forwarding adjacency are not supported by MPLS <code>auto tunnels</code>.</p>
+<h2 id="configure-mpls-te">Configure MPLS TE</h2>
+<p>To configure MPLS TE tunnels, MPLS should already be enabled on the core network.</p>
+<p>The high level overview to conf MPLS TE is:</p>
+<ul>
+<li>Enable MPLS TE in the core</li>
+<li>Configure RSVP in the core</li>
+<li>Enable MPLS TE support in the core IGP OSPF or IS-IS</li>
+<li>Configure MPLS TE tunnels</li>
+<li>Configure routing into the the tunnels</li>
+</ul>
+<h3 id="enabling-mpls-te">Enabling MPLS TE</h3>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># mpls traffic-eng</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="p">)</span><span class="c1"># interface GigE 0/3</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="p">)</span><span class="c1"># interface GigE 0/4</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">RTR</span><span class="c1"># conf t</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">RTR</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># mpls traffic-eng tunnels</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">RTR</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># interface GigE 0/0/0/4 </span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">RTR</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># mpls traffic-eng tunnels</span>
+</code></pre></div>
+<h3 id="rsvp-configuration">RSVP Configuration</h3>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">rsvp</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="err">!</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  <span class="n">interface</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">4</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">bandwidth</span> <span class="mi">1000</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  <span class="n">interface</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">bandwidth</span> <span class="mi">10000</span> <span class="mi">1000</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="err">!</span>
+</code></pre></div>
+<p><code>bandwidth</code> <code>total-bandwidth max-flow</code> <code>sub-pool sub-pool-bw (optional)</code></p>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">interface</span> <span class="n">GigE</span> <span class="mi">0</span><span class="o">/</span><span class="mi">3</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  <span class="n">ip</span> <span class="n">rsvp</span> <span class="n">bandwidth</span> <span class="mi">10000</span> <span class="mi">1000</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="err">!</span>
+</code></pre></div>
+<h3 id="ospf-configuration">OSPF Configuration</h3>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">router</span> <span class="n">ospf</span> <span class="mi">1</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  <span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span> <span class="n">router</span><span class="o">-</span><span class="nb">id</span> <span class="n">Loopback0</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  <span class="n">area</span> <span class="mi">0</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  <span class="err">!</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="err">!</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">router</span> <span class="n">ospf</span> <span class="mi">1</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  <span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span> <span class="n">area</span> <span class="mi">0</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  <span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span> <span class="n">router</span><span class="o">-</span><span class="nb">id</span> <span class="n">Loopback0</span>
+</code></pre></div>
+<h3 id="is-is-configuration">IS-IS Configuration</h3>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">router</span> <span class="n">isis</span> <span class="mi">1</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  <span class="n">net</span> <span class="mf">47.0001.0000.0000.0002.00</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span> <span class="n">unicast</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="n">metric</span><span class="o">-</span><span class="n">style</span> <span class="n">wide</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span> <span class="n">level</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span> <span class="n">router</span><span class="o">-</span><span class="nb">id</span> <span class="n">Loopback0</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  <span class="err">!</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="err">!</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">router</span> <span class="n">isis</span> <span class="mi">1</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  <span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span> <span class="n">level</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  <span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span> <span class="n">router</span><span class="o">-</span><span class="nb">id</span> <span class="n">Loopback0</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  <span class="n">metric</span><span class="o">-</span><span class="n">style</span><span class="o">-</span><span class="n">wide</span>
+</code></pre></div>
+<h3 id="mpls-te-tunnel-configuration">MPLS TE Tunnel Configuration</h3>
+<p>After enabling OSPF or IS-IS to distribute MPLS TE info, and after enabling MPLS TE functionality on desired interfaces + RSVP config, you can configure MPLS TE tunnel configs. </p>
+<p>[PE1] - [P1] - [P2] - [PE2]</p>
+<p>PE1 router
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">interface</span> <span class="n">Tunnel</span><span class="o">-</span><span class="n">te</span> <span class="mi">1</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  <span class="n">ipv4</span> <span class="n">unnumbered</span> <span class="n">Loopback0</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>  <span class="n">signalled</span><span class="o">-</span><span class="n">bandwidth</span> <span class="mi">1000</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>  <span class="n">destination</span> <span class="mf">192.0.10.1</span> <span class="c1"># this assigns an dest IP on the tunnel</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>  <span class="n">path</span><span class="o">-</span><span class="n">option</span> <span class="mi">1</span> <span class="n">dynamic</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>  <span class="n">autoroute</span> <span class="n">announce</span> <span class="c1"># this is autoroute</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="err">!</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">router</span> <span class="n">static</span> <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>  <span class="n">unicast</span> <span class="mf">192.0.100.0</span><span class="o">/</span><span class="mi">24</span> <span class="n">tunnel</span><span class="o">-</span><span class="n">te</span> <span class="mi">1</span> <span class="c1"># this would be a static route option</span>
+</code></pre></div></p>
+<p>PE2 router
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">interface</span> <span class="n">Tunnel11</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>  <span class="n">ipv4</span> <span class="n">unnumbered</span> <span class="n">Loopback0</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>  <span class="n">tunnel</span> <span class="n">mode</span> <span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>  <span class="n">tunnel</span> <span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span> <span class="n">path</span><span class="o">-</span><span class="n">option</span> <span class="mi">1</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>  <span class="n">tunnel</span> <span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span> <span class="n">bandwidth</span> <span class="mi">1000</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>  <span class="n">destination</span> <span class="mf">192.0.2.1</span> <span class="c1"># this assigns an dest IP on the tunnel</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>  <span class="n">tunnel</span> <span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span> <span class="n">autoroute</span> <span class="c1"># autoroute </span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="err">!</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">ip</span> <span class="n">route</span> <span class="mf">192.0.200.0</span> <span class="mf">255.255.255.0</span> <span class="n">Tunnel11</span> <span class="c1"># this would be a static route</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="err">!</span>
+</code></pre></div></p>
+<p>To configure an Explicit Cisco MPLS TE Tunnel (not dynamic path), do the following:</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="err">!</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>  <span class="n">reoptimize</span> <span class="mi">300</span> <span class="c1"># every 5 mins check</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>  <span class="n">interface</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">0</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="n">admin</span><span class="o">-</span><span class="n">weight</span> <span class="mi">55</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="err">!</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="n">interface</span> <span class="n">GigabitEthernet</span> <span class="mi">0</span><span class="o">/</span><span class="mi">0</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a> <span class="n">description</span> <span class="n">RED</span> <span class="n">link</span> <span class="n">to</span> <span class="n">server</span> <span class="n">farm</span><span class="p">,</span> <span class="n">avoid</span> <span class="n">having</span> <span class="n">tunnels</span> <span class="n">route</span> <span class="n">through</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a> <span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span> <span class="n">attribute</span><span class="o">-</span><span class="n">flags</span> <span class="mh">0x00000001</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="err">!</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="n">interface</span> <span class="n">GigabitEthernet</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a> <span class="n">description</span> <span class="n">BLUE</span> <span class="n">link</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a> <span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span> <span class="n">attribute</span><span class="o">-</span><span class="n">flags</span> <span class="mh">0x00000001</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="err">!</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="n">interface</span> <span class="n">Tunnel</span><span class="o">-</span><span class="n">te</span> <span class="mi">1</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>  <span class="n">description</span> <span class="n">BLUE</span> <span class="n">tunnel</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>  <span class="n">ipv4</span> <span class="n">unnumbered</span> <span class="n">Loopback0</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>  <span class="n">signalled</span><span class="o">-</span><span class="n">bandwidth</span> <span class="mi">2500</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>  <span class="n">destination</span> <span class="mf">192.0.3.1</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>  <span class="n">priority</span> <span class="mi">1</span> <span class="mi">1</span>
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>  <span class="n">path</span><span class="o">-</span><span class="n">option</span> <span class="mi">1</span> <span class="n">explicit</span> <span class="n">name</span> <span class="n">Core2</span><span class="o">-</span><span class="mi">3</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>  <span class="n">path</span><span class="o">-</span><span class="n">option</span> <span class="mi">2</span> <span class="n">dynamic</span> <span class="c1"># if the static first path fails, a dynamic path LSP is found</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>  <span class="n">affinity</span> <span class="mh">0x00000002</span> <span class="n">mask</span> <span class="mh">0x00000002</span>
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>  <span class="n">autoroute</span> <span class="n">annouce</span> <span class="c1"># autoroute with forward adjacency</span>
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="err">!</span>
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="n">explicit</span><span class="o">-</span><span class="n">path</span> <span class="n">name</span> <span class="n">Core2</span><span class="o">-</span><span class="mi">3</span>
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>  <span class="n">index</span> <span class="mi">1</span> <span class="nb">next</span><span class="o">-</span><span class="n">address</span> <span class="n">ipv4</span> <span class="n">unicast</span> <span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span>
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>  <span class="n">index</span> <span class="mi">2</span> <span class="nb">next</span><span class="o">-</span><span class="n">address</span> <span class="n">ipv4</span> <span class="n">unicast</span> <span class="n">y</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">y</span>
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a>  <span class="n">index</span> <span class="mi">3</span> <span class="nb">next</span><span class="o">-</span><span class="n">address</span> <span class="n">ipv4</span> <span class="n">unicast</span> <span class="n">z</span><span class="o">.</span><span class="n">z</span><span class="o">.</span><span class="n">z</span><span class="o">.</span><span class="n">z</span>
+<a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="err">!</span>
+</code></pre></div>
+<h2 id="mpls-te-verification-and-troubleshooting">MPLS TE Verification and Troubleshooting</h2>
+<p>These are IOS-XR...</p>
+<p><code>show mpls traffic-eng tunnel</code> to look at the status of the LSP tunnels and RSVP processes along with each tunnel and the hop list of current LSP.</p>
+<p><code>show mpls traffic-eng topology</code> will show neighbors on which interface, then different priorities and how much BW is allocated per priority + also the IGP and area.</p>
+<p><strong>The first thing</strong> to do when verifying MPLS TE would be to verify RSVP</p>
+<p><code>show rsvp session</code> and <code>show rsvp interface</code></p>
+<p>Then check the tunnel statuses etc.</p>
+<p>To look at the routing table for MPLS TE routes, there is no unique table. You'll need to pipe to filter down.</p>
+<p><code>show ip route | include tunnel-te</code> if autoroute is enabled.</p>
+<h2 id="mpls-te-redundancy-mechanisms">MPLS TE Redundancy Mechanisms</h2>
+<p>Cisco MPLS TE tunnels can also be protected by backup tunnels to ensure speedy convergence in case of node or link failures. We can build parallel end-to-end tunnels, have backup tunnels on core nodes to protect individual links or neighboring nodes in case of failures.</p>
+<p>Overall, the idea is that there are presignaled LSP already available if first tunnel fails. As soon as first tunnel fails, traffic is moved into second tunnel. Then back once first tunnel is re-available.</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># at Dallas POP, tunnels to ATL</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="err">!</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">interface</span> <span class="n">tunnel</span><span class="o">-</span><span class="n">te</span> <span class="mi">1</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>  <span class="n">description</span> <span class="n">Static</span> <span class="n">tunnel</span> <span class="n">to</span> <span class="n">Atl</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>  <span class="n">ipv4</span> <span class="n">unnumbered</span> <span class="n">Lo0</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>  <span class="n">destination</span> <span class="mf">192.0.100.1</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>  <span class="n">signalled</span><span class="o">-</span><span class="n">bandwidth</span> <span class="mi">250</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>  <span class="n">priority</span> <span class="mi">1</span> <span class="mi">1</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>  <span class="n">path</span><span class="o">-</span><span class="n">option</span> <span class="mi">1</span> <span class="n">explicit</span> <span class="n">name</span> <span class="n">Core3</span><span class="o">-</span><span class="mi">2</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="err">!</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="n">explicit</span><span class="o">-</span><span class="n">path</span> <span class="n">name</span> <span class="n">Core3</span><span class="o">-</span><span class="mi">2</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>  <span class="n">index</span> <span class="mi">1</span> <span class="nb">next</span><span class="o">-</span><span class="n">address</span> <span class="n">ipv4</span> <span class="n">unicast</span> <span class="n">P1</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>  <span class="n">index</span> <span class="mi">1</span> <span class="nb">next</span><span class="o">-</span><span class="n">address</span> <span class="n">ipv4</span> <span class="n">unicast</span> <span class="n">P2</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>  <span class="n">index</span> <span class="mi">1</span> <span class="nb">next</span><span class="o">-</span><span class="n">address</span> <span class="n">ipv4</span> <span class="n">unicast</span> <span class="n">PE</span><span class="o">-</span><span class="n">ATL</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="err">!</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="n">interface</span> <span class="n">tunnel</span><span class="o">-</span><span class="n">te</span> <span class="mi">2</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>  <span class="n">description</span> <span class="n">Dynamic</span> <span class="n">backup</span> <span class="n">tunnel</span> <span class="n">to</span> <span class="n">Atl</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>  <span class="n">destination</span> <span class="mf">192.0.100.1</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>  <span class="n">signalled</span><span class="o">-</span><span class="n">bandwidth</span> <span class="mi">125</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>  <span class="n">priority</span> <span class="mi">2</span> <span class="mi">2</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>  <span class="n">ipv4</span> <span class="n">unnumbered</span> <span class="n">Lo0</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>  <span class="n">path</span><span class="o">-</span><span class="n">option</span> <span class="mi">1</span> <span class="n">dynamic</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="err">!</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="n">router</span> <span class="n">static</span> <span class="n">address</span> <span class="n">family</span> <span class="n">ipv4</span>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>  <span class="n">unicast</span> <span class="mf">192.0.200.0</span><span class="o">/</span><span class="mi">20</span> <span class="n">tunnel</span><span class="o">-</span><span class="n">te</span> <span class="mi">1</span> <span class="mi">10</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>  <span class="n">unicast</span> <span class="mf">192.0.200.0</span><span class="o">/</span><span class="mi">20</span> <span class="n">tunnel</span><span class="o">-</span><span class="n">te</span> <span class="mi">2</span> <span class="mi">11</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="err">!</span>
+</code></pre></div>
+<p>There is a drawback with backup tunnels, they double reserve bandwidth via RSVP over the entire path.</p>
+<h3 id="fast-reroute-frr">Fast reroute (FRR)</h3>
+<p>Provides link protection to LSPs enabling the traffic carried by LSPs that encounter a failed link to be rerouted around the failure.</p>
+<p>There is <code>link protection</code> and <code>node protection</code>.</p>
+<p>The reroute decision is controlled locally by the router connected to the failed link. The headend router on the tunnel is notified of the link failure through IGP or through RSVP. When it is notified of a link failure, the headend router attempts to establish a new LSP that bypasses the failure. This provides a path to reestablish links that fail, providing protection to data transfer. The path of the backup tunnel can be an IP explicit path, a dynamically calculated path, or a semi-dynamic path. </p>
+<p>These tunnels are referred to as next-hop (NHOP) backup tunnels because they terminate at the LSP’s next hop beyond the point of failure. </p>
+<p>When the protected link or protected router go down, IGP re-converges. RSVP sends a message with session attribute flag 0x01=ON. (This means, Do not break the tunnel; you may continue to forward packets during the reoptimization.)</p>
+<p>~50ms re-route protection.</p>
+<p>Headend is notified via RSVP PATH_ERR and by IGP, there is a special flag in RSVP message that indicates the path must not be destroyed but continue an re-establish along new route.</p>
+<div class="highlight"><span class="filename">IOS XR on Dallas POP PE1</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="err">!</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">interface</span> <span class="n">tunnel</span><span class="o">-</span><span class="n">te</span> <span class="mi">1</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>  <span class="n">destination</span> <span class="mf">192.0.100.1</span> <span class="c1"># this is to ATL POP PE1</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>  <span class="n">fast</span><span class="o">-</span><span class="n">reroute</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>  <span class="n">signalled</span><span class="o">-</span><span class="n">bandwidth</span> <span class="mi">125</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>  <span class="n">priority</span> <span class="mi">1</span> <span class="mi">1</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>  <span class="n">ipv4</span> <span class="n">unnumbered</span> <span class="n">Lo0</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>  <span class="n">path</span><span class="o">-</span><span class="n">option</span> <span class="mi">1</span> <span class="n">dynamic</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>  <span class="n">autoroute</span> <span class="n">annouce</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>  <span class="n">autoroute</span> <span class="n">metric</span> <span class="n">absolute</span> <span class="mi">1</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="err">!</span>
+</code></pre></div>
+<p>We manually craft the backup tunnel on intermediate core routers used by headend routers and FRR.</p>
+<div class="highlight"><span class="filename">IOS XR on Dallas P1</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="err">!</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">interface</span> <span class="n">tunnel</span><span class="o">-</span><span class="n">te</span> <span class="mi">1001</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>  <span class="n">destination</span> <span class="mf">192.0.80.1</span> <span class="c1"># this is to P1 in ATL</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>  <span class="n">signalled</span><span class="o">-</span><span class="n">bandwidth</span> <span class="mi">1000</span> <span class="c1"># needs higher bw to support multiple tunnels</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>  <span class="n">priority</span> <span class="mi">7</span> <span class="mi">7</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>  <span class="n">ipv4</span> <span class="n">unnumbered</span> <span class="n">Lo0</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>  <span class="n">path</span><span class="o">-</span><span class="n">option</span> <span class="mi">1</span> <span class="n">explicit</span> <span class="n">name</span> <span class="n">Backup</span><span class="o">-</span><span class="n">path</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="err">!</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="n">explicit</span><span class="o">-</span><span class="n">path</span> <span class="n">name</span> <span class="n">Backup</span><span class="o">-</span><span class="n">path</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>  <span class="n">index</span> <span class="mi">1</span> <span class="nb">next</span><span class="o">-</span><span class="n">address</span> <span class="n">ipv4</span> <span class="n">unicast</span> <span class="n">ATL</span><span class="o">-</span><span class="n">P2</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>  <span class="n">index</span> <span class="mi">2</span> <span class="nb">next</span><span class="o">-</span><span class="n">address</span> <span class="n">ipv4</span> <span class="n">unicast</span> <span class="n">ATL</span><span class="o">-</span><span class="n">PE2</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="err">!</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="n">mpls</span> <span class="n">traffic</span><span class="o">-</span><span class="n">eng</span> 
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>  <span class="n">interface</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="c1"># interface to P2</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>    <span class="n">backup</span><span class="o">-</span><span class="n">path</span> <span class="n">tunnel</span><span class="o">-</span><span class="n">te</span> <span class="mi">1000</span>
+</code></pre></div>
+<h3 id="mpls-te-autotunnel-backup">MPLS TE Autotunnel Backup</h3>
+<p>Configuring backup static tunnels for all core links does not scale well.</p>
+<p>Autotunnel backup characteristics:</p>
+<ul>
+<li>Automates configuration of backup FRR tunnels for link and node protection.</li>
+<li>Configured globally and applies to all interfaces enabled for Cisco MPLS TE.</li>
+<li>Provides FRR for all tunnel LSPs traversing the protected interface.</li>
+<li>Autotunnel backup feature creates two types of link protection tunnels: <ul>
+<li>Link-protection tunnels (NHOP protection)</li>
+<li>Node-protection tunnels (next-next hop protection)</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><span class="filename">IOS XR from Cisco.com</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">Router</span><span class="c1"># configure</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># mpls traffic-eng </span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="p">)</span><span class="c1"># interface HundredGigabitEthernet 0/0/0/3</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># auto-tunnel backup</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="o">-</span><span class="k">if</span><span class="o">-</span><span class="n">auto</span><span class="o">-</span><span class="n">backup</span><span class="p">)</span><span class="c1"># attribute-set ab</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="p">)</span><span class="c1"># auto-tunnel backup timers removal unused 20</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="p">)</span><span class="c1"># auto-tunnel backup tunnel-id min 6000 max 6500</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="p">)</span><span class="c1"># commit</span>
+</code></pre></div>
+<p>IOS-XR: <code>show mpls traffic-eng auto-tunnel backup summary</code>
+IOS-XE: <code>show mpls traffic-eng auto-tunnel backup</code></p>
+<h3 id="mpls-te-autotunnel-mesh">MPLS TE Autotunnel Mesh</h3>
+<p>Manual configuration of tunnels could suck. This feature lets you setup a full mesh of TE tunnels automatically.</p>
+<p>Autotunnel mesh characteristics:</p>
+<ul>
+<li>Simplify wide-scale deployment of Cisco MPLS TE tunnels.</li>
+<li>All routers configured with the same mesh group ID will form a full mesh of tunnels.</li>
+<li>Prefix list can define mesh-group member addresses.</li>
+<li>Attribute sets enable reusable configuration.</li>
+</ul>
+<p>Auto-Tunnel mesh configuration minimizes the initial configuration of the network. You can configure tunnel properties template and mesh-groups or destination-lists on TE LSRs that further creates full mesh of TE tunnels between those LSRs. It eliminates the need to reconfigure each existing TE LSR in order to establish a full mesh of TE tunnels whenever a new TE LSR is added in the network. </p>
+<div class="highlight"><span class="filename">IOS XR from Cisco.com</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Router</span><span class="c1"># configure</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># mpls traffic-eng</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="p">)</span><span class="c1"># auto-tunnel mesh</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="o">-</span><span class="n">auto</span><span class="o">-</span><span class="n">mesh</span><span class="p">)</span><span class="c1"># tunnel-id min 1000 max 2000</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="o">-</span><span class="n">auto</span><span class="o">-</span><span class="n">mesh</span><span class="p">)</span><span class="c1"># group 10</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="o">-</span><span class="n">auto</span><span class="o">-</span><span class="n">mesh</span><span class="o">-</span><span class="n">group</span><span class="p">)</span><span class="c1"># attribute-set 10</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="o">-</span><span class="n">auto</span><span class="o">-</span><span class="n">mesh</span><span class="o">-</span><span class="n">group</span><span class="p">)</span><span class="c1"># destination-list dl-65</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="p">)</span><span class="c1"># attribute-set auto-mesh 10</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="o">-</span><span class="n">attribute</span><span class="o">-</span><span class="nb">set</span><span class="p">)</span><span class="c1"># autoroute announce</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mpls</span><span class="o">-</span><span class="n">te</span><span class="o">-</span><span class="n">attribute</span><span class="o">-</span><span class="nb">set</span><span class="p">)</span><span class="c1"># auto-bw collect-bw-only</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># commit </span>
+</code></pre></div>
+<p>We want to:</p>
+<ol>
+<li>Configure attribute set</li>
+<li>Enter automesh ID range and timers</li>
+<li>Configure a mesh group ID with a prefix-list that defines included routers</li>
+</ol>
+<p>A prefix-list can be configured on each TE router to match a desired set of router IDs. Then if you want to add a new router to the autotunnel mesh, add it into the prefix-list (or number it with an IP within the defined range). This enables provisioning requirement only on the added router, not all other routers too.</p>
+<h3 id="mpls-te-end-to-end-path-protection">MPLS TE End-to-End Path Protection</h3>
+<p>Path protection provides an end-to-end failure recovery mechanism for MPLS-TE tunnels. A secondary Label Switched Path (LSP) is established, in advance, to provide failure protection for the protected LSP that is carrying a tunnel's TE traffic.</p>
+<p>Path protection characteristics:</p>
+<ul>
+<li>Protection of a Cisco MPLS TE path is provided end-to-end.</li>
+<li>Primary is the regular LSP, while protected is the backup LSP.</li>
+<li>Both tunnels are signaled, including protected to minimize on the failover time.</li>
+<li>Headend is notified of the failure through RSVP, BFD, or IGP.</li>
+<li>Path protection and FRR can be configured on the same tunnel at the same time with these benefits:<ul>
+<li>Protection is expanded.</li>
+<li>Quick and effective re-optimization.</li>
+<li>Total time on backup is reduced.</li>
+</ul>
+</li>
+</ul>
+<p>Although not as fast as link or node protection, presignaling a secondary LSP is faster than configuring a secondary primary path option, or allowing the tunnel source router to dynamically recalculate a path. The actual recovery time is topology-dependent, and affected by delay factors such as propagation delay or switch fabric latency.</p>
+<p>Effectively, path protection switch over replaces the post-FRR LSP down event reoptimization</p>
+<div class="highlight"><span class="filename">IOS XR from Cisco.com</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># A mesh of R1-R2-R3-R4, here we connect R1 - R4 tunnel, then protected backups.</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">Router</span> <span class="c1"># configure</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># interface tunnel-te 0 </span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># destination 192.168.3.3</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># ipv4 unnumbered Loopback0</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># autoroute announce</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># path-protection</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># path-option 1 explicit name r1-r2-r3-00 protected-by 2</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># path-option 2 explicit name r1-r2-r3-01 protected-by 3</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># path-option 3 explicit name r1-r4-r3-01 protected-by 4</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># path-option 4 explicit name r1-r3-00 protected-by 5</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># path-option 5 explicit name r1-r2-r4-r3-00 protected-by 6</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># path-option 6 explicit name r1-r4-r2-r3-00 protected-by 7</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># path-option 7 dynamic</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1"># exit</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># commit</span>
+</code></pre></div>
+<h3 id="bfd-for-mpls-te-lsp">BFD for MPLS TE LSP</h3>
+<p>BFD is quicker, lighter, than LSP ping messages. Helps tear down tunnel-te interfaces more quickly in failure conditions to prevent traffic black holing and detect link failures more quickly.</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">interface</span> <span class="n">tunnel</span><span class="o">-</span><span class="n">te</span> <span class="mi">10</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>  <span class="n">bfd</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="n">multiplier</span> <span class="mi">5</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="n">fast</span><span class="o">-</span><span class="n">detect</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    <span class="n">minimum</span><span class="o">-</span><span class="n">interval</span> <span class="mi">200</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>  <span class="err">!</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="err">!</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.path", "navigation.indexes", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
