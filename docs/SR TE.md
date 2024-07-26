@@ -167,3 +167,48 @@ In the stateful PCE setup process:
 5. PCC sends PCReport
 6. PCE updates LSP DB
 
+### BGP-LS
+
+Allows the stateful PCE to learn about the topology and SIDs in each domain. This gives the PCE a complete view of the network. 
+
+The stateful PCE uses the topology and SID information to calculate and update paths in the network by using native SR-TE algorithms.
+
+In order for BGP-LS to learn about the topology and SID information from the IGP, the IGP itself, IS-IS or Open Shortest Path First (OSPF), must be configured to distribute the information to BGP-LS. 
+
+If the PCE participates directly in the IGP domain, then the distribution of the IGP topology and SID information to BGP-LS can be configured directly on the PCE node. The PCE can operate similiarly to a route reflector, it can exist outside the data plane.
+
+### Configuring PCEP
+
+Instead of a SDN controller or similiar, a router running IOS-XR can function as a PCE. The configuration is easy, enable `pce` in global config, then refer to an IP address that should be assigned to a Loopback interface.
+
+``` py title="IOS XR"
+pce
+  address ipv4 1.1.1.10
+!
+```
+
+<br>
+
+On the **PCE** side of things, the config is under the `segment-routing` `traffic-eng` section. You need to specify the remote address of the PCE, and you can optionally configure a source address.
+
+``` py title="IOS XR"
+segment-routing
+  traffic-eng
+    pcc
+      source-address ipv4 1.1.1.11
+    pce address ipv4 1.1.1.10
+    !
+  !
+```
+
+You can configure a precedence value if you configure multiple PCE's. Lower-precedence values are preferred.
+<br>
+
+Verifying PCEP Sessions at the PCC... 
+
+`show segment-routing traffic-eng pcc ipv4 peer [brief]`
+
+Then on PCE...
+
+`show pce ipv4 peer`
+
