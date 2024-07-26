@@ -1,0 +1,2172 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../MPLS%20TE/">
+      
+      
+        <link rel="next" href="../OSPF/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Multicast - Notes for CCNP SPRI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#multicast" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Notes for CCNP SPRI" class="md-header__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes for CCNP SPRI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Multicast
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_3">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_4">
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../BGP/" class="md-tabs__link">
+        
+  
+    
+  
+  Scaling BGP
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ISIS/" class="md-tabs__link">
+        
+  
+    
+  
+  IS-IS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MPLS%20LDP/" class="md-tabs__link">
+        
+  
+    
+  
+  Implementing and Verifying MPLS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MPLS%20TE/" class="md-tabs__link">
+        
+  
+    
+  
+  MPLS TE
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Multicast
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../OSPF/" class="md-tabs__link">
+        
+  
+    
+  
+  OSPF
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Route%20Redistribution/" class="md-tabs__link">
+        
+  
+    
+  
+  Route Redistribution
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Routing%20Policy/" class="md-tabs__link">
+        
+  
+    
+  
+  Routing Policy and Manipulation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../SR%20TE/" class="md-tabs__link">
+        
+  
+    
+  
+  SR Traffic Engineering
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Segment%20Routing/" class="md-tabs__link">
+        
+  
+    
+  
+  Segment Routing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Notes for CCNP SPRI" class="md-nav__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Notes for CCNP SPRI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BGP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scaling BGP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ISIS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IS-IS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MPLS%20LDP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implementing and Verifying MPLS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MPLS%20TE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MPLS TE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Multicast
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Multicast
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#multicast-distribution-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multicast Distribution Tree
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multicast Distribution Tree">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssm-distribution-tree-sg" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSM Distribution Tree (S,G)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asm-distribution-tree-g" class="md-nav__link">
+    <span class="md-ellipsis">
+      ASM Distribution Tree: (*,G)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-avoidance-in-mdt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loop Avoidance in MDT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multicast-ip-ranges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multicast IP ranges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#igmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      IGMP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IGMP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#igmpv2" class="md-nav__link">
+    <span class="md-ellipsis">
+      IGMPv2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#igmpv3" class="md-nav__link">
+    <span class="md-ellipsis">
+      IGMPv3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asm-v-ssm" class="md-nav__link">
+    <span class="md-ellipsis">
+      ASM v SSM
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ASM v SSM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssm" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asm" class="md-nav__link">
+    <span class="md-ellipsis">
+      ASM
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intradomain-and-interdomain-multicast" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intradomain and Interdomain Multicast
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Intradomain and Interdomain Multicast">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#more-on-msdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      More on MSDP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interdomain-shared-mdt-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interdomain Shared MDT creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interdomain-ssm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interdomain SSM
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multicast-ip-layer-3-to-layer-2-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multicast IP Layer 3 to Layer 2 Mapping
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multicast IP Layer 3 to Layer 2 Mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#igmp-snooping" class="md-nav__link">
+    <span class="md-ellipsis">
+      IGMP Snooping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pim-snooping" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIM Snooping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multipoint-ldp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multipoint LDP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multipoint LDP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lsm-packet-forwarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSM: Packet Forwarding
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pim-sim-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIM-SIM Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packet-flow-for-pim-sm-and-asm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Packet flow for PIM-SM and ASM
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Packet flow for PIM-SM and ASM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#receiver-shared-tree-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      Receiver shared tree join
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Source Registration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pim-sm-switchover" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIM-SM Switchover
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pim-sm-packets-and-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIM-SM packets and state
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PIM-SM packets and state">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pim-neighbor-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIM neighbor discovery
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pim-sm-forwarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIM-SM forwarding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pim-sm-join-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIM-SM Join process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pim-sm-state-tables-for-all-mdts" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIM-SM state tables for all MDTs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pim-sm-and-receivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIM-SM and Receivers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pim-sim-and-source-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIM-SIM and Source Registration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pim-sm-pruning-in-asm" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIM-SM Pruning in ASM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pim-sm-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIM-SM Implementation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PIM-SM Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#show-commands-that-are-useful" class="md-nav__link">
+    <span class="md-ellipsis">
+      Show commands that are useful
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-specific-multicast-ssm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Source-Specific Multicast (SSM)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Source-Specific Multicast (SSM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#igmpv3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      IGMPv3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssm-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSM Mapping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-ssm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring SSM
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bidirectional-pim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bidirectional PIM
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bidirectional PIM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#designated-forwarder-df" class="md-nav__link">
+    <span class="md-ellipsis">
+      Designated Forwarder (DF)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bidir-forwarding-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      BIDIR Forwarding - Source
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bidir-forwarding-receiver" class="md-nav__link">
+    <span class="md-ellipsis">
+      BIDIR Forwarding - Receiver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-pim-bidir" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring PIM-BIDIR
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-on-df" class="md-nav__link">
+    <span class="md-ellipsis">
+      More on DF
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="More on DF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#df-election-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      DF Election Messages
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interdomain-multicast" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interdomain Multicast
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interdomain Multicast">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssm-for-interdomain" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSM for interdomain
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asm-for-interdomain" class="md-nav__link">
+    <span class="md-ellipsis">
+      ASM for interdomain
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multicast-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multicast architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multicast architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auto-rp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auto-RP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-auto-rp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring Auto-RP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-best-practice-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Some best practice notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pimv2-bootstrap-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIMv2 Bootstrap Router
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anycast-rp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anycast RP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OSPF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSPF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Route%20Redistribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Route Redistribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Routing%20Policy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Routing Policy and Manipulation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SR%20TE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SR Traffic Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Segment%20Routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Segment Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="multicast">Multicast</h1>
+<h2 id="multicast-distribution-tree">Multicast Distribution Tree</h2>
+<p>High level, multicast traffic is sent and distributed (forwarded) along a Multicast Distribution Tree (MDT). The MDT is the data plane.</p>
+<p>A source sends traffic into a MDT and receives join the MDT to receive traffic. </p>
+<p>In a MDT, a source sends traffic, and the first hop router (FHR) has a special role in creating the MDT. The sender does not use any control plane signaling, it just sends traffic. Although, sources can "subscribe" to a group (multicast address), and the source will send to that.</p>
+<p>Internet Group Management Protocol (IGMP) is used by receivers. On the network, PIM, and across multidomain networks, MP-BGP and Multicast Source Discovery Protocol (MSDP) are used.</p>
+<p><br>
+Below we will cover the different MDT's.</p>
+<h3 id="ssm-distribution-tree-sg">SSM Distribution Tree (S,G)</h3>
+<p>Source-specific Multicast (SSM) is commonly used for applications such as video or audio streaming, where a single source sends to a group of receivers. The receivers join explicitly to this single source. </p>
+<p>Receivers join a specific group, referred to as (Source,Group) or (S,G). This (S,G) state must be kept in the network, and thus impacts resource consumption on routers. Every new unique (S,G) entry will lead to more state on the network.</p>
+<p>SSM may not scale well in all cases. If a receiver requests to join multiple sources, it will create (S2,G2), (S3,G3), etc. There will be several sources streaming to the same group. Any Source Multicast (ASM) is preferred here to create a shared MDT.
+<br></p>
+<h3 id="asm-distribution-tree-g">ASM Distribution Tree: (*,G)</h3>
+<p>ASM is commonly used for video conferencing, or applications with several sources in the same group. In this mode, a receiver joins any source in a specific multicast group.</p>
+<p>The source is joining <strong><em>all</em></strong> sources, as it is (*,G). In ASM, all traffic from all sources is first sent to a Rendezvous Point (RP).</p>
+<p>Receivers will send a Join request to the RP, and then a shared MDT is created from the RP to the receiver. In some cases, this could result in sub-optimal routing/delay between sources and receivers due to RP.</p>
+<h3 id="loop-avoidance-in-mdt">Loop Avoidance in MDT</h3>
+<p>In unicast, the routing protocol checks for loops. In multicast, a different mechanism must be used: <strong>Reverse Path Forwarding (RPF)</strong>.</p>
+<p>RPF works in the following way:</p>
+<ul>
+<li>For each incoming multicast packet, the router looks up the source address in the unicast routing table. It looks for which interface it would use, if it were to send a normal unicast packet to that source.</li>
+<li>If the packet was received on the same interface, it is accepted.</li>
+<li>If the packet arrived on any other interface, it is dropped. In this case, it has come from another router which is not directly in the path. Forwarding such a packet would lead to a multicast routing loop. </li>
+</ul>
+<p><br>
+An example would be (S,G) of (192.0.100.1,239.1.1.1) coming into R1 on Gi0/1 interface.</p>
+<p>RPF would work like-- unicast routing lookup on 192.0.100.1. R1 RIB shows Gi0/2 for 192.0.100.0/24. RPF <strong>fails</strong> and packets discarded.</p>
+<h3 id="multicast-ip-ranges">Multicast IP ranges</h3>
+<p>Multicast traffic is sent to specific multicast addresses. The group G in (S,G) and (*.G) is such a multicast address.</p>
+<table>
+<thead>
+<tr>
+<th>Multicast Range</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>224.0.0.0 - 224.0.0.255</code></td>
+<td>Local Network Control Block</td>
+<td>Never routed, strictly link local</td>
+</tr>
+<tr>
+<td><code>224.0.1.0 - 224.0.1.255</code></td>
+<td>Internetwork Control Block</td>
+<td>Can be routed, <em>internet</em> control block</td>
+</tr>
+<tr>
+<td><code>224.0.2.0 - 224.0.255.255</code></td>
+<td>AD-HOC Block 1</td>
+<td>Legacy assignments by IANA</td>
+</tr>
+<tr>
+<td><code>224.2.0.0 - 224.2.255.255</code></td>
+<td>SDP/SAP Block per rfc5771</td>
+<td>For apps that use SDP/SAP</td>
+</tr>
+<tr>
+<td><code>224.3.0.0 - 224.4.255.255</code></td>
+<td>AD-HOC Block 2</td>
+<td>Legacy assignments by IANA</td>
+</tr>
+<tr>
+<td><code>232.0.0.0 - 232.255.255.255</code></td>
+<td>Source-Specific Multicast 232/8</td>
+<td>All SSM groups must use this range</td>
+</tr>
+<tr>
+<td><code>233.0.0.0 - 233.251.255.255</code></td>
+<td>GLOP Block</td>
+<td>inter-AS multicast traffic but doesn't work with 4 byte ASN's</td>
+</tr>
+<tr>
+<td><code>233.252.0.0 - 233.255.255.255</code></td>
+<td>AD-HOC Block 3</td>
+<td>Assignments by IANA for stuff</td>
+</tr>
+<tr>
+<td><code>234.0.0.0 - 234.255.255.255</code></td>
+<td>Unicast-Prefix-based IPv4 Multicast addresses</td>
+<td>rfc6034</td>
+</tr>
+<tr>
+<td><code>239.0.0.0 - 239.255.255.255</code></td>
+<td>Organization-Local Scope</td>
+<td>Loosely intended to be "private multicast addresses"</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="igmp">IGMP</h2>
+<p>The IGMP is the protocol between receivers and the last hop routers. It lets receivers subscribe to groups, and when they are done, it lets those receivers stop receiving the traffic later on.</p>
+<p>The IGMP is a control plane protocol that allows receivers to signal their interest in specific multicast groups. It runs exclusively between receivers and a last hop router, using link local or multicast addressing.</p>
+<p><strong>IGMPv1</strong>: no longer used. Many drawbacks.</p>
+<p><strong>IGMPv2</strong>: most commonly supported today, but it does not support SSM.</p>
+<p><strong>IGMPv3</strong>: most recent with features + SSM support.</p>
+<p>IGMP running on a router is always backwards compatible. A router with v3 can talk to a receiver using v1 or v2.</p>
+<h3 id="igmpv2">IGMPv2</h3>
+<ul>
+<li>Receivers can join and leave a group<ul>
+<li>Version 2 membership report (type value 0x16): called <strong>IGMP Join</strong>; used by Receivers to join a multicast group or to respond to a local router's membership query </li>
+<li>Version 1 membership report (0x12): used by Receivers for backward compatibility with IGMPv1 </li>
+<li>Version 2 leave group (0x17): Receivers indicate they want to stop multicast traffic from a group they joined 
+<br></li>
+</ul>
+</li>
+<li>Queriers (last-hop routers):<ul>
+<li>There are two type of queries, <strong>general membership query</strong> and <strong>group specific query</strong>.</li>
+<li>If a LHR receives a "leave" message from one of the receivers on the subnet, it will send a general membership query to try and prune but wait for potential membership report(s) from receivers.</li>
+<li>General membership query (0x11): sent to All-Hosts group address 224.0.0.1 to see if there are any Receivers on attached subnet; group address field is set to 0.0.0.0 </li>
+<li>Group specific query (0x11): sent in response to a leave group message to group address they requested to leave </li>
+</ul>
+</li>
+</ul>
+<p>Ohter information, the max response time: max time before sending a response report; typically 10s.</p>
+<h3 id="igmpv3">IGMPv3</h3>
+<p>Same but more. Allows receivers to:</p>
+<ul>
+<li>Join specific sources, which is required for SSM. "source S1, S2, S3", "all sources except S2".</li>
+<li>Source filtering, can listen to (S1, G) but filter (S2,G)</li>
+</ul>
+<p>Backwards compatible with v2 and new fields added to Membership Query and v3 Membership Report.</p>
+<p>SSM allows for the creation of source distribution trees without the need for a Rendezvous Point (RP).</p>
+<p><br></p>
+<h2 id="asm-v-ssm">ASM v SSM</h2>
+<p>Multicast has two fundamental architectural methods to create a MDT. In ASM, the network finds the sources, as receivers join (*,G) so receivers join all sources at once in a shared tree. For SSM, the receiver joins an explicit source (MDT) so complexity is lower to deliver packets, especially for inter-domain topologies.</p>
+<p>SSM is usually prefered, but there can be more state to manage on the routers. </p>
+<h3 id="ssm">SSM</h3>
+<p>Receiver driven, so the flow starts from receiver side.</p>
+<ul>
+<li>The receiver learns about the source and group address out-of-band (OOB), from a web page, an application, or similar.</li>
+<li>The app in the receiver then sends an IGMPv3 membership report to the last hop router. In this request, it specifies the specific (S,G) that it wants to receive traffic from. </li>
+<li>PIM join messages from LHR are sent hop by hop, to "all PIM routers" in a multicast group 224.0.0.13. The next hop is determined by a lookup in the unicast routing table. This method will send PIM join messages hop by hop, until the first hop router is reached. This leads to the optimal path of the source (as defined in the unicast table), while on each router on the way—multicast forwarding state is established.</li>
+<li>The source sends multicast stream to FHR</li>
+</ul>
+<p>When a LHR has no more receivers, it sends a PIM Prune message upstream to stop the multicast stream.</p>
+<h3 id="asm">ASM</h3>
+<p>In ASM a receiver does not join a specific source, but just a group (*,G). So how does the network know what sources to send if it gets no instructions from the receivers?? It finds them using a RP for receivers. </p>
+<p><strong>Step one</strong>, a PIM join is sent from the LHR to the RP. This builds a "source specific tree" to the RP (intermediate source). </p>
+<p>The process is the same as SSM, the application in the receiver then sends an IGMP membership report (version 2 or version 3) to the last hop router. In this request it specifies the group (*,G) it wants to receive traffic from.</p>
+<p>As in SSM, PIM join messages are sent hop by hop, to the "all PIM routers" multicast group 224.0.0.13. In ASM however, the messages are sent toward the RP, because the last hop router does not know the source yet. The next hop is determined by a lookup of the RP in the unicast routing table. This method will send PIM join messages hop by hop, until the RP is reached. This leads to the optimal path to the RP, while on each router on the way—multicast forwarding state is established.</p>
+<p>Now the RP has a shared source tree to all receivers. </p>
+<p><strong>Step two</strong>, a source starts forwarding multicast stream. In ASM, FHR sends the multicast traffic through a unicast tunnel to the RP, using PIM-register messages. This informs the RP about the source.</p>
+<p>Next, the RP uses the previously established Shared Tree to forward to receivers.</p>
+<p>Now, the sources and receivers are linked, but it could be sub-optimal. Is the route between source - RP - receiver the best? Also, traffic between the source and RP is still in the unicast tunnel.</p>
+<p><strong>Step three</strong>, the RP sends back PIM-register messages to the source. When the FHR has the native multicast state installed, it starts to send multicast in parallel with the unicast traffic. Once the RP receives the multicast traffic, it will signal the FHR to stop the tunnel with a PIM register-stop message. </p>
+<p>Now there are two distinct trees: (1) Source to RP, (2) RP to receiver</p>
+<p><strong>Step four</strong>, the LHR will be made aware of the source addresses as traffic is forwarded to it via step 2 above. The LHR will send direct (S,G) to each source. This will result in a source distribution tree, then PIM will naturelly prune paths no longer used. </p>
+<h2 id="intradomain-and-interdomain-multicast">Intradomain and Interdomain Multicast</h2>
+<p>Interdomain multicast routing architecture allows for an administrative and secure separation between domains while allowing for direct multicast between domains.</p>
+<p>There are challenges with routing between interdomain RPs, and the signaling and data plane functionality of PIM with RPs can allow receivers and sources to just start sending with any controls. This is a utilization/capacity risk and access risk.</p>
+<p>Within a sinle domain, IGMPv2/v3 (between receivers - routers), PIM-SM (between routers) is used for multicast. </p>
+<p>For interdomain, there is:</p>
+<p><strong>MP-BGP</strong>: Multiprotocl-BGP (MP-BGP) supports many address-families in parallel, and it used to advertise prefixes for multicast traffic between domains. It allows for two routing tables, such that multicast traffic can be routed over another link from unicast traffic. It it still a unicast routing table though, but when PIM creates the MDT, it can use the MP-BGP multicast table for the RPF check.</p>
+<p><strong>PIM-SM</strong>: used to create MDTs between routers across domains.</p>
+<p><strong>Multicast Source Discovery Protocol (MDSP)</strong>: used to connect different PIM-SM domains. It allows sources in one PIM-SM domain to be discovered by RPs in other PIM-SM domains. 
+    - When a new multicast source starts sending traffic in a PIM-SM domain, the FHR registers the source with its local RP using a PIM Register message.
+    - The local RP then uses MSDP to advertise this new multicast source to MSDP peers in other PIM-SM domains.
+    - The MSDP peers then inform their local RPs about the new source, allowing them to join the source-specific distribution tree.
+    - This way, MSDP enables RPs in different PIM-SM domains to learn about active multicast sources, allowing receivers in one domain to join and receive multicast traffic from sources in other domains.</p>
+<h3 id="more-on-msdp">More on MSDP</h3>
+<p>RP operators want to secure and run their own RPs, they do not want to "share" a RP with another domain. So, MSDP allows RPs in different domains to continue working the same for intradomain multicast. </p>
+<p>An RP in a PIM-SM domain has MSDP peering relationships with MSDP-enabled routers in other domains. Each peering relationship occurs over a TCP connection, which is maintained by the underlying routing system. </p>
+<p>MSDP speakers exchange messages called Source Active (SA) messages. When an RP learns about a local active source, typically through a PIM register message, the MSDP process encapsulates the register in an SA message and forwards the information to its peers. The message contains the source and group information for the multicast flow, as well as any encapsulated data. If a neighboring RP has local joiners for the multicast group, the RP installs the (S,G) route, forwards the encapsulated data contained in the SA message, and sends PIM joins back towards the source. </p>
+<p>SA messages contain the following fields:</p>
+<ul>
+<li>Source address of the data source.</li>
+<li>Group address that receives data sent by the source.</li>
+<li>IP address of the RP.</li>
+</ul>
+<p>Routing is then done via underlying routing protocol(s), although it is recommended to use MP-BGP, it is not 100% necessary.</p>
+<h3 id="interdomain-shared-mdt-creation">Interdomain Shared MDT creation</h3>
+<ul>
+<li>When a source’s first data packet is registered by the first hop router, the RP extracts the data from the packet and forwards it down the shared tree in the PIM domain.</li>
+<li>The RP informs MSDP peers of the new source by sending a Source-Active (SA) message that identifies the source, the recipient group, and the RP’s address or originator ID.</li>
+<li>Upon receiving the SA message, an MSDP peer which is the RP for a multicast tree that includes members interested in the multicast sends a PIM join message (S,G) toward the data source.</li>
+<li>After the RP on another domain joins the PIM Designated Router (DR) in the first domain, multicast data traffic flows natively over the multicast tree to the second domain's RP.</li>
+<li>If the source times out, this process repeats when the source goes active again. </li>
+</ul>
+<h3 id="interdomain-ssm">Interdomain SSM</h3>
+<p>Much more simple. There is no requirement for RPs, thus no MDSP. However, routing still has to happen, so MP-BGP is still required to keep the multicast source table separate from the unicast one. And PIM-SM is used to create the MDT.</p>
+<p>IPv6 does not use MDSP, since IGMP is a IPv4-only. IPv6 receivers use Multicast Listener Discovery (MLD), which does not require the usage of MDSP.</p>
+<p><br></p>
+<h2 id="multicast-ip-layer-3-to-layer-2-mapping">Multicast IP Layer 3 to Layer 2 Mapping</h2>
+<p>Layer 2 has its own multicast scheme, developed independently from IP multicast at layer 3.</p>
+<p>Layer 2 MAC addresses have 6 bytes (48 bits), where 25 bytes are fixed, leaving effectively 23 bits for the Layer 2 multicast address.</p>
+<p>IPv4 multicast addresses use 4 bytes (32 bits), of which 4 bits at the beginning are fixed ("1110") to indicate that it is a multicast address, leaving 28 bits for effective addressing.</p>
+<p>32 (2^5) IP addresses map into each one of the Ethernet addresses. This does not cause any functional problems, but it may lead to sub-optimal multicast traffic distribution. Several multicast streams may be delivered to an endpoint, even though it only subscribed to one. However, the endpoint would just discard unneeded traffic. Since this happens typically on the switch before the endpoint, there is normally no problem. </p>
+<h3 id="igmp-snooping">IGMP Snooping</h3>
+<p>IGMP snooping sest up Layer 2 multicast forwarding tables to deliver traffic only to ports with at least one interested member, significantly reducing the volume of multicast traffic. IGMP snooping uses the information in IGMP membership report messages to build corresponding information in the forwarding tables to restrict IP multicast traffic at Layer 2.</p>
+<p>Without IGMP snooping, a switch will forward a copy of multicast packet to all network interfaces. </p>
+<p>rfc4541 discusses this further.</p>
+<h3 id="pim-snooping">PIM Snooping</h3>
+<p>If there are several routers connected to a L2 switch, that switch does not know which routers are subscribed to the multicast traffic. It is a similiar problem, so a similiar solution was created with PIM snooping.</p>
+<p>With PIM snooping the switch interprets all Layer 3 PIM messages. This way it learns which router wants to subscribe to which group and can forward the multicast traffic only to the correct ports.</p>
+<p>PIM snooping can be enabled globally on a switch, or per interface. </p>
+<p><code>ip pim snooping</code></p>
+<p><code>interface vlan 4090</code>
+<code>ip pim snooping</code></p>
+<h2 id="multipoint-ldp">Multipoint LDP</h2>
+<p>Label Switch Multicast (LSM) is MPLS technology extensions to support multicast using label encapsulation.</p>
+<p>This allows for the setup of point-to-multipoint (P2MP) and multipoint-to-multipoint (MP2MP) Label Switched Paths (LSPs) in MPLS networks. These extensions are also referred to as multipoint LDP. These LSPs can be used for transporting both IPv4 and IPv6 multicast packets, either in the global table or VPN context.    </p>
+<p>Just like in standard multicast (outside MPLS), the MPLS core unicast routing and switching is also required to support multicast traffic. So Multipoint LDP runs in parallel. In LSM with multipoint LDP, the same control and data plane is used as in the unicast MPLS core.  The overall application is called multicast VPN (MVPN). </p>
+<p>FRR can be used. </p>
+<h3 id="lsm-packet-forwarding">LSM: Packet Forwarding</h3>
+<p>For each packet coming in, MPLS creates multiple out-labels. If you were to look at a MDT in <code>show mpls forwarding table</code>, you could observe two outgoing labels over two different out interfaces. This indicates a point-to-multipoint LSP.</p>
+<p>From the perspective of the source and receivers, things are unchanged. The PE routers talk PIM with each other then downstream to their CE's, then between the PE's is the provider core that is multipoint LDP aka Label Switch Multicast.</p>
+<p><br></p>
+<h2 id="pim-sim-overview">PIM-SIM Overview</h2>
+<p>PIM is the most important protocol for multicast to function properly. The most common is <code>PIM-Sparse Mode (SM)</code>, and there is <code>PIM-Dense Mode (DM)</code> but mostly that is deprecated. PIM-SM with ASM is more optimal shared MDT.</p>
+<p>Some terms:</p>
+<ul>
+<li><strong>Reverse Path Forwarding (RPF) Interface</strong>: interface with lowest cost path (AD + metric) to IP address of the Source (SPT) or the RP (shared trees) </li>
+<li><strong>RPF neighbor</strong>: PIM neighbor on a RPF interface </li>
+<li><strong>Upstream</strong>: towards the Source of the tree; a PIM Join travels upstream </li>
+<li><strong>Downstream</strong>: towards Receivers 
+-<strong>Downstream Interface / Outgoing Interface (OIF)</strong>: used to forward multicast traffic towards Receivers or down the tree from Source </li>
+<li><strong>Incoming Interface (IIF)</strong>: only interface that can accept multicast traffic from Source, which is the same as the RPF interface </li>
+<li><strong>Outgoing Interface List (OIL</strong>): a list of OIF's forwarding multicast traffic to the same group address </li>
+<li><strong>Last-Hop Router (LHR)</strong>: router directly attached to Receivers; responsible for PIM Join upstream </li>
+<li><strong>First-Hop Router (FHR)</strong>: router directly attached to Receivers; sending Register msg to RP </li>
+</ul>
+<p>PIM-SM is used in ASM.</p>
+<ul>
+<li>ASM requires a RP<ul>
+<li>RP can be statically configured everywhere, or there are dynamic methods with Auto-RP or PIMv2 bootstrap mechanism</li>
+<li>RP helps sources find receivers by creating a MDT</li>
+</ul>
+</li>
+<li>Initial flow is a shared tree down to receivers, then the LHR will optimize it by joining the source tree (SPT) directly to the source<ul>
+<li>Shared tree is a Shortest Path Tree (SPT) to the source, then down to the receivers is a shared tree.</li>
+</ul>
+</li>
+</ul>
+<h2 id="packet-flow-for-pim-sm-and-asm">Packet flow for PIM-SM and ASM</h2>
+<h3 id="receiver-shared-tree-join">Receiver shared tree join</h3>
+<p>Receiver sends an IGMP membership join to (*,G). This is, send me any source to group G. </p>
+<p>LHR knows about the RP through config. It does a route lookup, then sends PIM join upstream to the RP. Most PIM messages are link local multicast 224.0.0.13 (<code>All-PIM</code>).</p>
+<p>As the PIM join travels upstream from LHR to RP, routers create multicast state for (*,G). The interface that the PIM join was received on becomes the OIL maintained by routers.</p>
+<p>The PIM Join reaches the RP, and the shared tree is formed between receiver(s) and RP.</p>
+<h3 id="source-registration">Source Registration</h3>
+<p>Sources do not use a protocol to communicate with the network. They send multicast network, and the network does the rest.</p>
+<p>When the FHR sees traffic to a multicast address, it checks if this is new or already existing. If there is no state, it sends a PIM-Register to the RP for group G (a mcast address).</p>
+<p>Except, the source is already forwarding mcast traffic??!! so how can the network forward this traffic along a not pre-existing MDT?</p>
+<p>Answer, high level, is that the FHR forwards the multicast traffic from the source encapsulated in unicast (!) PIM register messages to the RP. Once the RP receives such register messages, it decapsulates the packet and sends them down the shard tree to the receivers.</p>
+<p>In parallel, the RP builds a (S,G) shortest path tree (SPT) back to the source. When done, there is a switchover to the SPT and unicast PIM Register tunnel is stopped.</p>
+<h3 id="pim-sm-switchover">PIM-SM Switchover</h3>
+<p>LHR can decide to build a SPT back to source instead of using the shared tree via RP, <code>always</code> by default, or by configuration, it can be <code>threshold</code> or <code>never</code>. </p>
+<p>PIM Joins are sent hop by hop to the source, creating a new specific (S,G) SPT. </p>
+<p>For a period of time, multicast traffic will be duplicated down the RP SPT + RP-&gt;G shared tree and the new switchover SPT. The LHR will eventually receive the same multicast traffic from two interfaces, one on the RP-based shared tree, and one on the source-based SPT.</p>
+<p>The switchover process to a SPT is triggered by a data bandwidth that exceeds the configured limit (or, if none is configured, immediately). The behavior can be configured per group. The LHR will set a <code>J</code> flag on (*,G) in the multicast routing table. If the threshold is set to <code>infinity</code>, then there will never be a switchover to join the SPT instead of shared tree.</p>
+<p>To optimize, it now sends another PIM message along the shared tree, to prune (stop) receiving the specific (S,G) from the shared tree. Note that in ASM, there may be several sources, thus the prune must be specifically for the source. This is a specific (S,G) RP-bit Prune message to the RP. </p>
+<p>When the PIM Prune message reaches the RP, it checks if there are any other OIL for that group. If no, then RP will prune back to source.</p>
+<p><br></p>
+<h2 id="pim-sm-packets-and-state">PIM-SM packets and state</h2>
+<p>The more optimal the traffic flows for multicast traffic, the more state on the network needs to be maintained.</p>
+<table>
+<thead>
+<tr>
+<th>Packet Name</th>
+<th>Destination</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PIM Hello</td>
+<td>224.0.0.13 (All-PIM-Routers)</td>
+<td>Establishes PIM adjacencies between neighbors</td>
+</tr>
+<tr>
+<td>PIM Join/Prune</td>
+<td>Upstream PIM neighbor (unicast)</td>
+<td>Joins or prunes multicast distribution trees</td>
+</tr>
+<tr>
+<td>PIM Register</td>
+<td>Rendezvous Point (unicast)</td>
+<td>Encapsulates multicast data from source to RP</td>
+</tr>
+<tr>
+<td>PIM Register-Stop</td>
+<td>First-hop router (unicast)</td>
+<td>Tells first-hop router to stop sending Register messages</td>
+</tr>
+<tr>
+<td>PIM Assert</td>
+<td>224.0.0.13 (All-PIM-Routers)</td>
+<td>Resolves forwarding conflicts on multi-access networks</td>
+</tr>
+<tr>
+<td>PIM Bootstrap</td>
+<td>224.0.0.13 (All-PIM-Routers)</td>
+<td>Distributes RP information in a PIM domain</td>
+</tr>
+<tr>
+<td>PIM Candidate-RP-Advertisement</td>
+<td>Bootstrap Router (unicast)</td>
+<td>Informs BSR about candidate RPs</td>
+</tr>
+<tr>
+<td>PIM State Refresh</td>
+<td>224.0.0.13 (All-PIM-Routers)</td>
+<td>Maintains source state in PIM-DM domains (when enabled)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pim-neighbor-discovery">PIM neighbor discovery</h3>
+<p>PIM will establish neighbor adjacencies and elect a DR on each segment. The router with the highest IP address (or, if configured, the highest DR priority), is chosen as a DR. It is this router that will send PIM joins upstream. </p>
+<p>This is <code>PIM Hello</code> to 224.0.0.13. </p>
+<h3 id="pim-sm-forwarding">PIM-SM forwarding</h3>
+<p>Multicast traffic forwarding is controlled by the OIL. Packets are sent out all interfaces on the OIL. </p>
+<p>There are three ways to put an interface on the OIL for a given multicast group:</p>
+<ol>
+<li>When a PIM join for this group is received on this interface. The PIM join indicates that there are receivers further down that interface.</li>
+<li>When an IGMP message has been received, indicating that a receiver joined on this segment.</li>
+<li>There is also the possibility to statically join a group on an interface, via configuration. </li>
+</ol>
+<p>Expiration timers are reset depending on the type:</p>
+<ul>
+<li>(S,G) timers are reset when a multicast packet is forwarded. So as long as there is traffic, the state is maintained.</li>
+<li>(*,G) timers are reset when a periodic PIM join is received for (*,G). So as long as receivers are interested in this group, the state is maintained, independently of traffic sent. </li>
+</ul>
+<h3 id="pim-sm-join-process">PIM-SM Join process</h3>
+<p>PIM-SM Joins travel from receivers up to RP and/or the source.</p>
+<p>In ASM, (*,G) creates state at each hop:</p>
+<ul>
+<li>IF there is no (*,G) state, router processing the PIM Join will create it, add interface to OIL, send PIM Join to RP</li>
+<li>ELIF there is (*,G) state, add interface to OIL. PIM Join process is complete, as there is <strong><em>already</em></strong> a built Shared tree</li>
+<li>Period (*,G) PIM Joins refresh interfaces in the OIL between PIM neighbors</li>
+</ul>
+<h3 id="pim-sm-state-tables-for-all-mdts">PIM-SM state tables for all MDTs</h3>
+<p>The Multicast Routing Information Base (MRIB) is a protocol-independent multicast routing table that is created by PIM. It is composed of (S,G) or (*,G) entries with <code>Incoming interface</code>, <code>RPF neighbor</code>, then the <code>OIL</code>.</p>
+<p><code>show ip mroute</code> for IOS</p>
+<p><code>show mrib ipv4 route</code> on IOS-XR</p>
+<p>So for an incoming multicast packet (possibly even the first one!!)...</p>
+<ol>
+<li>if (S,G) exists for specific Source and Group, use this</li>
+<li>if (*,G) exists for that Group, use this</li>
+<li>if there is no entry, then the source must have just started sending and you are the FHR, congrats. The router (now the FHR) uses PIM Register packet to encapsulate and forward traffic to the RP.</li>
+</ol>
+<p><br></p>
+<h2 id="pim-sm-and-receivers">PIM-SM and Receivers</h2>
+<p>Receivers uses IGMP to communicate their Joins and to talk with the LHR. In ASM, IGMPv2 is sufficient, IGMPv3 is however backward compatible and can also be used. In ASM, a receiver joins a (*,G): any source sending to group G. When the LHR sees an IGMP message for a group G, it will add the interface on which this IGMP message was received to the OIL for the group.</p>
+<h2 id="pim-sim-and-source-registration">PIM-SIM and Source Registration</h2>
+<p>When a source starts to send, the network must register the source with the RP. THe FHR plays this role. It will encapsulate and forward source multicast traffic to the RP in PIM Register unicast packets.</p>
+<p>There can be some weird scenarios, like say, there are 3 routers:</p>
+<p>(<code>source</code>) - [<code>R1</code> <em>(FHR)</em>] - [<code>R2</code>] - [<code>R3</code> <em>RP</em>] - [Rest of provider network down to PE and CE] - (<code>receiver 1</code>)</p>
+<p>Attached to R2 is a new ASM receiver that wants to join group G. There is already state for (S,G) on router B, so at first it seems that the only action needed on B is to add another interface to the OIL for the (S,G). However, the ASM group G may have more sources sending to the group. To be sure to find them all, the receiver must join the shared tree toward the RP! </p>
+<p><br></p>
+<h2 id="pim-sm-pruning-in-asm">PIM-SM Pruning in ASM</h2>
+<p>Pruning can happen explicitly, by sending PIM prune messages, or implicitly, using a time-out. This section explains how pruning works in an ASM environment. </p>
+<p>In ASM, if a receiver leaves a group, it may not trigger a Prune. When all receivers on a segment leave group G, then all interfaces are removed from OIL for entries (*,G) and (S,G). Only once the last OIL is removed while the LHR send a PIM Prune message on the incoming interface for (*,G).</p>
+<p>Explicit prunes are only sent for (*,G) entries, which are only sent towards the RP (RP address noted in mroute table). (S,G) entries are left to time out.</p>
+<p><br></p>
+<h2 id="pim-sm-implementation">PIM-SM Implementation</h2>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">hostname</span> <span class="n">R1</span><span class="o">-</span><span class="n">XR</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">ipv4</span> <span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="n">PIM_FILTER</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  <span class="n">permit</span> <span class="n">host</span> <span class="mf">10.1.1.2</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="err">!</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">multicast</span><span class="o">-</span><span class="n">routing</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">interface</span> <span class="nb">all</span> <span class="n">enable</span> 
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">interface</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">1</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>      <span class="n">enable</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="err">!</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">router</span> <span class="n">pim</span> <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  <span class="n">neighbor</span><span class="o">-</span><span class="nb">filter</span> <span class="n">PIM_FILTER</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  <span class="n">interface</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">1</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">enable</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>  <span class="n">rp</span><span class="o">-</span><span class="n">address</span> <span class="mf">10.1.1.1</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  <span class="n">spt</span><span class="o">-</span><span class="n">threshold</span> <span class="p">[</span><span class="n">kbps</span> <span class="o">|</span> <span class="n">infinity</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">hostname</span> <span class="n">R2</span><span class="o">-</span><span class="n">XE</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="mi">1</span> <span class="n">permit</span> <span class="n">host</span> <span class="mf">10.1.1.1</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="err">!</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">ip</span> <span class="n">multicast</span><span class="o">-</span><span class="n">routing</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">ip</span> <span class="n">pim</span> <span class="n">neighbor</span><span class="o">-</span><span class="nb">filter</span> <span class="mi">1</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">ip</span> <span class="n">pim</span> <span class="n">spt</span><span class="o">-</span><span class="n">threshold</span> <span class="p">[</span><span class="n">kbps</span> <span class="o">|</span> <span class="n">infinity</span><span class="p">]</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">ip</span> <span class="n">pim</span> <span class="n">rp</span><span class="o">-</span><span class="n">address</span> <span class="mf">10.1.1.1</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="err">!</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">interface</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">0</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>  <span class="n">ip</span> <span class="n">pim</span> <span class="n">sparse</span><span class="o">-</span><span class="n">mode</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="err">!</span>
+</code></pre></div>
+<h3 id="show-commands-that-are-useful">Show commands that are useful</h3>
+<p><strong><em>IOS-XE</em></strong>
+<code>show ip pim interface</code>
+<code>show ip pim neighbor</code>
+<code>mrinfo $ip_address</code>
+<code>show ip pim rp</code>
+<code>show ip rpf</code>
+<code>show ip mroute</code></p>
+<p><strong><em>IOS-XR</em></strong>
+<code>show pim interface</code>
+<code>show pim neighbor</code>
+<code>mrinfo $ip_address</code>
+<code>show pim topology</code>
+<code>show pim rpf</code>
+<code>show mrib route</code></p>
+<p><br></p>
+<h2 id="source-specific-multicast-ssm">Source-Specific Multicast (SSM)</h2>
+<p>When there are only one or a few sources sending multicast, ASM is probably too complex and unnecessary. SSM does not require a RP, and there is a single MDT for each source. No shared (*,G) trees are built or used. Since are no RP's, for inter-domain routing, there is no need for Multicast Source Discovery Protocol (MSDP). Both ASM and SSM can coexist on the network though.</p>
+<p>232.0.0.0/8, FF3x::/32 are used for SSM groups.</p>
+<p>SSM is an enhancement to PIM, written as PIM-SSM usually. PIM-SSM is made possible by IGMPv3 and MLDv2.</p>
+<p>The network service identified by (S,G), for SSM address G and source host address S, is referred to as a "channel".</p>
+<p>A high level SSM flow:</p>
+<ol>
+<li>A receiver learns about (S1,G) and (S2,G) from an out-of-band method, like a web page. <ul>
+<li>(S1,G) and (S2,G) are different channels, so they would be different trees.</li>
+</ul>
+</li>
+<li>The receiver sends IGMPv3 "membership report" requesting to join these groups specifically. </li>
+<li>LHR receives the IGMPv3 "membership report", then creates state for the requested channels. It adds the interface the IGMPv3 packet was received on to the OIL.</li>
+<li>The LHR creates a PIM (S,G) join message upstream. The upstream router is determined by the source IP address, which is a unicast table lookup to the source at each router in the path.</li>
+<li>The result will be a shortest path tree (SPT) to the FHR next to the source. </li>
+</ol>
+<p>The network keeps state for every (S,G) channel independently. So, for a multicast group with many sources, each source within that group would end up with its own SPF tree in SSM. Therefore, SSM is not optimal for multicast distributions where many sources send to the same group. </p>
+<h3 id="igmpv3_1">IGMPv3</h3>
+<p>IGMP has no transport (L4), like ICMP. It uses IP protocol 2</p>
+<table>
+<thead>
+<tr>
+<th>Packet Type</th>
+<th>Message Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x11</td>
+<td>Membership Query</td>
+<td>Sent by routers to query group membership</td>
+</tr>
+<tr>
+<td>0x16</td>
+<td>v2 Membership Report</td>
+<td>Sent by hosts to join group also called <code>IGMP Join</code></td>
+</tr>
+<tr>
+<td>0x17</td>
+<td>v2 leave group</td>
+<td>Sent by hosts to stop mcast traffic from a group they joined</td>
+</tr>
+<tr>
+<td>0x22</td>
+<td>Version 3 Membership Report</td>
+<td>Sent by hosts to report group membership</td>
+</tr>
+<tr>
+<td>0x30</td>
+<td>Multicast Router Advertisement</td>
+<td>Sent by routers to advertise their presence</td>
+</tr>
+<tr>
+<td>0x31</td>
+<td>Multicast Router Solicitation</td>
+<td>Sent by hosts to solicit router advertisements</td>
+</tr>
+<tr>
+<td>0x32</td>
+<td>Multicast Router Termination</td>
+<td>Sent by routers to indicate they are leaving the network</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ssm-mapping">SSM Mapping</h3>
+<p>If not all end hosts support IGMPv3, then those devices cannot subscribe to SSM channels because they cannot request (S,G). Legacy group membership reports for groups in the SSM group range are mapped to a set of sources providing service for that set of (S,G) channels. </p>
+<p>Two ways to configure:</p>
+<ol>
+<li>Static</li>
+<li>DNS-based</li>
+</ol>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Router</span><span class="c1">#configure</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1">#ipv4 access-list 4</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">ipv4</span><span class="o">-</span><span class="n">acl</span><span class="p">)</span><span class="c1">#permit ipv4 any 232.1.2.0 0.0.0.255</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">ipv4</span><span class="o">-</span><span class="n">acl</span><span class="p">)</span><span class="c1">#exit</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># multicast-routing</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mcast</span><span class="p">)</span><span class="c1">#address-family ipv4</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mcast</span><span class="o">-</span><span class="n">default</span><span class="o">-</span><span class="n">ipv4</span><span class="p">)</span><span class="c1">#ssm range 4</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mcast</span><span class="o">-</span><span class="n">default</span><span class="o">-</span><span class="n">ipv4</span><span class="p">)</span><span class="c1">#exit</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">mcast</span><span class="p">)</span><span class="c1">#exit</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1">#router igmp</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">igmp</span><span class="p">)</span><span class="c1">#ssm map static 172.16.8.10 4</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="o">*/</span><span class="n">Repeat</span> <span class="n">the</span> <span class="n">above</span> <span class="n">step</span> <span class="k">as</span> <span class="n">many</span> <span class="n">times</span> <span class="k">as</span> <span class="n">you</span> <span class="n">have</span> <span class="n">source</span> <span class="n">addresses</span> <span class="n">to</span> <span class="n">include</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">set</span> <span class="k">for</span> <span class="n">SSM</span> <span class="n">mapping</span><span class="o">/*</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">igmp</span><span class="p">)</span><span class="c1">#int te0/0/0/3</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">igmp</span><span class="o">-</span><span class="n">default</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1">#static-group 232.1.2.10</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">igmp</span><span class="o">-</span><span class="n">default</span><span class="o">-</span><span class="k">if</span><span class="p">)</span><span class="c1">#commit</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="c1"># DNS-based</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="n">Router</span><span class="c1">#config</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1">#domain multicast cisco.com</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">igmp</span><span class="p">)</span><span class="c1">#domain name-server 10.10.10.1</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">igmp</span><span class="p">)</span><span class="c1">#router igmp</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">igmp</span><span class="p">)</span><span class="c1">#ssm map query dns</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Router</span><span class="c1"># conf t</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># access-list 10 permit 232.1.2.10</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># ip igmp static ssm-map group-list ssm-source 10 172.16.8.10</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># ip igmp ssm-map enable </span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># DNS-based</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># ip domain multicast ssm-map.cisco.com </span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">Router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># ip name-server 10.48.81.21 # generic DNS server config</span>
+</code></pre></div>
+<p>In examples above 172.16.8.10 = $source and 232.1.2.10 = SSM group</p>
+<p>For DNS-based dynamic mapping, a LHR takes the DNS-name from group address in the IGMPv2 Membership Report. The router looks up IP address resource records (IP A RRs) to be returned for this constructed domain name and uses the returned IP addresses as the source addresses associated with this group.</p>
+<h3 id="configuring-ssm">Configuring SSM</h3>
+<p>Most of the SSM config is shown above, but to summarize a generic PIM-SSM configuration, it will look like:</p>
+<p>IOS-XE: </p>
+<p><code>ip multicast-routing</code>
+<code>ip pim ssm default</code></p>
+<p>IOS-XR:
+<code>multicast-routing</code>
+<code>address-family</code>
+<code>ssm (allow-override) (range) (disable)</code>
+<code>interface $if</code>
+  <code>enable</code></p>
+<p><br></p>
+<h2 id="bidirectional-pim">Bidirectional PIM</h2>
+<p><em>Hard to find good sources for material but https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipmulti_pim/configuration/xe-3s/asr903/17-1-1/b-imc-pim-xe-17-1-asr900/m-bidirectional-pim.pdf looks good</em></p>
+<p>For applications with many endpoints that both send and receive, BIDIR-PIM was developed. In BIDIR-PIM, a host can be both a source and a receiver, or just one of the two. If a receiver starts also sourcing traffic, no additional state is required in the network. </p>
+<p>PIM Bidirectional (BIDIR) has one shared tree from sources to RP and from RP to receivers. This is unlike the PIM-SM, which is unidirectional by nature with multiple source trees - one per (S,G) or a shared tree from receiver to RP and multiple SG trees from RP to sources. </p>
+<p>PIM-SM loops are avoided with RPF check. BIDIR maintains loop-free topology with a Designated Forwarder (DF).</p>
+<p>The thing with many-to-many is that a not all sources and receivers can be both sending and receiving at the same time. The bidirectional "sources" can change, which is why the example of a video conference application is used. When there is a new speaker, there is a new sender/receiver. The "bidirectional" multicast flow will shift on the network, but the "shared tree" more or less stays the same.</p>
+<ul>
+<li>When a new source starts sending for a BIDIR-compatible application, then there will a new FHR, which will recreate the shared tree to/from the RP.</li>
+</ul>
+<h3 id="designated-forwarder-df">Designated Forwarder (DF)</h3>
+<p>Loop avoidance in BIDIR is via the DF. On each segment, a DF is elected, whom is responsible for forwarding multicast traffic in both directions to <strong><em>and</em></strong> from the RP.</p>
+<p>The algorithm to elect the designated forwarder is straightforward, all the PIM neighbors in a subnet advertise their unicast route to the rendezvous point and the router with the best route is elected. If there is a tie, highest IP address wins.</p>
+<p>This effectively builds a shortest path between every subnet and the rendezvous point without consuming any multicast routing state (no (S,G) entries are generated). The designated forwarder election mechanism expects all of the PIM neighbors to be BIDIR enabled</p>
+<h3 id="bidir-forwarding-source">BIDIR Forwarding - Source</h3>
+<p>When a source starts to send, BIDIR will forward multicast to the RP. Routers must known their RP, either through manual config or dynamic methods.</p>
+<p>Each router will create (*,G) multicast forwarding state. Except with BIDIR, there is no IIF (incoming interfaces), there is just <code>Bidir upstream</code>, always pointing to the RP. There is OIL, but it refers to the interface on which traffic from <code>$source</code> is received added to OIL (which is the DF).</p>
+<p>BIDIR works very with many-to-many applications, since there is only one (*,G) entry for each BIDIR group, which is the reason why BiDir is preferable with many sources: It creates significantly less state than PIM-SM or PIM-SSM. </p>
+<h3 id="bidir-forwarding-receiver">BIDIR Forwarding - Receiver</h3>
+<p>When a router receives IGMP Join for bidirectional group G, LHR determines if it is the DF. The multicast state <code>(*,G)</code> will be flagged for BIDIR. If there is not one, then it will check DF election state, which will inform it which router on the segment is DF.  </p>
+<p>When a router receives a Join or Leave message, and the router is not the DF for the receiving interface, the
+message is ignored. Otherwise, the router updates the shared tree in the same way as in sparse mode.</p>
+<p>At each hop, the interface that the join was received on is added to the OIL, like in normal PIM-SM operations. The result is an RP-based shared MDT, which is loop free, because only the DFs forward the joins (and later the traffic).</p>
+<p>This goes hop by hop effectively the same as PIM-SM up to the RP, which creates a shared tree that is loop-free.</p>
+<h3 id="configuring-pim-bidir">Configuring PIM-BIDIR</h3>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="err">!</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">ip</span> <span class="n">pim</span> <span class="n">bidir</span><span class="o">-</span><span class="n">enable</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">ip</span> <span class="n">pim</span> <span class="n">rp</span><span class="o">-</span><span class="n">address</span> <span class="mf">20.1.1.10</span> <span class="n">BIDIR</span><span class="o">-</span><span class="n">GROUPS</span> <span class="n">bidir</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="err">!</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">ip</span> <span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="n">standard</span> <span class="n">BIDIR</span><span class="o">-</span><span class="n">GROUPS</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="mi">20</span> <span class="n">permit</span> <span class="mf">225.0.0.0</span> <span class="mf">0.255.255.255</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="err">!</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">interface</span> <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="mi">1</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  <span class="n">ip</span> <span class="n">pim</span> <span class="n">sparse</span><span class="o">-</span><span class="n">mode</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">interface</span> <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="mi">4</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>  <span class="n">ip</span> <span class="n">pim</span> <span class="n">sparse</span><span class="o">-</span><span class="n">mode</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="err">!</span>
+</code></pre></div>
+<p><code>show ip mroute</code> will show <code>Bidir-Upstream:</code></p>
+<p><code>show ip pim neigh</code> will show <code>B</code> flag that indicates Bidir
+<code>show ip pim int df</code> shows DF </p>
+<ul>
+<li>IOS-XR, supposedly PIM-BIDIR is enabled by default but... I don't see evidence of this. The Cat8000 router IOS-XR docs says, PIM-BIDIR is not supported! Just configure the RP to be Bidir compat.</li>
+</ul>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">router</span> <span class="n">pim</span> <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  <span class="n">rp</span><span class="o">-</span><span class="n">address</span> <span class="mf">20.1.1.10</span> <span class="n">bidir</span>
+</code></pre></div>
+<h2 id="more-on-df">More on DF</h2>
+<p>A DF is elected on each link for a specific RP. If there are more than 1 RP, there will be RP-specific DF's on each link. To optimise tree creation, it is desirable that the winner of the election process should be the router on the link with the "best" unicast routing metric (as reported by the MRIB) to reach the RP.</p>
+<p>Election updates usually occur only once, but they can be triggered if there are changes:</p>
+<ul>
+<li>Unicast metric change to reach the RP</li>
+<li>If the DF interface also becomes the interface to reach the RP</li>
+<li>A new PIM neighbor establishes on the segment</li>
+<li>Elected DF fails</li>
+</ul>
+<h3 id="df-election-messages">DF Election Messages</h3>
+<p><strong>Offer</strong> <code>(OfferingID, Metric)</code></p>
+<ul>
+<li>Sent by routers that believe they have a better metric to the RPA than the metric that has been on offer so far.</li>
+</ul>
+<p><strong>Winner</strong> <code>(DF-ID, DF-Metric)</code></p>
+<ul>
+<li>Sent by a router when assuming the role of the DF or when re-asserting in response to worse offers.</li>
+</ul>
+<p><strong>Backoff</strong> <code>(DF-ID, DF-Metric, OfferingID, OfferMetric, BackoffInterval)</code></p>
+<ul>
+<li>Used by the DF to acknowledge better offers.  It instructs other routers with equal or worse offers to wait until the DF passes responsibility to the sender of the offer.</li>
+</ul>
+<p><strong>Pass</strong> <code>(Old-DF-ID, Old-DF-Metric, New-DF-ID, New-DF-Metric)</code></p>
+<ul>
+<li>Used by the old DF to pass forwarding responsibility to a router that has previously made an offer.  The Old-DF-Metric is the current metric of the DF at the time the pass is sent.</li>
+</ul>
+<p>During initial election, the backoff interval is 3 times the offer interval. </p>
+<p>Different routers on a segment advertise their metric. If they receive an Offer with better metric, it will stop sending Offers (a backoff interval x3 Offer interval). </p>
+<p>If a "winning" router sends 3 uncontested Offers, it will then send a <code>Winner</code> packet with ID and metric to RP.</p>
+<p>If DF loses route to RP, it sends a new Offer with infinite metric, which triggers a re-election.</p>
+<p>If DF "fails", the routing change will trigger downstream routers on segment to re-elect based on metric change for route to reach RP.</p>
+<p><br></p>
+<h2 id="interdomain-multicast">Interdomain Multicast</h2>
+<p>Keep things simple. SSM for interdomain. Re-use existing protocols-- MP-BGP to carry multicast info.</p>
+<p>If ASM is required, RP's have to be involved. This requires Multicast Source Discovery Protocol (MSDP) to exchange source info between domains via RP's.</p>
+<h3 id="ssm-for-interdomain">SSM for interdomain</h3>
+<p>Not actually required to use MP-BGP to transport multicast NLRI's for a seperate multicast table. SSM and the RPF check can use the unicast routing table. </p>
+<p>On the AS border routers, <code>ip multicast-routing</code> must be configured, PIM SSM must be configured globally, and PIM-SM on every interface.</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">router</span> <span class="n">bgp</span> <span class="mi">65000</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span> <span class="n">unicast</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span> <span class="n">multicast</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="err">!</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  <span class="n">neighbor</span> <span class="mf">192.0.2.1</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">remote</span><span class="o">-</span><span class="k">as</span> <span class="mi">65001</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span> <span class="n">unicast</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>  <span class="n">neighbor</span> <span class="mf">192.0.2.5</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="n">remote</span><span class="o">-</span><span class="k">as</span> <span class="mi">65001</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span> <span class="n">multicast</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="err">!</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">router</span> <span class="n">bgp</span> <span class="mi">65001</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  <span class="n">neighbor</span> <span class="mf">192.0.2.2</span> <span class="n">remote</span><span class="o">-</span><span class="k">as</span> <span class="mi">65000</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  <span class="n">neighbor</span> <span class="mf">192.0.2.6</span> <span class="n">remote</span><span class="o">-</span><span class="k">as</span> <span class="mi">65000</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span> <span class="n">unicast</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">neighbor</span> <span class="mf">192.0.2.2</span> <span class="n">activate</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">no</span> <span class="n">neighbor</span> <span class="mf">192.0.2.5</span> <span class="n">activate</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="err">!</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>  <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span> <span class="n">multicast</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="n">neighbor</span> <span class="mf">192.0.2.5</span> <span class="n">activate</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="err">!</span>
+</code></pre></div>
+<p><code>show bgp ipv4 multicast</code> to look at IPv4 multicast BGP RIB.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ip multicast-routing
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>!
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>interface Gi0/1
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>  description Backbone-other-Routers
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>  ip pim sparse-mode
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>!
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>interface Gi0/2
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>  description Host-facing-LAN
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>  ip pim sparse-mode
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>  ip igmp version 3
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>!
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>ip pim ssm default
+</code></pre></div>
+<h3 id="asm-for-interdomain">ASM for interdomain</h3>
+<p><strong>MSDP is IPv4 only.</strong></p>
+<ol>
+<li>Source starts sending. FHR sends PIM Register to local AS1 RP.</li>
+<li>Local AS1 RP informs MSDP peers about new source G-1.</li>
+<li>AS2 receiver joins (*,G-1) via IGMP</li>
+<li>PIM join travels to AS2 RP</li>
+<li>AS2 RP has learned about G-1 source from AS1 RP via MSDP, connects receiver to source G-1</li>
+<li>MDT gets built interdomain</li>
+</ol>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">ip</span> <span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="n">extended</span> <span class="n">MSDP_ACL</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>  <span class="n">accept</span> <span class="n">ip</span> <span class="n">host</span> <span class="mf">239.1.1.2</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>  <span class="n">accept</span> <span class="n">ip</span> <span class="n">host</span> <span class="mf">239.1.1.1</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="err">!</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">ip</span> <span class="n">msdp</span> <span class="n">peer</span> <span class="mf">192.0.2.1</span> <span class="n">connect</span><span class="o">-</span><span class="n">source</span> <span class="n">Loopback0</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="n">ip</span> <span class="n">msdp</span> <span class="n">originator</span><span class="o">-</span><span class="nb">id</span> <span class="n">Loopback0</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">ip</span> <span class="n">msdp</span> <span class="n">ttl</span><span class="o">-</span><span class="n">threshold</span> <span class="mf">192.0.2.1</span> <span class="mi">140</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="n">ip</span> <span class="n">msdp</span> <span class="n">sa</span><span class="o">-</span><span class="nb">filter</span> <span class="ow">in</span> <span class="mf">192.0.2.1</span> <span class="nb">list</span> <span class="n">MSDP_ACL</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">ip</span> <span class="n">msdp</span> <span class="n">sa</span><span class="o">-</span><span class="nb">filter</span> <span class="n">out</span> <span class="mf">192.0.2.1</span> <span class="nb">list</span> <span class="n">MSDP_ACL</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="n">ip</span> <span class="n">msdp</span> <span class="n">password</span> <span class="n">peer</span> <span class="mf">192.0.2.1</span> <span class="n">Cisco123</span>
+</code></pre></div>
+<p>https://www.cisco.com/c/en/us/td/docs/routers/asr9000/software/24xx/multicast/configuration/guide/b-multicast-cg-asr9k-24xx/Implementing-layer3-multicast.html#task_2948296</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">ipv4</span> <span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="mi">100</span> <span class="mi">20</span> <span class="n">permit</span> <span class="mf">239.1.1.1</span> <span class="mf">0.0.0.0</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">ipv4</span> <span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="mi">100</span> <span class="mi">30</span> <span class="n">permit</span> <span class="mf">239.1.1.2</span> <span class="mf">0.0.0.0</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="err">!</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">router</span> <span class="n">msdp</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>  <span class="n">originator</span><span class="o">-</span><span class="nb">id</span> <span class="n">Lo0</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>  <span class="n">peer</span> <span class="mf">192.0.2.2</span> 
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    <span class="n">connect</span><span class="o">-</span><span class="n">source</span> <span class="n">Lo0</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="n">ttl</span><span class="o">-</span><span class="n">threshold</span> <span class="mi">8</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="n">password</span> <span class="n">Cisco123</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>    <span class="n">remote</span><span class="o">-</span><span class="k">as</span> <span class="mi">65001</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>  <span class="n">sa</span><span class="o">-</span><span class="nb">filter</span> <span class="ow">in</span> <span class="nb">list</span> <span class="mi">100</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>  <span class="n">sa</span><span class="o">-</span><span class="nb">filter</span> <span class="n">out</span> <span class="nb">list</span> <span class="mi">100</span>
+</code></pre></div>
+<p><code>show msdp summary</code> to look at peers.</p>
+<p><code>show msdp sa-cache</code> to see what multicast state is being exchange.</p>
+<p><code>show msdp rpf</code> to view RPF lookup associated.</p>
+<h2 id="multicast-architecture">Multicast architecture</h2>
+<p>ASM deployments depend on RP placement and function, so ensuring HA is critical. </p>
+<p>Dynamic RP configurations are many-- <code>Auto-RP</code>, <code>BSR</code>, <code>Anycast RP</code>, but there are often drawbacks and restrictions.</p>
+<p>There is also Multicast NSF with stateful switchover (SSO).</p>
+<h3 id="auto-rp">Auto-RP</h3>
+<p>Cisco-only. It automates the distribution of group-to-RP mappings in a PIM network, or said another way, it allows routers to find RPs automatically for generic or specific groups. Highest IP address for any group via RP's will win and be chosen. Actually... that is kind of shit for design.</p>
+<p>This simplifies the configuration, and it can provide HA and other optimal design. It allows for load distribution, plus facilitates the arrangement of RPs according to the location of group participants. </p>
+<p>Configure routers as <strong><em>candidate RPs</em></strong> so that they can announce their interest (via <code>rp-announce</code> on 224.0.1.39) in operating as an RP for certain group ranges. </p>
+<p>Additionally, a router must be designated as an <strong><em>RP-mapping agent</em></strong> that receives the <code>rp-announce</code> messages from the candidate RPs, and arbitrates conflicts. The RP-mapping agent sends the consistent group-to-RP mappings to all remaining routers via <code>rp-discovery</code> on 224.0.1.40. Thus, all routers automatically determine which RP to use for the groups they support. </p>
+<p>A router can be configured to be both Candidate RP and mapping agents at the same time. </p>
+<p><code>rp-announce</code> message contains:</p>
+<ul>
+<li>group IP address range, default is 224/4</li>
+<li>IP address of candidate RP</li>
+<li>a holdtime used to detect failures, which is 3x the announcement interval (180s in total)</li>
+</ul>
+<h3 id="configuring-auto-rp">Configuring Auto-RP</h3>
+<p>For IOS-XE, there is a "strange" config requirement. Auto-RP requires PIM-DM to work. </p>
+<p>You could enable PIM-DM, but that's not a good idea, given how it works. So IOS-XE uses <code>ip pim autorp listener</code> and <code>ip pim autorp listener</code> to ensure Auto-RP 224.0.1.39 <code>rp-announce</code> and 224.0.1.40 <code>rp-discovery</code> are forwarded.</p>
+<p>IOS-XR does not support PIM-DM, but it has builtin exceptions to forward these.</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="err">!</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">router</span> <span class="n">pim</span> <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>  <span class="n">auto</span><span class="o">-</span><span class="n">rp</span> <span class="n">candidate</span><span class="o">-</span><span class="n">rp</span> <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">scope</span> <span class="mi">31</span> <span class="n">group</span><span class="o">-</span><span class="nb">list</span> <span class="mi">2</span> <span class="n">bidir</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>  <span class="n">auto</span><span class="o">-</span><span class="n">rp</span> <span class="n">mapping</span><span class="o">-</span><span class="n">agent</span> <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">scope</span> <span class="mi">20</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="err">!</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">ipv4</span> <span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="mi">2</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>  <span class="n">permit</span> <span class="mf">239.1.1.1</span> <span class="mf">0.0.0.0</span>
+</code></pre></div>
+<p><code>scope</code> = TTL hops</p>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="err">!</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="c1"># the below is required for IOS-XE to enable forwarding of 224.0.1.39 and 224.0.1.40 in dense mode on all multicast enabled interfaces. </span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">ip</span> <span class="n">pim</span> <span class="n">autorp</span> <span class="n">listener</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="err">!</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="n">ip</span> <span class="n">pim</span> <span class="n">send</span><span class="o">-</span><span class="n">rp</span><span class="o">-</span><span class="n">announce</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">1</span> <span class="n">scope</span> <span class="mi">31</span> <span class="n">group</span><span class="o">-</span><span class="nb">list</span> <span class="mi">10</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="n">ip</span> <span class="n">pim</span> <span class="n">send</span><span class="o">-</span><span class="n">rp</span><span class="o">-</span><span class="n">discovery</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">1</span> <span class="n">scope</span> <span class="mi">20</span> <span class="n">group</span><span class="o">-</span><span class="nb">list</span> <span class="mi">20</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="err">!</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="n">ip</span> <span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="n">standard</span> <span class="mi">10</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>  <span class="n">permit</span> <span class="mf">239.1.1.1</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="err">!</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="n">ip</span> <span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="n">standard</span> <span class="mi">20</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>  <span class="n">permit</span> <span class="mf">192.0.2.120</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>  <span class="n">permit</span> <span class="mf">192.0.2.240</span>
+</code></pre></div>
+<p><code>show ip pim rp mapping</code> on mapping-agent to look at specific RP's and their group announcements.</p>
+<h3 id="some-best-practice-notes">Some best practice notes</h3>
+<p>Like unicast, you should secure your multicast boundary, this includes control plane multicast traffic like Auto-RP. Explicitly filter and control which groups are allowed to cross domains and deny everything else.</p>
+<p>If there are RP's outside your control that you want to enable Auto-RP for some specific groups to work for, you can configure this...</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>interface GigabitEthernet0/0
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a> ip multicast boundary AutoRP-ACL-filter filter-autorp
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>!
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>access-list AutoRP-ACL-filter permit 224.1.1.1
+</code></pre></div>
+<h3 id="pimv2-bootstrap-router">PIMv2 Bootstrap Router</h3>
+<p>RFC 5039; fault tolerant, automated RP discovery and distribution mechanism. It requires PIMv2, which BSR uses for BSR signalling, while Auto-RP can work with v1/v2.</p>
+<p>A single router is elected as the BSR from a collection of candidate BSRs. If the current BSR fails, a new election is triggered. The election mechanism is preemptive based on the priority of the candidate BSR.</p>
+<p>In order to determine the RP for a multicast group, a PIM router maintains a collection of group-to-RP mappings, called the <code>RP-Set</code>. A group-to-RP mapping contains the following elements.</p>
+<ul>
+<li>Multicast group range, expressed as an address and prefix length</li>
+<li>RP priority</li>
+<li>RP address</li>
+<li>Hash mask length</li>
+<li>SM / BIDIR flag</li>
+</ul>
+<p>All configured BSR routers send BSR messages on PIMv2 224.0.0.13, which has a TTL 1. BSR info is propagated via normal PIM methods. </p>
+<p><strong>First</strong>, BSR routers send BSR messages throughout the PIM domain with the address of the BSR candidate sending the message and its priority.</p>
+<p><strong>Second</strong>, all candidate BSR's send their <code>bsr-messages</code> with the <code>candidate</code> label. Similiar to other election protocols, candidates announce themselves until they hear a higher priority. </p>
+<ul>
+<li>If the priority of another candidate BSR is higher, it backs off.</li>
+<li>If the priority of another candidate is lower, it elects itself as the elected BSR.</li>
+<li>If the priority is the same, it decides on the IP address (like in Auto-RP)—higher address wins. </li>
+</ul>
+<p>Next, <strong>third</strong>, RP candidates watch the BSR election waiting for a winner, an <code>elected BSR</code>. When candidate RPs see BSR messages from an elected BSR, they respond unicast to this BSR, with their role as candidate RP all group information they are configured with. </p>
+<p>Finally, <strong>fourth</strong>, the elected BSR sends the resulting RP to group mapping out to the rest of the multicast domain, again using the same PIMv2 BSR messages.</p>
+<p>Other routers utilize the RP-set info</p>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="err">!</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="c1"># for RP-candidates</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">ip</span> <span class="n">pim</span> <span class="n">rp</span><span class="o">-</span><span class="n">candidate</span> <span class="err">$</span><span class="n">interface</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="err">!</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1"># for BSR candidates</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="n">ip</span> <span class="n">pim</span> <span class="n">bsr</span><span class="o">-</span><span class="n">candidate</span> <span class="err">$</span><span class="n">interface</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="err">!</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="n">interface</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">1</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>  <span class="n">description</span> <span class="n">Interdomain</span> <span class="n">border</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>  <span class="c1"># stops bsr packets on inter-domain border</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>  <span class="n">ip</span> <span class="n">pim</span> <span class="n">bsr</span><span class="o">-</span><span class="n">border</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="err">!</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">router</span> <span class="n">pim</span> <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>  <span class="c1"># for RP-candidates</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>  <span class="n">bsr</span> <span class="n">candidate</span><span class="o">-</span><span class="n">rp</span> <span class="err">$</span><span class="n">ip_address</span> <span class="n">priority</span> <span class="mi">200</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>  <span class="err">!</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>  <span class="c1"># for BSR candidates</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>  <span class="n">bsr</span> <span class="n">candidate</span><span class="o">-</span><span class="n">bsr</span> <span class="err">$</span><span class="n">ip_address</span> <span class="n">priority</span> <span class="mi">100</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>  <span class="n">interface</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    <span class="c1"># stops bsr packets on inter-domain border</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="n">bsr</span><span class="o">-</span><span class="n">border</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>  <span class="err">!</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="err">!</span>
+</code></pre></div>
+<p>There is no specific configuration required on all other routers, except enabling of multicast globally and on the respective interfaces. Since BSR messages are normal PIM messages, a router will interpret them on any multicast enabled interface.</p>
+<p><code>show pim bsr election</code> -- list of candidate BSRs
+<code>show pim bsr rp-cache</code> -- all available RPs</p>
+<p><br></p>
+<h3 id="anycast-rp">Anycast RP</h3>
+<p>RP's can be anycasted with Multicast Source Discovery Protocol (MSDP) to provide RP redundancy, rapid RP failover, and RP load balancing. This concept is defined in RFC 3446.</p>
+<p>MSDP maintains sources state between anycasted RP's. Therefore, MSDP is required to do source active announcements between RPs. This way both RPs know mutually the sources on the other RP and can construct a joint MDT. </p>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="err">!</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">interface</span> <span class="n">Loopback0</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>  <span class="n">ip</span> <span class="n">add</span> <span class="mf">10.0.0.1</span> <span class="mf">255.255.255.255</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="err">!</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">interface</span> <span class="n">Loopback1</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>  <span class="n">ip</span> <span class="n">add</span> <span class="mf">10.1.1.1</span> <span class="mf">255.255.255.255</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="err">!</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">ip</span> <span class="n">msdp</span> <span class="n">peer</span> <span class="mf">10.0.0.2</span> <span class="n">connect</span><span class="o">-</span><span class="n">source</span> <span class="n">Loopback0</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="n">ip</span> <span class="n">msdp</span> <span class="n">originator</span><span class="o">-</span><span class="nb">id</span> <span class="n">Loopback0</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="n">ip</span> <span class="n">pim</span> <span class="n">rp</span><span class="o">-</span><span class="n">address</span> <span class="mf">10.1.1.1</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">interface</span> <span class="n">Loopback0</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>  <span class="n">ip</span> <span class="n">add</span> <span class="mf">10.0.0.2</span> <span class="mf">255.255.255.255</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="n">interface</span> <span class="n">Loopback1</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>  <span class="n">ip</span> <span class="n">add</span> <span class="mf">10.1.1.1</span> <span class="mf">255.255.255.255</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="err">!</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="n">router</span> <span class="n">msdp</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>  <span class="n">peer</span> <span class="mf">10.0.0.1</span> <span class="n">connect</span><span class="o">-</span><span class="n">source</span> <span class="n">Loopback0</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>  <span class="n">originator</span><span class="o">-</span><span class="nb">id</span> <span class="n">Loopback0</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="n">router</span> <span class="n">pim</span> <span class="n">address</span><span class="o">-</span><span class="n">family</span> <span class="n">ipv4</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>  <span class="n">rp</span><span class="o">-</span><span class="n">address</span> <span class="mf">10.1.1.1</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="err">!</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.path", "navigation.indexes", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>

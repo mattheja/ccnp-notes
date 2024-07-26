@@ -1,0 +1,1503 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Route%20Redistribution/">
+      
+      
+        <link rel="next" href="../SR%20TE/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Routing Policy and Manipulation - Notes for CCNP SPRI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#routing-policy-and-manipulation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Notes for CCNP SPRI" class="md-header__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes for CCNP SPRI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Routing Policy and Manipulation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_3">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_4">
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../BGP/" class="md-tabs__link">
+        
+  
+    
+  
+  Scaling BGP
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ISIS/" class="md-tabs__link">
+        
+  
+    
+  
+  IS-IS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MPLS%20LDP/" class="md-tabs__link">
+        
+  
+    
+  
+  Implementing and Verifying MPLS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MPLS%20TE/" class="md-tabs__link">
+        
+  
+    
+  
+  MPLS TE
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Multicast/" class="md-tabs__link">
+        
+  
+    
+  
+  Multicast
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../OSPF/" class="md-tabs__link">
+        
+  
+    
+  
+  OSPF
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Route%20Redistribution/" class="md-tabs__link">
+        
+  
+    
+  
+  Route Redistribution
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Routing Policy and Manipulation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../SR%20TE/" class="md-tabs__link">
+        
+  
+    
+  
+  SR Traffic Engineering
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Segment%20Routing/" class="md-tabs__link">
+        
+  
+    
+  
+  Segment Routing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Notes for CCNP SPRI" class="md-nav__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Notes for CCNP SPRI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BGP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scaling BGP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ISIS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IS-IS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MPLS%20LDP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implementing and Verifying MPLS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MPLS%20TE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MPLS TE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multicast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multicast
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OSPF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSPF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Route%20Redistribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Route Redistribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Routing Policy and Manipulation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Routing Policy and Manipulation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#routing-protocol-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Routing Protocol Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Routing Protocol Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtering-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filtering Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtering-in-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering in OSPF:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering-in-is-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering in IS-IS:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering-in-bgp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering in BGP:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#as-path-based-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      AS Path-based filtering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AS Path-based filtering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ios-xe-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      IOS/-XE Configurations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-maps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route maps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Route maps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syntax
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing-policy-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      Routing Policy Language
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Routing Policy Language">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rpl-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      RPL Syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpl-attributes-and-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      RPL Attributes and Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ospf-and-is-is-attributes-and-parameters-using-rpl" class="md-nav__link">
+    <span class="md-ellipsis">
+      OSPF and IS-IS attributes and parameters using RPL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpl-parameterization" class="md-nav__link">
+    <span class="md-ellipsis">
+      RPL Parameterization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RPL Parameterization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#characteristics-of-the-rpl-passed-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Characteristics of the RPL passed parameters:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#value-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Value Sets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing-policies-application-maintenance-monitoring-and-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Routing Policies Application, Maintenance, Monitoring, and Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Routing Policies Application, Maintenance, Monitoring, and Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maintaining-route-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintaining route policies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-maps-to-rpl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route Maps to RPL
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SR%20TE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SR Traffic Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Segment%20Routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Segment Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="routing-policy-and-manipulation">Routing Policy and Manipulation</h1>
+<h2 id="routing-protocol-tools">Routing Protocol Tools</h2>
+<p>For security and performance reasons, you will always use advanced filtering and policy mechanisms with BGP.</p>
+<p>Filtering can be performed at these points:</p>
+<ul>
+<li><em>Incoming</em> updates as they are received from neighbors but before they are installed into protocol and RIB</li>
+<li><em>Outgoing</em> updates before they are sent to neighbor</li>
+<li><em>Redistributed</em> updates from other protocols</li>
+</ul>
+<p>You filter routing info based on:</p>
+<ul>
+<li>Prefix and prefix length</li>
+<li>Then update parameters (attributes) that are specific to that protocol</li>
+</ul>
+<p>Then filtering uses these tools in routing software:</p>
+<ul>
+<li>Prefix lists:<ul>
+<li>Used for prefix-based filtering or route matching</li>
+</ul>
+</li>
+<li>AS path access lists:<ul>
+<li>Used in BGP for filtering or route matching based on BGP AS path attribute</li>
+</ul>
+</li>
+<li>Route maps:<ul>
+<li>Implements complex routing policies</li>
+<li>Can also be used to filter </li>
+</ul>
+</li>
+<li>RPL (Route Policy Language):<ul>
+<li>Replaces route maps on IOS XR, more complex feature rich language</li>
+</ul>
+</li>
+</ul>
+<h3 id="filtering-examples">Filtering Examples</h3>
+<p>So at a high level, we implement filtering because of:</p>
+<ol>
+<li>Security</li>
+<li>Cost</li>
+<li>Performance</li>
+</ol>
+<p>And then filter:</p>
+<ul>
+<li>Particular Routes</li>
+<li>Specific characteristics of the routes</li>
+</ul>
+<p>Different protocols perform filtering very differently... </p>
+<h4 id="filtering-in-ospf">Filtering in OSPF:</h4>
+<ul>
+<li>Prefix and prefix length</li>
+<li>LSA type (internal, external, NSSA-external)</li>
+<li>route source</li>
+</ul>
+<p><strong><em>Done on ABR or ASBR's</em></strong></p>
+<p>Filtering on ASBR for redistributed routes:</p>
+<ul>
+<li>Static and connected routes</li>
+<li>Routes from other OSP processes</li>
+<li>Routes from other routing protocols</li>
+</ul>
+<p>Filter on ABR against interarea routes using prefix lists on which routes can be shared between areas.</p>
+<h4 id="filtering-in-is-is">Filtering in IS-IS:</h4>
+<p>Similiar characteristics as OSPF. Except you can use prefix lists, route maps, or routing policies to filter an exchange of routing info between IS-IS levels</p>
+<ul>
+<li>Filter on Level 1-2 routers<ul>
+<li>Filter L1 to L2 routes.</li>
+<li>Conditional L2 to L1 route leaking.</li>
+</ul>
+</li>
+<li>Filtering on redistributing routers (any level) to filter external routes.</li>
+</ul>
+<h4 id="filtering-in-bgp">Filtering in BGP:</h4>
+<p>You will almost always/should/must filter in BGP. The type and direction depends on the neighbor (internal, customer, or external).</p>
+<p>Inbound filtering examples:</p>
+<ul>
+<li>permit in only customer routes for end customers</li>
+<li>permit in a specific list of routes from subordinate SP's, SP's that are peering at an exchange</li>
+<li>permit the complete inet routing info between upstream service providers</li>
+</ul>
+<p>Outbound filtering examples:</p>
+<ul>
+<li>permit only the default route with single-homed customers</li>
+<li>permit default route and local routes, such as for multihomed customers using this service as a backup route but want access to local destinations</li>
+<li>Permit all routes</li>
+</ul>
+<p>Commonly filtered on attributes with BGP:</p>
+<ul>
+<li>Prefix and prefix length</li>
+<li>Next-hop attribute based on BGP next-hop address</li>
+<li>Route source address</li>
+<li>AS path attribute</li>
+<li>Local preference</li>
+<li>BGP communities </li>
+</ul>
+<p>Some of the most commonly implemented policies are:</p>
+<ul>
+<li>Customers using AS path prepending to make one path less desirable than another when multihomed</li>
+<li>Customers can alternatively signal to their upstream providers prefernces using BGP communities. The upstream SP will then translate these communities received to some BGP attribute (like AS path prepending or local preference).</li>
+<li>SP's can use BGP local preference to influence route selection internally to prefer one path over another</li>
+</ul>
+<h2 id="as-path-based-filtering">AS Path-based filtering</h2>
+<p>IOS/XE supports this with AS path access lists. IOS-XR supports similiar filtering with RPL.</p>
+<h3 id="ios-xe-configurations">IOS/-XE Configurations</h3>
+<p>Uses AS path access lists, then something is done with this.</p>
+<p>The syntax is:</p>
+<ul>
+<li>use a unique number.</li>
+<li>regex used to match based on the contents of the AS path attribute.</li>
+<li>AS path attribute processed as a string of characters.</li>
+</ul>
+<p><code>ip as-path access-list [acl-number] {permit|deny} [regex string with AS numbers]]</code></p>
+<p>An example like <code>ip as-path access-list 1 permit ^$</code> matches any route that has an empty AS path attribute. Only locally originated routes have an empty AS path attribute, so this will only send local originated routes. This is one method to prevent accidental transit AS. </p>
+<h2 id="route-maps">Route maps</h2>
+<p>Route maps are a relatively simple language to support complex policies + filtering</p>
+<p>Some characteristics:</p>
+<ul>
+<li>Allow you to write complex policies</li>
+<li>Uniquely identified with case-sensitive names</li>
+<li>Each route map consists of one or more statements</li>
+<li>Each statement contains zero or more <code>match</code> commands</li>
+<li>Each statement contains zero or more <code>set</code> commands used to modify routing updates</li>
+</ul>
+<p>Route map processing:</p>
+<ol>
+<li>Match y/n? </li>
+<li>If Match, then permit y/n?</li>
+<li>If permit, then set y/n?</li>
+<li>If permit yes or no, then send</li>
+</ol>
+<p>Route maps have an implicit deny at the end. If there are no matches, then routes are dropped.</p>
+<h3 id="syntax">Syntax</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>route-map (map-tag) [permit|deny] {sequence number}
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  match (condition)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  match (condition)
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  set (parameter-value)
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  set (parameter-value)
+</code></pre></div>
+<p>If 2 match statements, then they are evaluated as such:</p>
+<ul>
+<li>match conditions of same type are evaluated using logical <code>OR</code> operator </li>
+<li>match condtions of <em>different</em> types are evaluated using logical <code>AND</code> operator</li>
+</ul>
+<p>If there is no <code>match</code> command, then it matches anyways.</p>
+<p>There are additional route map options:
+- <code>continue</code> to jump to another statement instead of exiting or impled continue if no sequence number specified. (More here)[https://www.cisco.com/c/en/us/td/docs/routers/ios/config/17-x/ip-routing/b-ip-routing/m_irg-route-map-continue.html]
+    - Useful when gathering policy (matches and sets) into a single phrase or some more logical constructs (can't think of any examples...)
+- <code>policy-list</code> in match statements, like <code>match policy-list (other-route-map)</code> which has a list of permit lines with matches and other logic</p>
+<p>To implement a permit all logic, you would do something like:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>route-map Example_Peering_Ngbh permit 10
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a> match ip address prefix-list preferred_prefixes
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a> set local-preference 200
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>!
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>route-map Example_Peering_Ngbh permit 1000
+</code></pre></div></p>
+<h2 id="routing-policy-language">Routing Policy Language</h2>
+<p>RPL has these characteristics:</p>
+<ul>
+<li>Replaces route maps in IOX-XR</li>
+<li>Designed for large-scale routing configs</li>
+<li>"Simple", powerful language, designed to process routing updates</li>
+<li>Addresses the deficiencies of route maps...<ul>
+<li>Better modularity and reusability</li>
+<li>Parameterization</li>
+<li>Nesting of policies and conditions</li>
+<li>Greater matching and reusable value sets</li>
+</ul>
+</li>
+</ul>
+<p>Has the notion of sets: prefix-sets, community-sets, as-path-sets, extcommunity-sets, and rd-sets that represent groups of IPv4/IPv6 prefixes, etc, route distinguishers values. </p>
+<h3 id="rpl-syntax">RPL Syntax</h3>
+<p>Each routing policy is defined with a case-sensitive name. The policy is defined within <code>route-policy $name</code> and <code>end-policy</code>. </p>
+<p>A very simple "allow all" policy:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>route-policy PermitAll
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  pass
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>end-policy
+</code></pre></div></p>
+<p>There is a <strong>process for pass/drop</strong>:</p>
+<ul>
+<li>default action is drop, so an empty policy implicitly denies all</li>
+<li>an explicit <code>pass</code> by itself will forward all routes without modification</li>
+<li>an explicit <code>drop</code> by itself will deny/dropp all, even if there are other statements preceding or other statements in the policy</li>
+<li>a <code>set</code> command will modify attributes accordingly and pass all routes</li>
+</ul>
+<p>RPL has a number of operators to compare attributes:</p>
+<p><code>eq</code> - attribute numerically equal to specified value
+<code>le</code> / <code>ge</code> - attribute is numerically lower/greater or equal to the specified value
+<code>is</code> - attribute is equal to specified value. <em>use</em> this for nonnumerical values
+<code>in</code> - attribute is contained in a value set</p>
+<p>Then RPL has many attribute-specific operators, like AS path matching.</p>
+<p>Also basic boolean operators: <code>AND</code>, <code>OR</code>, <code>NOT</code></p>
+<p>An example:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>route-policy transit-LocalPref
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  if med eq 10 and not local-preference eq 100 then
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    set local-preference 300
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  elseif med eq 20 or local-preference eq 200 then
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    set local-preference 200
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  else
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    set local-preference 150
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>  endif
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>end-policy
+</code></pre></div></p>
+<p>There are two types of nesting characteristics: </p>
+<ol>
+<li>
+<p>Nesting conditional statements
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>route-policy OuterRP
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  if med eq 10 then
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    if local-preference eq 200 then
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>      set community (1:10) additive
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    endif
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>  endif
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>end-policy
+</code></pre></div></p>
+</li>
+<li>
+<p>Nested hierarchical 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>route-policy Set10C
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  if local-preference eq 100 then
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    set community (1:10) additive
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>  endif
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>end-policy
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>route-policy MatchMED
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>  if med eq 10 then
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    apply Set10C
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>  endif
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>end-policy
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="rpl-attributes-and-parameters">RPL Attributes and Parameters</h3>
+<p>Within RPL, to assign values to attributes and parameters, use <code>set</code>. There are some intricacies that are important when building RPL:   </p>
+<p>All <code>set</code> statements are processed upon completion of the route-policy.</p>
+<p>The last applied <code>set</code> wins if they match against the same unique parameter, such as local preference</p>
+<p>For non-unique parameters, like AS-path, all <code>set</code> commands are evaluated in order</p>
+<p>When working with communities, remember that:</p>
+<ul>
+<li>You can assign one or more values to the BGP community attribute</li>
+<li>If you use <code>additive</code>, new communities are added to existing BGP community attribute</li>
+<li>If you do not use `addititive, then existing BGP communities are overwritten </li>
+<li><code>delete</code> let's you delete some or all BGP community attributes</li>
+</ul>
+<p>Some other commonly used <code>set</code> commands with BGP:</p>
+<p><code>set local-preference [*|+|-] (value)</code> - syntax for setting local-pref</p>
+<p><code>set med {[+|-] value | igp-cost | max-reachable}</code> - for setting multi-exit discriminator (med)</p>
+<p><code>set dampening [halflife value] [max-suppres value] [reuse value] [suppress value]</code> - route-flap dampening</p>
+<p><code>prepend as-path {AS | most-recent | own-as} [count]</code> - AS-path prepending</p>
+<p><code>suppress-route</code> - used when doing route aggregation, will suppress if aggregated</p>
+<p><code>unsuppress-route</code> - same as above, will unsuppress if agg</p>
+<h3 id="ospf-and-is-is-attributes-and-parameters-using-rpl">OSPF and IS-IS attributes and parameters using RPL</h3>
+<p>These OSPF parameters can be modified with <code>set</code>:</p>
+<p><code>set metric-type {type 1|type 2}</code> to change the OSPF metric type
+<code>set ospf-metric [value]</code> to modify the OSPF metric
+<code>set tag [value]</code> to tag OSPF routes</p>
+<p>These IS-IS parameters can be modified:</p>
+<p><code>set metric-type {external|internal}</code> to change IS-IS metric type 
+<code>set isis-metric [value]</code> to set the IS-IS metric
+<code>set level {level-1 | level-2 | level-1-2}</code> to set IS-IS level for redistributed routes
+<code>set tag [value]</code> to tag IS-IS routes</p>
+<h3 id="rpl-parameterization">RPL Parameterization</h3>
+<p>Use parameters to make your RPL configs modular and more readable. You can re-use parameters globally and within individual policies/nested policies.</p>
+<p>You can also "pass" parameters into a nested routing policy, both using global parameters and nested routing policies</p>
+<p>Global parameters are defined with <code>policy-global</code>, and they'll be available for all policies to use.</p>
+<p>If there is a global and local parameter name "collision" then the local parameter takes precendence.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>policy-global
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  # global vars
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  AS &#39;65001&#39;,
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  Lo0 &#39;10.100.70.1&#39;,
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  EBGP1 &#39;192.168.2.1&#39;,
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  EBGP2 &#39;192.168.3.1&#39;,
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  upstream-weight &#39;5&#39;,
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>  upstream-LP &#39;100&#39;,
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>  DefMED &#39;0&#39;
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>end-global
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>route-policy Set-Upstream
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  if as-path originates-from &#39;$AS&#39; then
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    set med $DefMED
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  endif
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>end-policy
+</code></pre></div></p>
+<h4 id="characteristics-of-the-rpl-passed-parameters">Characteristics of the RPL passed parameters:</h4>
+<ul>
+<li>Declare parameters when creating a routing policy.</li>
+<li>Nesting policies with parameters allows for greater modularization and optimization of policies.</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>route-policy SetMED($med,$as)
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  if as-path originates from &#39;$as&#39; then
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    set med $med
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>  else
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    set med max-reachable
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>  endif
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>end-policy
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>!
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>route-policy ProcessUpdates
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>  if as-path neighbor-is &#39;1299&#39; then 
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    apply SetMED(50,1299)
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>  elseif as-path neighbor-is &#39;6939&#39; then
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    apply SetMED (100,6939)
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>  endif
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>end-policy
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>!
+</code></pre></div></p>
+<h3 id="value-sets">Value Sets</h3>
+<p>In general programming sense, a <code>set</code> is an unordered collection of unique elements. </p>
+<p>RPL provides sets as containers for groups of values for matching purposes. </p>
+<ul>
+<li>Used in conditional expressions for matching</li>
+<li>You can create inline sets for one-time use</li>
+<li>You can create named sets for reusability</li>
+</ul>
+<p>There are 5 kinds of sets:</p>
+<ol>
+<li>AS-path set <code>as-path-set</code><ul>
+<li>An AS path set can contain one or more regex paths, like <code>ios-regex ^7922_10999</code></li>
+</ul>
+</li>
+<li>Community set <code>community-set</code></li>
+<li>Extended community set <code>extcommunity-set</code></li>
+<li>Prefix set <code>prefix-set</code></li>
+<li>Route distinguisher (RD) set <code>rd-set</code></li>
+</ol>
+<p>In-line set example:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>route-policy RP-inline-example
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>  if attribute in (value1, value2, ...)
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>then
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>  set local-preference 150
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>endif
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>end-policy
+</code></pre></div></p>
+<p>Named set example:
+<code>xy-set</code> is stand-in for any of the various types
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>xy-set set-name
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>  value1,
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>  value2
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>end-set
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>!  
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>route-policy RP-named-example
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>  if attr in set-name then
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>    set local-preference 200
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>  endif
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>end-policy
+</code></pre></div></p>
+<p><strong>AS-path Sets</strong></p>
+<ul>
+<li>Can contain one or more AS path regex</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>as-path-set OutboundAvoids
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>  ios-regex &#39;_10$&#39;,   # originates-from path
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>  ios-regex &#39;^6939_&#39;,  # neighbor-is path
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>  ios-regex &#39;_174_&#39;,  # passes-through ASN
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>  ios-regex &#39;^3356_&#39;  
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>!
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>route-policy RP
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>  if as-path in OutboundAvoids then
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    set local-preference 90
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>  endif
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>end-policy
+</code></pre></div>
+<p>Regex can be resource expensive, so alternatively, there are predefined AS path matching rules</p>
+<p><code>neighbor-is path</code>: matches based on first ASN in the AS path, same as regex '^path_‘</p>
+<p><code>originates-from path</code>: matches based on last ASN in the AS path, same as regex '_path$'</p>
+<p><code>passes-through ASN</code>: matches based on ASN anywhere in the AS path, same as regex  '_path_‘)</p>
+<p><code>length len</code>: matches AS paths based on number of ASNs in the path</p>
+<p><code>unique-len len</code>: matches AS paths based on number of unique ASNs in path</p>
+<ul>
+<li>These are used as condition statements in RP, like </li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>if as-path originates-from &#39;100&#39; or as-path originates from &#39;200&#39; then
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>  set local-preference 70
+</code></pre></div>
+<p><strong>Standard Community Sets</strong>:</p>
+<p>A community set holds community values for matching against standard community values, which must be split in half and expressed as two unsigned decimal integers 0-65535, seperated by a colon. </p>
+<p>Characteristics:</p>
+<ul>
+<li>Defined as a global set with <code>community-set</code></li>
+<li>Use one or more comma-seperated match options in CLI<ul>
+<li><code>ios-regex</code> to define regex set membership</li>
+<li>numbered membership matching</li>
+<li>membership matching against well-known standard communities</li>
+</ul>
+</li>
+<li>use <code>match-any</code> operator to match routes that have at least one community in community set</li>
+<li>use <code>match-every</code> operator to match routes where every element of community set matches a community from the route</li>
+<li><code>matches-within</code> operator to match routes where every community <em>from the route</em> matches an element within the set</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>community-set MyComms
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>  ios-regex &#39;64998:10..&#39;
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>  ios-regex &#39;64998:20..&#39;
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>end-set
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>community-set MyComms2
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>  ios-regex &#39;64998:[12]0..&#39;
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>end-set
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>route-policy Comm2LP
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  if community matches-any MyComms then
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    set local-preference 200
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>  endif
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>end-policy
+</code></pre></div></p>
+<p>Both examples <code>community-set</code>'s do the same thing. Also, ranges and wildcards can be used with community-set sets, like:</p>
+<p><code>ASN:num</code>
+<code>ASN:[range]</code>
+<code>ASN:*</code></p>
+<p>Also, well-known communities has identifiers:</p>
+<p><code>internet</code>: matches all communities <em>I am still not entirely certain what this one is... the others are in RFC1997 but not this one?</em>
+<code>local-as</code>: keeps tagged prefixes in the local AS
+<code>no-advertise</code>: prevents tagged prefixes from being advertised to any peer
+<code>no-export</code>: prevents tagged prefixes from being announced to EBGP peers</p>
+<p>like:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>router bgp 64998
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>  address-family ipv4 unicast
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    redistribute connected route-policy NoExport
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>!
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>route-policy NoExport
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>  set community no-export
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>end-policy
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>!
+</code></pre></div></p>
+<p><strong>Extended Community Sets</strong>:</p>
+<p>Same as standard community sets, except contains support for extended communities. It also supports named forms and inline forms. Generally there are 3 types of extended communities sets: <code>cost</code>, <code>soo</code>, <code>rt</code>.</p>
+<p>Characteristics:</p>
+<ul>
+<li><code>extcommunity-set {cost | rt | soo}</code> command</li>
+<li>Then use one or more comma-separated match options with <code>ios-regex</code> or numbered community membership matching</li>
+<li>use <code>match-any</code> operator to match routes that have at least one community in community set</li>
+<li>use <code>match-every</code> operator to match routes where every element of community set matches a community from the route</li>
+<li><code>matches-within</code> operator to match routes where every community <em>from the route</em> matches an element within the set</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>extcommunity-ext rt RtExtCommPolicy
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>  ios-regex &#39;6500[1..9]:10..&#39;,
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>  65000:*
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>end-set
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>!
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>route-policy ExtCommPolicy
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>  if extcommunity rt matches-any RtExtCommPolicy then
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>    set local-preference 200
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>  endif
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>end-policy
+</code></pre></div>
+<p>A cost set is an extcommunity set used to store cost EIGRP Cost Community type extended community type communities
+An rt set is an extcommunity set used to store BGP Route Target (RT) extended community type communities
+A soo set is an extcommunity set used to store BGP Site-of-Origin (SoO) extended community type communities</p>
+<p><strong>Prefix sets</strong>:</p>
+<p>A prefix-set holds IPv4 or IPv6 prefix match specifications. The most simple to understand. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>prefix-set PrivatePrefixes
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>  10.0.0.0/8 le 32
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>  172.16.0.0/12 le 32
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>  192.168.0.0/16 le 32
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>end-set
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>!
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>prefix-set Core-loopbacks
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>  172.16.1.0/24 eq 32
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>end-set
+</code></pre></div>
+<p><strong>rd set</strong>:</p>
+<p>An rd-set is used to create a set with route distinguisher (RD) elements. An RD set is a 64-bit value prepended to an IPv4 address to create a globally unique Border Gateway Protocol (BGP) VPN IPv4 address.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>rd-set rdset1
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>     10.0.0.0/8:*,
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>     10.0.0.0/8:777,
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>     10.0.0.0:*,
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>     10.0.0.0:777,
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>     65000:*,
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>     65000:777
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>  end-set
+</code></pre></div>
+<h2 id="routing-policies-application-maintenance-monitoring-and-testing">Routing Policies Application, Maintenance, Monitoring, and Testing</h2>
+<p>When building routing policy, it is important to clearly define requirements. Once business and long-term strategy have been defined and reviewed, you should use these 4 steps to create and apply policies:</p>
+<ol>
+<li>design routing policy</li>
+<li>configure routing policy (in a test env first as needed etc)</li>
+<li>test the policy, using <code>show</code> etc</li>
+<li>apply the policy if correct meeting expectations</li>
+</ol>
+<p>When applying route policies, you have to think about the specific routing protocol mechanics and where you can attach the policy. Such as:</p>
+<ul>
+<li>redistribution between any two protocols</li>
+<li>received or sent updates, depending on the limitations of routing protocols (i.e.-- OSPF and ABR's)</li>
+<li>origination of routes in BGP by using network statements or summarization</li>
+<li>injecting routes into the routing table from BGP</li>
+</ul>
+<p>On IOX-XR, when you configure and commit changes, it performs a validity check in two phases:</p>
+<ol>
+<li>basic syntax and value checking when actually hitting enter upon making changes</li>
+<li>then once you commit, policies and changes verified for a given attach point</li>
+<li>for example, if you configure OSPF metrics in a route-policy, you cannot attach it to a policy used for BGP neighbor-in filtering</li>
+</ol>
+<p><code>show rpl</code> or <code>show rpl &lt;$policy&gt; detail</code> or <code>show rpl &lt;$policy&gt; attachpoints</code>.</p>
+<p><code>show bgp route-policy &lt;$policy&gt;</code> can show filtered output for policies </p>
+<h3 id="maintaining-route-policies">Maintaining route policies</h3>
+<p>You cannot edit the routing policy directly with the CLI commands.</p>
+<ul>
+<li>Use available editors through exec mode, like <code>route-policy Upstream-BGP-IN</code> to create and being editing.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>RP/0/RP0/CPU0:P1# edit route-policy Upstream-BGP-IN ?
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>  emacs  to use Emacs editor
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>  nano   to use nano editor
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>  vim    to use Vim editor
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>  &lt;cr&gt;
+</code></pre></div></li>
+</ul>
+<h2 id="route-maps-to-rpl">Route Maps to RPL</h2>
+<p>You generally can map each numbered entry to an <code>if</code> statement, then each route-map <code>match</code> statement is an conditional (<code>if</code>, <code>elif</code>, <code>else</code> etc)</p>
+<p>Route maps with 2 <code>match</code> conditions of same type should be joined into a conditional with <code>OR</code> operator</p>
+<p>Route maps with 2 <code>match</code> conditions of different types should be joined into a condition with <code>AND</code> operator</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.path", "navigation.indexes", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>

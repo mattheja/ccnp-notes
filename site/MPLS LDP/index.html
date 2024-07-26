@@ -1,0 +1,1502 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ISIS/">
+      
+      
+        <link rel="next" href="../MPLS%20TE/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Implementing and Verifying MPLS - Notes for CCNP SPRI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#implementing-and-verifying-mpls" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Notes for CCNP SPRI" class="md-header__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes for CCNP SPRI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Implementing and Verifying MPLS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_3">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_4">
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../BGP/" class="md-tabs__link">
+        
+  
+    
+  
+  Scaling BGP
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ISIS/" class="md-tabs__link">
+        
+  
+    
+  
+  IS-IS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Implementing and Verifying MPLS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MPLS%20TE/" class="md-tabs__link">
+        
+  
+    
+  
+  MPLS TE
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Multicast/" class="md-tabs__link">
+        
+  
+    
+  
+  Multicast
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../OSPF/" class="md-tabs__link">
+        
+  
+    
+  
+  OSPF
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Route%20Redistribution/" class="md-tabs__link">
+        
+  
+    
+  
+  Route Redistribution
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Routing%20Policy/" class="md-tabs__link">
+        
+  
+    
+  
+  Routing Policy and Manipulation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../SR%20TE/" class="md-tabs__link">
+        
+  
+    
+  
+  SR Traffic Engineering
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Segment%20Routing/" class="md-tabs__link">
+        
+  
+    
+  
+  Segment Routing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Notes for CCNP SPRI" class="md-nav__button md-logo" aria-label="Notes for CCNP SPRI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Notes for CCNP SPRI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BGP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scaling BGP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ISIS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IS-IS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Implementing and Verifying MPLS
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Implementing and Verifying MPLS
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mpls-forwarding-structures" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS Forwarding Structures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MPLS Forwarding Structures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#label-distribution-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Label Distribution Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label-switched-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Label switched path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label-allocation-and-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Label Allocation and Distribution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-mpls-steady-state-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      The MPLS Steady State condition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mpls-label-control-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS label control methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gotchas-with-route-summarization-aggregation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gotchas with route summarization, aggregation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpls-forwarding-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS Forwarding Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MPLS Forwarding Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loop-detection-in-mpls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loop Detection in MPLS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link-failure-mpls-convergence-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Link Failure MPLS Convergence Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link-recovery-mpls-convergence-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Link Recovery MPLS Convergence Process
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpls-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS Implementation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MPLS Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mtu-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      MTU Requirements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ldp-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      LDP Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpls-monitoring-and-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS Monitoring and Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpls-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MPLS Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classic-ip-ping-traceroute" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classic IP Ping, Traceroute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mpls-ping-mpls-traceroute" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPLS Ping, MPLS Traceroute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting-and-common-mpls-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting and common MPLS issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unified-mpls-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unified MPLS Implementation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unified MPLS Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unified-mpls-label-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unified MPLS Label Stack
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unified-mpls-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unified MPLS Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MPLS%20TE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MPLS TE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multicast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multicast
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OSPF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSPF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Route%20Redistribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Route Redistribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Routing%20Policy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Routing Policy and Manipulation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SR%20TE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SR Traffic Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Segment%20Routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Segment Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="implementing-and-verifying-mpls">Implementing and Verifying MPLS</h1>
+<h2 id="mpls-forwarding-structures">MPLS Forwarding Structures</h2>
+<p>MPLS adds two functions to an IP network: Label Distribution Protocol (LDP) to exchange labels between routers and a Label Forwarding Information Base (LFIB) to enable routers to forward packets based on their labels in received packets. </p>
+<p>Similiar to how OSPF -&gt; RIB -&gt; FIB, there is LDP -&gt; LIB -&gt; LFIB.</p>
+<p>However, for MPLS to work well, you'll need the whole "SP" stack, with an IGP and BGP to built the control plane</p>
+<p>Some control plane functions within MPLS:</p>
+<ul>
+<li>Either IS-IS or OSPF are used to provide reachability within the AS. </li>
+<li>BGP is used to carry all other routes, such as customer or Internet routing info. MP-BGP can also carry info for non-IP solutions or implement VPN's</li>
+<li>LDP is used to exchange labels for routes learned via the IGP, which enables all destinations in the AS to be reachable with a label switched path (LSP). A LSP is built for every destination based on IGP determined path.</li>
+<li>Resource Reservation Protocol (RSVP) is used with MPLS TE to build LSPs that may diverge from the IGP-determined shortest path in order to improve utilization (reduce congestion) or provide QoS for diff types of traffic.</li>
+</ul>
+<p>Some data plane functions within MPLS:</p>
+<ul>
+<li>
+<p>Based on the contents of the <strong>FIB</strong> for a route lookup, a router will perform two different <em>forwarding</em> functions:</p>
+<ol>
+<li><strong>Ingress Edge Label Switched Router (LSR)</strong>-- if the route in the FIB has a stack of labels associated with it, the packet will be sent as a labeled packet</li>
+<li>If the route has no label, the router will perform normal IP forwarding </li>
+</ol>
+</li>
+<li>
+<p>A router makes label forwarding decisions based on the top label in the stack between the L2 and L3 headers. This is the <strong>LFIB</strong>, and based on the contents of the matching route, a router will do:</p>
+<ol>
+<li><strong>Core LSR</strong>: if the top label is mapped to a next-hop label, the router will replace the top label and the labeled packet will be forwarded</li>
+<li><strong>Egress edge LSR</strong>: upon examination of the top level label, if there is no next-hop label, the router will remove the label and (optionally) perform an IP lookup and forward the IP packet</li>
+</ol>
+</li>
+</ul>
+<h3 id="label-distribution-protocol">Label Distribution Protocol</h3>
+<p>LDP is responsible for populating labels or the forwarding structures used by MPLS.</p>
+<p>FIB == destination networks, next-hops, outgoing interfaces, and L2 pointers is populated from the RIB and ARP cache. The RIB is populated by routing protocols.</p>
+<p>Also, the MPLS label is added to destination networks if outgoing interface is enabled for MPLS and a label has been <em>received from</em> the next-hop router. LDP adds the label to FIB entries, creating the LFIB with locally assigned (incoming) and received from next-hop (outgoing) labels. </p>
+<h3 id="label-switched-path">Label switched path</h3>
+<p>An LSP is a sequence of Label Switched Routers (LSR) that forward labeled packets for a specific Forwarding Equivalence Path (FEC). Each intermediate LSR along the path swaps label along the LSP.</p>
+<p>A FEC is a group of packets that are forwarded along the same path and get the same forwarding treatment.</p>
+<p>So in MPLS unicast forwarding, the FEC's are deteremined by destination networks found in main routing table, and a LSP is created for each entry. </p>
+<p>There is an <strong>exception</strong> for BGP-derived routes. There is a shared label for all BGP routes that share the same next-hop address. All of the core (P) routers run an IGP to learn BGP next-hops. So an IGP populates the routing table in all MPLS routers, then LDP propagates labels for these IGP learned networks to build LSPs.</p>
+<ul>
+<li>LSP's are unidirectional. </li>
+<li>They are built using: (1) IGP to determine shortest path, (2) LDP to allocate and exchange labels</li>
+</ul>
+<p><img alt="Screenshot" src="../img/ldp.png" /></p>
+<h3 id="label-allocation-and-distribution">Label Allocation and Distribution</h3>
+<ol>
+<li>IP routing protocols build the IP routing table</li>
+<li>Each LSR assigns a label (local labels) to every destination in the RIB except for BGP-learned routes for which the label for the next-hop is reused</li>
+<li>LSRs announce their assigned labels to all other LSRs</li>
+<li>Every LSR builds its LIB, LFIB, and FIB data structures based on received labels and chosen best paths</li>
+</ol>
+<p>MPLS uses a liberal label retention mode, which means it will keep labels received LDP peers, even if they are not received from LDP peers even if they are not actively used.</p>
+<p>The LSR's stores labels and related information inside the LIB. This is the control plane for LDP. A route prefix is assigned a locally significant label, which is mapped to a next-hop label learned from downstream neighbor.</p>
+<p>The LFIB contains local labels (which are advertised to upstream neighbors) mapped to next-hop labels, which are received from downstream neighbors. </p>
+<p>MPLS routers locally allocate labels, independently and asynchronously. </p>
+<p>On the edge LSR, next-hops outside the MPLS domain are not assigned a label. Instead, the <code>pop</code> or implicit null label is advertised, which instructs the penultimate router to remove the label when forwarding packets to the egress router. This is the penultimate-hop popping (php).</p>
+<p><strong>Label advertisement</strong>:</p>
+<p>[<code>A</code> Edge LSR] - [<code>B</code> LSR ] - [<code>C</code> LSR ] -- [<code>D</code> Edge LSR]- (network 12.0.0.0/8)</p>
+<ol>
+<li>
+<p>Router <code>B</code> allocates label 25 for network 12.0.0.0/8. The label is stored in <code>B</code> LIB. It is stored as an incoming label in the LFIB. There is no outgoing label for network 12.0.0.0/8 from next-hop router <code>C</code>. Label 25 is advertised to neighbors <code>A</code> and <code>C</code>, regardless of whether or not the neighbor is a next-hop for a destination.</p>
+</li>
+<li>
+<p>Router <code>A</code> allocates label 21 for network 12.0.0.0/8. Label 21 is stored in the LIB and LFIB as incoming label, while label 25 is stored as outgoing label in LFIB and FIB. </p>
+</li>
+<li>
+<p>Router <code>C</code> allocates label 34 for network 12.0.0.0/8. It is stored in the LIB and LFIB as incoming label, then advertised to <code>B</code> and <code>D</code>. Router <code>C</code> also receives a label for 12.0.0.0/8 from router <code>B</code>, even though it is not the next-hop and stores it in the LIB.</p>
+</li>
+<li>
+<p>Router <code>B</code> gets label 34 from <code>B</code> for network 12.0.0.0/8 and stores it in the LIB. Label 34 is the next-hop for destination 12.0.0.0/8, so it is also stored in LFIB as outgoing label. Router <code>B</code> also sets label 34 for 12.0.0.0/8 in FIB b/c this label is from the next-hop.</p>
+</li>
+<li>
+<p>Then on router <code>D</code>, it allocates implicit null for network 12.0.0.0/8, as it is outside the MPLS domain. This implicit null label is also advertised to router <code>C</code> to perform label removal (pop) operation.</p>
+</li>
+<li>
+<p>Router <code>C</code> receives this implicit null label from <code>D</code> and stores it in LIB. This is from the next-hop for 12.0.0.0/8, router <code>C</code> also stores the implicit null label in LFIB as outgoing label. The label for 12.0.0.0/8 to <code>D</code> is also stored in the FIB on router <code>C</code>.</p>
+</li>
+</ol>
+<p>The LSP for 12.0.0.0/8 through A-&gt;B-&gt;C-&gt;D is established. </p>
+<p>So for <strong>packet propagation</strong> through this LSP, it works like:</p>
+<ol>
+<li>
+<p>Router <code>A</code> receives packet destinationed to 12.0.0.0/8. FIB lookup resolves to label 25, which is switched via CEF.</p>
+</li>
+<li>
+<p>Router <code>B</code> receives a packet with a label 25, so LFIB lookup maps incoming label 25 to outgoing label 34 with next-hop router <code>C</code>. This is label-switched via LFIB.</p>
+</li>
+<li>
+<p>Router <code>C</code> receives a packet with label 34. LFIB maps incoming label 34 to outgoing implicit null to next-hop router <code>D</code>. Router <code>C</code> pops the label and forwards the packet to router <code>D</code> by label-switching via LFIB.</p>
+</li>
+<li>
+<p>Router <code>D</code> performs an IP lookup in FIB table to forward packet to destination 12.0.0.0/8.</p>
+</li>
+</ol>
+<p>The PHP or pop with implicit null is the default behavior on Cisco MPLS-enabled routers. If you use <code>explicit null</code>, then there is an additional LFIB lookup on router <code>D</code>. Starting from step 3 above where router <code>D</code> advertised label 47 for 12.0.0.0/8.</p>
+<ol>
+<li>
+<p>Router <code>C</code> receives a packet with label 34. LFIB maps incoming label 34 to outgoing label 47 with next-hop router <code>D</code>. This is label-switched via LFIB.</p>
+</li>
+<li>
+<p>Router <code>D</code> receives packet with lavel 47. LFIB lookup maps incoming label 47 to pop to remove the label, then a FIB lookup for an IP lookup to forward packet to destination 12.0.0.0/8 occurs.</p>
+</li>
+</ol>
+<h3 id="the-mpls-steady-state-condition">The MPLS Steady State condition</h3>
+<p>*<em>Steady State</em> is when all labels are exchanged and the LIB, LFIB, and FIB structures are completely populated. </p>
+<ul>
+<li>It takes longer for LDP to exchange labels compared to routing protocol convergence</li>
+<li>There is no network downtime while LDP exchanges labels since packets can route using the FIB and IP lookups</li>
+<li>Then once steady state is reached, all packets are label-switched (faster, cheaper), except on ingress and egress edge LSR.</li>
+</ul>
+<h3 id="mpls-label-control-methods">MPLS label control methods</h3>
+<p>This is label filtering in LDP. There is incoming and outgoing filtering.</p>
+<ol>
+<li>Outgoing is known as Label Advertisement Control or outbound label filtering. </li>
+<li>Incoming is known as Label Acceptable Control or inbound label filtering.</li>
+</ol>
+<p>Both of these are used to improve scabability and memory-usage or security reasons. </p>
+<p>Inbound label filtering potentially overrides the default behavior to keep remote label binding from all LDP peers for a given prefix, even if the LDP peer is not the next-hop.</p>
+<h3 id="gotchas-with-route-summarization-aggregation">Gotchas with route summarization, aggregation</h3>
+<p>You can have route information for a /24 and then an aggregate /16. MPLS will build LSP's for both routes, and depending on where the summarization boundary is, this can result in an early pop then re-labeling on the next-hop router.</p>
+<p>This should not be an "issue" for the router at the summarization boundary has more specific routes, but if this router does not (like a P router that likely won't have full tables for IP transit or if it has services like MPLS-based VPNs), then these services will fail due to missing routing info or info on the second-layer of MPLS labels. </p>
+<p>So, IGP summarization likely should not be used where:</p>
+<ul>
+<li>MPLS VPNs</li>
+<li>MPLS TE</li>
+<li>Transit BGP where core routers are not running BGP</li>
+</ul>
+<h2 id="mpls-forwarding-operations">MPLS Forwarding Operations</h2>
+<p>Let's look at the forwarding specifics now...</p>
+<p>For review, MPLS adds functionality to the normal IP forwarding by:</p>
+<ul>
+<li>LDP in control plane to allocate and exchange labels</li>
+<li>LFIB is used to forward labeled packets</li>
+<li>FIB table labels IP packets if the next-hop has a label assigned to it</li>
+</ul>
+<p>By default, <strong>IP forwarding</strong> without labels works like:</p>
+<p>A BGP route is inserted into the RIB. OSPF is used to resolve the IP next-hop address used by BGP. The OSPF next-hop is resolved with the fully-connected direct next-hop to point to physical interface.</p>
+<p>CEF is used in the data plane with the FIB and adjancency table. An ARP cache is consulted (or query triggered) if the MAC address is not in the Adj table. </p>
+<p>FIB entries are only generated when there is a change in the RIB, which is then reflected in the FIB. </p>
+<p>For <strong>MPLS Forwarding</strong>, there are two additional tables, the LIB and LFIB.</p>
+<ul>
+<li>As reminder, BGP routes do not get unique labels. They utilize shared labels for each unique BGP next-hop.</li>
+<li>The LFIB table is used in data plane to forward incoming labeled packets.</li>
+</ul>
+<p><img alt="Screenshot" src="../img/MPLS-forwarding.png" /></p>
+<p>The FIB is still the primary forwarding table. If there is a next-hop label present in the FIB, it will add a label to the packet before forwarding (<em>ingress LSR functionality</em>).</p>
+<p>The LFIB table will be used to forward <strong>labeled</strong> packets:</p>
+<ol>
+<li>If next-hop label exists in the LFIB, label will be replaced (swapped). This is <em>core LSR</em> functionality.</li>
+<li>If next-hop label does not exist (pop), then label will be removed, and packet will be forwarded as an IP packet via <em>egress edge LSR</em> functionality.</li>
+</ol>
+<h3 id="loop-detection-in-mpls">Loop Detection in MPLS</h3>
+<p>Most routing loops are prevented by the IGP. MPLS follows IGP shortest paths, and these paths should be loop-free.</p>
+<p>MPLS labels do contain a TTL field is there is a loop (like, misconfigured static route). This TTL value is copied from the IP header, called <code>TTL Propagation</code>, which is enabled by default. 
+    - On ingress, TTL copied from IP header into label header
+    - TTL decremented at each label hop
+    - On egress, TTL is copied from label to IP header</p>
+<p><code>TTL Propagation</code> can be disabled to "hide" the MPLS network from the end user. The labels get a TTL of 255, so there is still loop protection. </p>
+<p>Most commonly, this prevents the core routers from having to reply to traceroute packets to use low TTL's to trigger routers to send ICMP TTL expired for traceroute probes.</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">RTR</span><span class="c1"># conf t</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">RTR</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># mpls ip-ttl-propagate disable</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># no mpls ip propagate-ttl</span>
+</code></pre></div>
+<p>If you disable it, ensure you disable it everywhere to prevent unexpected behavior.</p>
+<h3 id="link-failure-mpls-convergence-process">Link Failure MPLS Convergence Process</h3>
+<p>LDP stores all labels in the LIB, even if they are not used, by default. If the IGP decides that a next-hop is no longer reachable, it will be removed from the FIB. This will remove the associated LIB and LFIB entries too.</p>
+<p>IGB determines another path to next-hop is available, which creates a new FIB entry. This new FIB entry already has a correspoding label in the LIBm so this is used to re-route the LSP.</p>
+<p>This results in MPLS convergence not being constrained by LDP convergence when there is a link failure. <code>Frame-mode MPLS</code> uses liberal label retention, which enables routers to store all labels, even those not used.</p>
+<h3 id="link-recovery-mpls-convergence-process">Link Recovery MPLS Convergence Process</h3>
+<p>So in earlier example, the link that failed comes back up. The IGP determines the new path for the next-hop address, and it updates the FIB accordingly. </p>
+<p>A <code>pop</code> action is used in the LFIB over this new path until LDP establishes labels between the two routers. IP forwarding is used until a new next-hop label is available. <em>HOWEVER</em>, it is common for core LSR's to not have full tables (so IP lookups fail), so certain networks could be unreachable until LDP converges between routers.</p>
+<p>Cisco MPLS TE can be used to prevent long downtime when a link fails or when it is recovering.</p>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">router</span><span class="c1"># show ip cef $prefix detail</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">router</span><span class="c1"># show mpls forwarding-table $prefix</span>
+</code></pre></div>
+<p>These can help identify next-hops and associated labels</p>
+<h2 id="mpls-implementation">MPLS Implementation</h2>
+<p>You must have a functional IP network with addressing and routing before adding MPLS. </p>
+<h3 id="basic-configuration">Basic configuration</h3>
+<p>IOS-XR:</p>
+<ul>
+<li>Enable LDP on an interface under MPLS LDP configuration mode</li>
+<li>CEF is mandatory, it does not need to be enabled</li>
+</ul>
+<p>IOS-XE:</p>
+<ul>
+<li>MPLS forwarding is enabled when you enable MPLS in interface config mode</li>
+<li>CEF is enabled by default on modern platforms, IOS/IOS-XE</li>
+</ul>
+<h3 id="config-tasks">Config Tasks</h3>
+<ul>
+<li>By default, a router will generate and propagate labels for all networks in the RIB. Configure conditional label advertisement if only a subset of networks is required for label-switching, such as router loopback addresses.</li>
+</ul>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="err">!</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">mpls</span> <span class="n">ldp</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  <span class="n">interface</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  <span class="n">router</span><span class="o">-</span><span class="nb">id</span> <span class="mf">10.1.10.1</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="err">!</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">ipv4</span> <span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="n">NO_LDP</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>  <span class="n">deny</span> <span class="n">tcp</span> <span class="nb">any</span> <span class="nb">any</span> <span class="n">eq</span> <span class="mi">646</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>  <span class="n">permit</span> <span class="nb">any</span> <span class="nb">any</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="err">!</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">interface</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  <span class="n">ipv4</span> <span class="n">access</span><span class="o">-</span><span class="n">group</span> <span class="n">NO_LDP</span> <span class="n">ingress</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="err">!</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">interface</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">0</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  <span class="n">mpls</span> <span class="n">ip</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">interface</span> <span class="n">Gi0</span><span class="o">/</span><span class="mi">1</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  <span class="n">ip</span> <span class="n">access</span><span class="o">-</span><span class="n">group</span> <span class="n">NO_LDP</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="err">!</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">mpls</span> <span class="n">ldp</span> <span class="n">router</span><span class="o">-</span><span class="nb">id</span> <span class="mf">10.2.1.1</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="err">!</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">ip</span> <span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="n">extended</span> <span class="n">NO_LDP</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  <span class="n">deny</span> <span class="n">tcp</span> <span class="nb">any</span> <span class="nb">any</span> <span class="n">eq</span> <span class="mi">646</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>  <span class="n">permit</span> <span class="n">ip</span> <span class="nb">any</span> <span class="nb">any</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="err">!</span>
+</code></pre></div>
+<p><strong>IP TTL Propagation</strong> is enabled by default.</p>
+<ul>
+<li>You can disable it, but by default, the disable command will also break traceroute for network operators. </li>
+</ul>
+<p>IOS/IOS-XE config:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>PE2(config)# no mpls ip propagate-ttl ?
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>   forwarded  Propagate IP TTL for forwarded traffic 
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>   local      Propagate IP TTL for locally originated traffic 
+</code></pre></div></p>
+<p>IOS-XR config:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>RP/0/RSP0/CPU0:PE1(config)# mpls ip-ttl-propagate disable  
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>   forwarded  Disable IP TTL propagation for only forwarded MPLS   packets 
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>   local      Disable IP TTL propagation for only locally generated MPLS packets 
+</code></pre></div></p>
+<h3 id="mtu-requirements">MTU Requirements</h3>
+<p>Label switching increases the MTU requirements on an interface because of the additional label header.</p>
+<p>There are 3 different MTU values to keep track of:</p>
+<ol>
+<li>The interface MTU.<ul>
+<li>On IOS-XE, this is the layer 3 IP payload size</li>
+<li>On IOS-XR, this is the layer 2 MTU</li>
+</ul>
+</li>
+<li>The IP MTU used to determine whether a nonlabeled IP packet is forwarded and possibly fragmented. The IP MTU has no impact on labeled IP packets.</li>
+<li>
+<p>The MPLS MTU determines the max size of a labeled IP packets -- MPLS shim + IP payload size. By default, the MPLS MTU equals the interface MTU.</p>
+</li>
+<li>
+<p>You can increase MTU on interfaces where you run MPLS in the core (P routers) to prevent unnecessary fragmentation. This is called jumbo frames, baby giants, giants; sometimes it needs to be configured to support them.</p>
+</li>
+</ol>
+<p><code>mpls mtu 1512</code> to support an IP MTU of 1500 bytes. 1500 is default IP MTU excluding layer 2 MTU, like ethernet will 14 bytes for 1514 L2 MTU.</p>
+<h2 id="ldp-configuration">LDP Configuration</h2>
+<p>Similiar to IGP, there is protocol tuning available for LDP.</p>
+<p><strong>LDP Sessions Protection</strong>
+Enables you to configure LDP to automatically protect sessions with all or a given set of peers. LDP initiates backup targetted hellos for neighbors through alternative paths for which primary link adjacencies already exist.</p>
+<p>This provides faster LDP convergence when a link recovers following an outage. </p>
+<p>In LDP configuration mode on IOS-XR: <code>session protection [duration seconds | infinite] [for peer-acl]</code> </p>
+<p>In global config mode on IOS-XE: <code>mpls ldp session protection</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>     [R2]
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    /    \
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>[R1] --- [R3]
+</code></pre></div>
+<p>So R1 - R3 have primary session, and LDP session protection sends targetted hellos between R1 and R3 via R2. </p>
+<p><strong>LDP Graceful Restart and NSR Configuration</strong>
+Allows for graceful failover between Route Processors to ensure High Availability. Graceful restart is a way to recover from signaling and control plane failures without impacting forwarding. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>mpls ldp
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  graceful restart
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>  nsr
+</code></pre></div>
+<p>On IOS-XE, it is <code>mpls ldp graceful-restart</code></p>
+<p><code>graceful-restart [reconnect-timeout seconds | forwarding-state-holdtime seconds]</code></p>
+<p>So when you enable MPLS LDP graceful restart, if there is a failure on a SSO- or NSF-enabled router, data plane is not interrupted while the LDP control plane is rebuild. </p>
+<p>The failed LDP neighbor is performing graceful restarted, the peer marks associated forwarding state info as stale. If the peer does not recover in time, the peer will remove the failed forwarding state.</p>
+<p><strong>LDP IGP Synchronization Configuration</strong></p>
+<p>A lack of sync between IGP and LDP can cause MPLS traffic drops. Like, an IGP advertising and using a link before LDP convergence has occured, OR, a link may continue to be used by the IGP but LDP session has gone down.</p>
+<p>LDP considers a link converged when at least one LDP session is operating on the link for which LDP has sent labels and received at least one label from its peer. LDP will notify the IGP to advertise links with regular metrics. When the link is active, yet LDP is not converged, the IGP advertises its maximum metric. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>router ospf 1
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>  mpls ldp sync
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>!
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>router isis 1
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>  interface gi0/1
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    address-family ipv4 unicast
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>      mpls ldp sync
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>!
+</code></pre></div>
+<p><strong>LDP Autoconfiguration</strong></p>
+<p>Allows you to automatically configure LDP on all interfaces that are associated with an OSPF or IS-IS interface. You can also disable auto-configuration on a per-interface basis.</p>
+<p><code>mpls ldp autoconfig</code> under router process or under specific area configuration.</p>
+<p><strong>Label Advertisement Control</strong></p>
+<p>Outbound label filtering for scalability, performance, or security reasons.</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># only allow labels from 10.7.1.1 to peers,</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">interface</span> <span class="n">lo0</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>  <span class="n">ip</span> <span class="n">address</span> <span class="mf">10.7.1.1</span><span class="o">/</span><span class="mi">32</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>  <span class="n">no</span> <span class="n">shut</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="err">!</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="n">mpls</span> <span class="n">ldp</span> 
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>  <span class="n">label</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="n">advertise</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>      <span class="n">disable</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>      <span class="k">for</span> <span class="n">PFX</span> <span class="n">to</span> <span class="n">to</span> <span class="n">PEER</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="err">!</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="n">ipv4</span> <span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="n">PEER</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>  <span class="mi">10</span> <span class="n">permit</span> <span class="n">ipv4</span> <span class="nb">any</span> <span class="nb">any</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="n">ipc4</span> <span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="n">PFX</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>  <span class="mi">10</span> <span class="n">permit</span> <span class="n">ipv4</span> <span class="n">host</span> <span class="mf">10.7.1.1</span> <span class="nb">any</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">interface</span> <span class="n">lo0</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>  <span class="n">ip</span> <span class="n">address</span> <span class="mf">10.8.1.1</span><span class="o">/</span><span class="mi">32</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>  <span class="n">no</span> <span class="n">shut</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="err">!</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="err">!</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">no</span> <span class="n">mpls</span> <span class="n">ldp</span> <span class="n">advertise</span><span class="o">-</span><span class="n">label</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="err">!</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="n">mpls</span> <span class="n">label</span> <span class="n">advertise</span><span class="o">-</span><span class="n">labels</span> <span class="k">for</span> <span class="mi">20</span> <span class="n">to</span> <span class="mi">21</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="err">!</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="err">!</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="mi">20</span> <span class="n">permit</span> <span class="n">host</span> <span class="mf">10.8.1.1</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="n">access</span><span class="o">-</span><span class="nb">list</span> <span class="mi">21</span> <span class="n">permit</span> <span class="nb">any</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="err">!</span>
+</code></pre></div>
+<p><strong>Label Acceptance Control</strong></p>
+<p>Inbound filtering, very similiar to advertisement control in terms of configuration. Use access-lists to specify allowed hosts to send labels to host.</p>
+<h2 id="mpls-monitoring-and-verification">MPLS Monitoring and Verification</h2>
+<p>Here are some common <code>show</code> commands to take a closer look at MPLS, LDP.</p>
+<p><code>show mpls interfaces</code></p>
+<ul>
+<li>Shows interfaces that are configured for MPLS</li>
+</ul>
+<p><code>show mpls ldp discovery</code></p>
+<ul>
+<li>Displays LDP discovery information, like which ports are receiving and transmitting LDP packets</li>
+</ul>
+<p><code>show mpls ldp neighbor [detail]</code></p>
+<ul>
+<li>Shows info on all LDP neighbors. The state <code>Oper</code> indicates the session is up. Detail also provides addresses bound to this peer.</li>
+</ul>
+<p><code>show mpls ldp bindings [summary]</code></p>
+<ul>
+<li>This displays the LIB. It will show the prefix found in route table, along with local label and peers and their remote labels.</li>
+</ul>
+<p><code>show mpls forwarding</code></p>
+<ul>
+<li>This displays the LFIB. Local label, outgoing label, prefix, outgoing interface, next-hop, and amount of bytes switched. I omitted the large number of optional CLI suffixes.</li>
+</ul>
+<p><code>show cef [prefix [mask]] [hardware {egress | ingress} | detail] [location {node-id | all}]</code></p>
+<ul>
+<li>A lot of options here, sort of like <code>show mpls forwarding</code>. You can view additional details in the FIB, including local/remote labels.</li>
+</ul>
+<h2 id="mpls-troubleshooting">MPLS Troubleshooting</h2>
+<p>Mostly the same as IP troubleshooting-- <code>ping</code>, <code>traceroute</code>, <code>show</code> commands with <code>debug</code> as last resort. </p>
+<p>Common issue with broken LSP is in the core where P routers are not running BGP. If core LSPs are broken, then P routers will not be able to forward IP packets because they do not have the full tables. If core LSPs are broken, the VPNs will also stop working because core routers do not know about the VPN labels even if they run BGP because the VPN labels can only be correctly processed by the <em>originating egress PE routers</em>.</p>
+<h3 id="classic-ip-ping-traceroute">Classic IP Ping, Traceroute</h3>
+<ul>
+<li>Tests reachability through global routing table on P and PE routers.</li>
+<li>Test reachability of L3VPN prefixes in their VRF tables via label switching. Usable on the PE routers within the required VRF.</li>
+<li>Customers can use tools to test L3VPN end to end</li>
+</ul>
+<p>Some considerations with classic <code>ping</code>, <code>traceroute</code>:</p>
+<ul>
+<li>Broken LSPs may not be revealed with <code>ping</code>, <code>traceroute</code></li>
+<li>Broken LSPs may revert back to IP forwarding</li>
+<li>This can be fine, but when you're layering services, like TE, L2VPN, L3VPN services will break.</li>
+</ul>
+<h3 id="mpls-ping-mpls-traceroute">MPLS Ping, MPLS Traceroute</h3>
+<p>To use these, enable <code>mpls oam</code> in your environment. An FEC must be selected to choose the associated LSP with these tools. FECs can be IP prefix in FIB, L2VPN, MPLS TE tunnel LSP.</p>
+<ul>
+<li>Encapsulates UDP requests directly into selected LSP.</li>
+<li>Additional MPLS config choices into cmds:<ul>
+<li>Exp field, TTL, reply mode, output interface</li>
+<li>Explicit Null label usage</li>
+<li>Not subject to TTL propagation disabling</li>
+</ul>
+</li>
+<li>More information in replies<ul>
+<li>Labels, interfaces, many other LSP diagnostics</li>
+</ul>
+</li>
+</ul>
+<p><strong>MPLS Ping</strong></p>
+<ul>
+<li>UDP port 3503, TTL 255</li>
+<li>MPLS echo request<ul>
+<li>Inside echo request is about the tested FEC as an TLV attribute</li>
+<li>These TLV's are basically the additional CLI options on <code>mpls ping</code> such as downstream router and interface, MTU, and multipath information from the router where the request is processed</li>
+</ul>
+</li>
+<li>MPLS echo reply</li>
+<li>Labeled packet with IP (UDP) payload</li>
+<li>source address: routable address sender</li>
+<li>destination address: any IP in 127/8 (default is 127.0.0.1)<ul>
+<li>Using the 127/8 address in the IP header destination address field will cause the packet to not be forwarded by any routers using the IP header, if the LSP is broken somewhere inside the MPLS domain.</li>
+</ul>
+</li>
+<li>dest port is 3503</li>
+</ul>
+<p><code>ping mpls ipv4 172.16.7.4 255.255.255.255</code></p>
+<p>The option of <code>dsmap</code> shows next-hop label in MPLS ping output.</p>
+<p><strong>MPLS Traceroute</strong></p>
+<p><code>traceroute mpls ipv4 172.16.7.4 255.255.255.255</code></p>
+<ul>
+<li>Same as IP traceroute, outputs labels at hop</li>
+<li><code>MRU</code> shows lowest MTU of the path (Max Receive Unit)</li>
+</ul>
+<h3 id="troubleshooting-and-common-mpls-issues">Troubleshooting and common MPLS issues</h3>
+<p><strong>LDP session does not start</strong></p>
+<p><code>show mpls ldp discovery</code> does not display the expected LDP neighbors. MPLS forwarding on router does not work.</p>
+<ul>
+<li>MPLS may not be enabled or configured properly between peers, such as enabled on expected peer interface.</li>
+<li>If LDP neighbors are discovered but the session will not establish, validate reachability between LDP nodes.</li>
+</ul>
+<p><strong>Label distribution issues</strong></p>
+<p><code>show mpls ldp bindings</code> on adjacent LSR does not show labels from LDP node. Possible common issues could be faulty software issue, conditional label advertisement config issues (faulty ACLs).</p>
+<p>Use <code>show mpls ldp discovery</code> to identify adjacent LSR IP address to properly assign to ACL in the label advertisement configuration via <code>mpls ldp label advertise</code></p>
+<p><strong>MPLS breaks after an interface fails</strong></p>
+<p>Common if a physical interface is used for LDP identifier. Manual configure the LDP router ID, referencing a loopback interface reachable by the IGP. </p>
+<p>You can verify local LDP ID with <code>show mpls ldp neighbors</code></p>
+<p><strong>Packet forwarding issues</strong></p>
+<p>Customer reports large packets are dropped. This can happen if there are label MTU issues or if a device in the forwarding path does not support jumbo packets.</p>
+<p>A common fix is to modify the MPLS MTU size, taking into account one or more possible MPLS labels in the path. </p>
+<p><code>traceroute</code> is the best tool to verify MRU to identify MTU in the path. Then check hop-by-hop the MTU settings on L2 segments. </p>
+<h2 id="unified-mpls-implementation">Unified MPLS Implementation</h2>
+<p>Also known as seemless MPLS. RFC 3107. BGP LU - Labeled Unicast. Updated and obseleted in RFC8277. </p>
+<p>Unified MPLS allows MPLS networks to scale more easily. It is all about scaling. Commonly, SP's do M&amp;A activities, so different core networks may run different IGPs, or they may have different administrative sub-domains. They may also just be very, very large with scaling and management challenges. </p>
+<p>Unified MPLS is defined by the addition of extra features with traditional MPLS. In order to deliver end to end services, an e2e LSP is needed. The goal of Unified MPLS is to keep MPLS servers, like MPLS VPN, L2VPN, L3VP, but introduce greater scalability. </p>
+<p>Unified MPLS addresses some of this by:</p>
+<ul>
+<li>Carrying next-hop labels in BGP (PE lookbacks)</li>
+<li>No need for pseudowire stitching</li>
+<li>No need for complex inter-AS MPLS VPN solutions</li>
+<li>Providers end to end LSPs with BGP</li>
+</ul>
+<h3 id="unified-mpls-label-stack">Unified MPLS Label Stack</h3>
+<p>Bog standard MPLS usually has two labels carrying MPLS services:</p>
+<ol>
+<li>Top label is LDP label</li>
+<li>Bottom label is a service label learned via MP-BGP (such as L2 and L3 MPLS VPNs)</li>
+</ol>
+<p>Unified MPLS adds another label into the stack:</p>
+<ol>
+<li>Top label is LDP label</li>
+<li>Second label is BGP label for PE next-hop reachability (RFC 3107)</li>
+<li>Bottom label is VPN label</li>
+</ol>
+<p><img alt="Screenshot" src="../img/unified-mpls-labels.png" /></p>
+<p>So looking at this, we can see:</p>
+<ul>
+<li>Bottom label 6 is assigned by final egress PE connecting a VPN site, which is advertised via MP-BPG.</li>
+<li>The second label (Edge next-hop label) is assigned on inter-domain routers (ASBRs or EBGP routers) and is also advertised by BGP. This label is responsible for the reachability of inter-domain PE routers.</li>
+<li>The top label (intra-domain next-hop label) is assigned by LDP and is responsible for the reachability of inter-domain PE routers in individual domain core routers. </li>
+</ul>
+<h3 id="unified-mpls-configuration">Unified MPLS Configuration</h3>
+<p>In general, you want to use Unified MPLS on very large networks with scalability issues. In general, this is extending MPLS from the core beyond the aggregate networks to access layers. As said before, there may be different IGP processes or two different IGPs running in aggregate layer versus core.</p>
+<div class="highlight"><span class="filename">IOS XR</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">RTR</span><span class="c1"># conf t</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">RP0</span><span class="o">/</span><span class="n">CPU0</span><span class="p">:</span><span class="n">RTR</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># mpls ip-ttl-propagate disable</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">IOS XE</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">router</span><span class="c1"># conf t</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="c1"># router bgp 64998</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">bgp</span><span class="p">)</span><span class="c1"># address-family ipv4 unicast</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">bgp</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># neighbor 203.0.113.41 update-source Lo0</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">bgp</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># neighbor 203.0.113.41 next-hop-self</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="n">router</span><span class="p">(</span><span class="n">config</span><span class="o">-</span><span class="n">bgp</span><span class="o">-</span><span class="n">af</span><span class="p">)</span><span class="c1"># neighbor 203.0.113.41 send-label</span>
+</code></pre></div>
+<p>The proposed guidelines to configure are:</p>
+<ul>
+<li>Turn the routers that would otherwise break end to end LSPs into ABRs that are Route Reflectors</li>
+<li>Enable sending of labels for IPv4 prefixes</li>
+<li>Use next-hop-self neighbor command to ensure e2e LSPs</li>
+</ul>
+<p>There are a two options for configuring based on architeture.</p>
+<ol>
+<li>ABR (between aggregate and core) does not set next-hop-self for prefixes into aggregate network. Instead, ABR must redistribute loopback prefixes of ABRs from core IGP into the aggregate IGP. This may require changes over time, so it seems there is still a scalability issue?</li>
+<li>ABR sets next-hop-self for prefixes advertised (reflected by BGP) by the ABR into aggregation network. </li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.path", "navigation.indexes", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
