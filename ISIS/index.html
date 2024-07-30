@@ -972,6 +972,43 @@
 <li>When you have a single-level IS, the primary limit is the number of nodes</li>
 <li>Multilevel allows for less nodes for a smaller LSDB to scale</li>
 </ul>
+<p><strong><em>NSAP Examples</em></strong></p>
+<p>The NSAP 49.0001.aaaa.bbbb.cccc.00 consists of the following:</p>
+<ul>
+<li>
+<p>For IS-IS:</p>
+<ul>
+<li>Area = 49.0001</li>
+<li>System ID = aaaa.bbbb.cccc</li>
+<li>N-selector = 00</li>
+</ul>
+</li>
+<li>
+<p>For ISO-IGRP:</p>
+<ul>
+<li>Domain = 49</li>
+<li>Area = 0001</li>
+<li>System ID = aaaa.bbbb.cccc</li>
+<li>N-selector = ignored by ISO-IGRP</li>
+</ul>
+</li>
+</ul>
+<p>The NSAP 39.0f01.0002.0000.0c00.1111.00 consists of the following:</p>
+<ul>
+<li>For IS-IS:<ul>
+<li>Area = 39.0f01.0002</li>
+<li>System ID = 0000.0c00.1111</li>
+<li>N-selector = 00</li>
+</ul>
+</li>
+<li>For ISO-IGRP:<ul>
+<li>Domain = 39.0f01</li>
+<li>Area = 0002</li>
+<li>System ID = 0000.0c00.1111</li>
+<li>N-selector = ignored by ISO-IGRP</li>
+</ul>
+</li>
+</ul>
 <h2 id="multilevel-is-is">Multilevel IS-IS</h2>
 <p><strong>Three types of routers</strong>:</p>
 <ol>
