@@ -6,6 +6,34 @@
 - When you have a single-level IS, the primary limit is the number of nodes
 - Multilevel allows for less nodes for a smaller LSDB to scale
 
+***NSAP Examples***
+
+The NSAP 49.0001.aaaa.bbbb.cccc.00 consists of the following:
+
+- For IS-IS:
+    - Area = 49.0001
+    - System ID = aaaa.bbbb.cccc
+    - N-selector = 00
+
+- For ISO-IGRP:
+    - Domain = 49
+    - Area = 0001
+    - System ID = aaaa.bbbb.cccc
+    - N-selector = ignored by ISO-IGRP
+
+The NSAP 39.0f01.0002.0000.0c00.1111.00 consists of the following:
+
+- For IS-IS:
+    - Area = 39.0f01.0002
+    - System ID = 0000.0c00.1111
+    - N-selector = 00
+- For ISO-IGRP:
+    - Domain = 39.0f01
+    - Area = 0002
+    - System ID = 0000.0c00.1111
+    - N-selector = ignored by ISO-IGRP
+
+
 ## Multilevel IS-IS
 
 **Three types of routers**:
